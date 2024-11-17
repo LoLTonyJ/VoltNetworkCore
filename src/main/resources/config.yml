@@ -1,0 +1,324 @@
+#     $$\    $$\           $$\   $$\     $$\   $$\            $$\                                       $$\
+#     $$ |   $$ |          $$ |  $$ |    $$$\  $$ |           $$ |                                      $$ |
+#     $$ |   $$ | $$$$$$\  $$ |$$$$$$\   $$$$\ $$ | $$$$$$\ $$$$$$\   $$\  $$\  $$\  $$$$$$\   $$$$$$\  $$ |  $$\
+#     \$$\  $$  |$$  __$$\ $$ |\_$$  _|  $$ $$\$$ |$$  __$$\\_$$  _|  $$ | $$ | $$ |$$  __$$\ $$  __$$\ $$ | $$  |
+#      \$$\$$  / $$ /  $$ |$$ |  $$ |    $$ \$$$$ |$$$$$$$$ | $$ |    $$ | $$ | $$ |$$ /  $$ |$$ |  \__|$$$$$$  /
+#       \$$$  /  $$ |  $$ |$$ |  $$ |$$\ $$ |\$$$ |$$   ____| $$ |$$\ $$ | $$ | $$ |$$ |  $$ |$$ |      $$  _$$<
+#        \$  /   \$$$$$$  |$$ |  \$$$$  |$$ | \$$ |\$$$$$$$\  \$$$$  |\$$$$$\$$$$  |\$$$$$$  |$$ |      $$ | \$$\
+#         \_/     \______/ \__|   \____/ \__|  \__| \_______|  \____/  \_____\____/  \______/ \__|      \__|  \__|
+
+# Created for the VoltNetwork Minecraft Server
+# All rights reserved to GPL-3.0 licensing.
+# If you have any questions, or concerns please contact ghostinq on Discord.
+
+#######################################################################################################################
+#                                                                                                                     #
+#                                   GENERAL INFORMATION                                                               #
+#                                                                                                                     #
+#######################################################################################################################
+
+prefix: "&7[&cVoltNetwork&7]"
+administration_permission: "VoltNetwork.CE.Admin"
+
+# Permission used to reload the Plugins Configuration File.
+backend_permission: "VoltNetwork.Admin"
+
+display_item_require_permission: true
+display_item_permission: "VoltNetwork.DisplayItem"
+
+#######################################################################################################################
+#                                                                                                                     #
+#                                   SPECIAL FOODS SECTION                                                             #
+#                                                                                                                     #
+#######################################################################################################################
+
+# If players want to remove 1 minute of their cooldown it will cost them; Ex $5000
+special_cookie_cost: 5000
+
+# If they want to clear the cooldown, it will cost; Ex $15000
+special_cookie_remove: 15000
+
+night_vision_cost: 1500
+night_vision_remove: 5000
+
+
+
+
+#######################################################################################################################
+#                                                                                                                     #
+#                                   STAFF MODE SECTION                                                                #
+#                                                                                                                     #
+#######################################################################################################################
+
+permission_per_module: false
+staff_mode_gamemode: SPECTATOR
+staff_alerts: "&c&l&oALERT >> &7"
+gamemode_exempt: "VoltNetwork.StaffMode.GME"
+staff_mode_permission: "VoltNetwork.StaffMode"
+staff_alert_permission: "VoltNetwork.StaffMode.Alerts"
+staff_alerts_exempt: "VoltNetwork.StaffMode.Exempt"
+
+discord_inv: "discord.gg/invitehere"
+
+# Modules
+invis_from_all: "VoltNetwork.StaffMode.Invis"
+teleport_gui: "VoltNetwork.StaffMode.Teleport"
+freeze_player: "VoltNetwork.StaffMode.Freeze"
+player_info: "VoltNetwork.StaffMode.PlayerInfo"
+
+# If this is set to true.
+# This will ban the player if they leave whilst frozen.
+frozen_ban_leave: false
+default_frozen_ban: "&cYou have been banned for leaving whilst frozen. \n If you believe this is a mistake, please join our Discord!"
+
+frozen_message:
+  - "You have been frozen by %staff%"
+  - "If you believe this is a mistake"
+  - "Join our Discrd; discord.gg/invitehere"
+
+
+#######################################################################################################################
+#                                                                                                                     #
+#                                   MESSAGES SECTION                                                                  #
+#                                                                                                                     #
+#######################################################################################################################
+
+apply_enchantment: "&7Please click the tool you'd like to enchant!"
+undo_enchantment: "&7You will no longer enchant the clicked item"
+error_remove_enchantment: "&cThis item does not have any Custom Enchantments to remove!"
+error_enchant: "&7You're already queued to enchant a tool!"
+cannot_enchant: "&7You cannot enchant this item with this enchantment"
+
+# What is displayed on the item when separating regular enchants and custom enchants.
+#
+#  EXAMPLE
+#
+# Sharpness III
+# Unbreaking III
+#
+# CUSTOM ENCHANTS
+# Harvest Yield I
+# Ore Yield I
+# etc.
+
+
+custom_enchant_separator: "&c&lCUSTOM ENCHANTS"
+
+#######################################################################################################################
+#                                                                                                                     #
+#                                   DONATOR PERKS SECTION                                                             #
+#                                                                                                                     #
+#######################################################################################################################
+
+# This will determine IF it will load anything under this section.
+# If switched to false, everything considered "Donator Perks" will be disabled.
+donator_perks_active: true
+
+donator_prefix: "&7[&aDonator Perks&7]"
+
+# Enabled / Disabled Cooldowns for Donator Perks.
+donator_cooldown: true
+
+
+#-------------------- NightVision -----------------------
+
+night_vision_no_access: "&7You do not have access to this command! Purchase access at www.storename.com"
+
+# Night Vision voucher customization.
+night_vision_item_type: PAPER
+night_vision_item_name: "&a&lNight Vision Voucher"
+night_vision_item_lore:
+  - "&7Right-Click to Claim"
+  - "&7Grants Access to /nv"
+
+# Enable / Disable Night Vision perks.
+night_vision_permission: "VoltNetwork.Donator.NV"
+
+night_vision_unlimited: true
+# If Night Vision is false.
+# Represented in Seconds, Night Vision will only last for 50 Seconds.
+night_vision_duration: 50
+
+# Represented in Minutes
+# Set to 0 to disable.
+night_vision_cooldown: 4
+
+
+
+
+
+#######################################################################################################################
+#                                                                                                                     #
+#                                   GRAVESTONE SECTION                                                                #
+#                                                                                                                     #
+#######################################################################################################################
+
+gravestone_enable: true
+
+# How much will it cost the player to TP back to their Gravestone
+gravestone_tp_cost: 5000.0
+gravestone_tp_enabled: true
+
+# If this is set to false, items will drop naturally, if its set to true a gravestone will be created for the player.
+drop_gravestone_inpvp: false
+
+# The pvp region name
+pvp_region_name: "pvp"
+
+
+# One of these has to be true, if both are false nothing will happen.
+# If a player clicks on a Gravestone that isn't theirs, it will either send them a Title, or Message with the co-ordinates of their Gravestone.
+
+sendtitle_gravestone_coords: true
+
+# %coords% is the only placeholder supported in this part.
+# Reason why is because I thought you'd like to customize the message later on.
+sendtitle_header: "&c&lThis is not your Gravestone!"
+sendtitle_footer: "&bYour Gravestone is at %coords%"
+
+# %coords% is the only placeholder supported in this part.
+# Reason why is because I thought you'd like to customize the message later on.
+sendmessage_gravestone_coords: false
+gravestone_coords_message: "&c&lThis is not your Gravestone! &bYour Gravestone is at %coords%"
+
+gravestone_message:
+  - "&7Right-Click to claim your items"
+  - "Another Line"
+  - "And Another one!"
+  -
+block_type: BARREL
+
+#######################################################################################################################
+#                                                                                                                     #
+#                                   KOTH SECTION                                                                      #
+#                                                                                                                     #
+#######################################################################################################################
+
+# %koth% goes off what you set the name to
+# If you did -> /koth create test <region>
+# it will output "test is contested"
+
+# %player_displayname% will output the users chat name.
+# IE, [Admin] SlammedPanda392 is the new king!
+
+# %duration% is how much time is left till the koth ends.
+
+# Represented in Seconds
+koth_default_duration: 15
+
+# This will display whenever someone is capturing koth, or any koth updates.
+# Basically when something is being broadcasted about koth, this will present itself.
+koth_prefix: "&c&l&oKOTH > "
+
+# %koth% will be whatever you set the name of the koth to.
+# %duration% will go off of "koth_default_duration" for now, will add a system where custom durations can be set in the near future.
+koth_start: "&c%koth% has been started for %duration% seconds"
+
+# Will soon add placeholders for koth names
+# Only Supports %player_displayname%
+koth_cap: "%player_displayname% is the new king!"
+
+koth_contest: "&c%koth% is contested"
+
+koth_remained_contested: "%koth% has ended contested, no winners!"
+
+# Will trigger whenever the list of "cappers" returns 0
+# IE No one is in the Koth Region
+koth_cap_leave: "&c%koth% is empty! Capture it!"
+
+koth_victor: "%player_displayname% has won %koth%"
+
+koth_end_no_capper: "Nobody captured %koth% in time!"
+# Sends this message to whoever won the koth event.
+victor_message: "You have won %koth%, /koth rewards to claim your rewards!"
+
+# Allows a hologram to be displayed in the middle of the koth region
+koth_hologram: true
+
+
+# Where the hologram will be displayed relevent to the WorldGuard region.
+X_offset_hologram: 0
+# For your Y offset, if you set this to 0, the Hologram will appear in the floor.
+Y_offset_hologram: 2
+Z_offset_hologram: 0
+
+#######################################################################################################################
+#                                                                                                                     #
+#                                   STAFF CHAT                                                                        #
+#                                                                                                                     #
+#######################################################################################################################
+
+
+staff_permission: "VoltNetwork.StaffChat"
+staff_prefix: "&c&l&oSTAFF > "
+
+
+#######################################################################################################################
+#                                                                                                                     #
+#                                   DROP RATES                                                                        #
+#                                                                                                                     #
+#######################################################################################################################
+
+# Harvest Yield Drops
+
+# Will be added on to default drop amount
+# If it drops 2 naturally, it will drop an additional X amount.
+
+harvest_yield_lv1_min: 2
+harvest_yield_lv1_max: 5
+
+harvest_yield_lvl2_min: 4
+harvest_yield_lv2_max: 8
+
+
+
+#######################################################################################################################
+#                                                                                                                     #
+#                                   GENERAL CHECKS                                                                    #
+#                                                                                                                     #
+#######################################################################################################################
+
+# If there is something you need, or have a question about please message Ghostinq on Discord.
+
+# Whatever block is displayed here, it will notify staff whenever one is mined.
+# Please do not touch unless you know what you're doing!
+
+Access_Blocks:
+  - CHEST
+  - ENDER_CHEST
+  - BARREL
+  - RED_SHULKER_BOX
+  - WHITE_SHULKER_BOX
+  - LIGHT_GRAY_SHULKER_BOX
+  - GRAY_SHULKER_BOX
+  - BLACK_SHULKER_BOX
+  - BROWN_SHULKER_BOX
+  - ORANGE_SHULKER_BOX
+  - YELLOW_SHULKER_BOX
+  - LIME_GREEN_SHULKER_BOX
+  - GREEN_SHULKER_BOX
+  - CYAN_SHULKER_BOX
+  - LIGHT_BLUE_SHULKER_BOX
+  - BLUE_SHULKER_BOX
+  - PURPLE_SHULKER_BOX
+  - MAGENTA_SHULKER_BOX
+  - PINK_SHULKER_BOX
+
+Check_Blocks:
+  - DIAMOND_ORE
+  - EMERALD_ORE
+  - DEEPSLATE_DIAMOND_ORE
+
+# Its recommended not to touch this if you don't know what you're doing.
+# This will check the item in the players hand and check and see if its allowed to be enchanted with a custom enchant
+
+# Whatever item is displayed here will allow players to enchant with Custom Enchants.
+# For a list of items, use this link -> https://minecraftitemids.com
+# Remove "minecraft:" before pasting into list.
+# !! ALL ITEMS ARE CASE SENSITIVE !!
+
+Harvest:
+  - NETHERITE_HOE
+  - DIAMOND_HOE
+  - IRON_HOE
+  - WOODEN_HOE

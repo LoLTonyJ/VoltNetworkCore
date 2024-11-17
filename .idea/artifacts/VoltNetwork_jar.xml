@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="VoltNetwork:jar">
+    <output-path>$USER_HOME$/Desktop/Spigot Server/plugins</output-path>
+    <root id="archive" name="VoltNetwork.jar">
+      <element id="module-output" name="VoltNetwork" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/github/PerryPlaysMC/DynamicJson/2.1.1/DynamicJson-2.1.1.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

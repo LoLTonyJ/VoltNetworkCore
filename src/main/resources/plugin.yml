@@ -1,0 +1,27 @@
+name: VoltNetwork
+version: '${project.version}'
+main: me.tony.main.voltnetwork.VoltNetwork
+api-version: '1.21'
+
+softdepend:
+  - DecentHolograms
+
+commands:
+  vce:
+    description: Custom Enchantment Main Command
+  cfg:
+    description: Configuration Main Command
+  gravestone:
+    description: Gravestone debug command.
+  koth:
+    description: Main Koth Command
+  sc:
+    description: Staff Chat Command
+  dono:
+    description: Donator Perks Command
+  nv:
+    description: Donator Night Vision Perk
+  sm:
+    description: Staff Mode Commands
+  item:
+    description: Display your Cool item
