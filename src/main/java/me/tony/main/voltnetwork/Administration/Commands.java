@@ -24,13 +24,6 @@ public class Commands implements CommandExecutor {
 
         Player p = (Player) sender;
 
-        if (args.length == 1) {
-            String subCommand = args[0];
-            if (subCommand.equalsIgnoreCase("cooldown") || subCommand.equalsIgnoreCase("cooldowns") || subCommand.equalsIgnoreCase("cd")) {
-                InventoryUtil.Cooldowns(p);
-            }
-        }
-
         // Checks players permission.
         if (p.hasPermission(adminPerm)) {
             if (args.length == 0) {
