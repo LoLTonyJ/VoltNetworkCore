@@ -4,6 +4,7 @@ import io.dynamicstudios.json.DynamicJText;
 import io.dynamicstudios.json.data.component.IComponent;
 import io.dynamicstudios.json.data.util.CColor;
 import me.tony.main.voltnetwork.VoltNetwork;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -50,8 +51,35 @@ public class DisplayItem implements CommandExecutor {
                         text.hover(EnchantmentUtil.getEnchantments(p));
                     }
 
-                    text.send(p);
+                    for (Player online : Bukkit.getOnlinePlayers()) {
+                        text.send(online);
+                    }
 
+                }
+
+            }
+        } else {
+            if (p.getInventory().getItemInMainHand().hasItemMeta()) {
+
+                ItemStack item = p.getInventory().getItemInMainHand();
+                ItemMeta m = item.getItemMeta();
+                if (m.getDisplayName() != null) {
+                    output = m.getDisplayName();
+                }
+
+                DynamicJText text = new DynamicJText(p.getDisplayName());
+                text.add(": ");
+                text.add(output);
+                text.hover(m.getLore().toArray(new String[m.getLore().size()]));
+                text.add(" ");
+                text.color(CColor.fromName("gray"));
+                if (EnchantmentUtil.getEnchantments(p) != null) {
+                    text.add("[Enchantments]");
+                    text.hover(EnchantmentUtil.getEnchantments(p));
+                }
+
+                for (Player online : Bukkit.getOnlinePlayers()) {
+                    text.send(online);
                 }
 
             }

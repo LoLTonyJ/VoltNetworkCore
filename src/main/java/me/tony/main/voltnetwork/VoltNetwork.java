@@ -120,7 +120,7 @@ public final class VoltNetwork extends JavaPlugin {
             getCommand("cooldown");
             getCommand("item").setExecutor(new DisplayItem());
 
-            System.out.println("\n VoltNetwork v1.1.3 has been loaded Successfully \n If there is something wrong, please contact Ghostinq on Discord. \n");
+            System.out.println("\n VoltNetwork v1.1.4 has been loaded Successfully \n If there is something wrong, please contact Ghostinq on Discord. \n");
 
 
         } else {

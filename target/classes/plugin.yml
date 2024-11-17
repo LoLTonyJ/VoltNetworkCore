@@ -7,21 +7,34 @@ softdepend:
   - DecentHolograms
 
 commands:
-  vce:
+  voltcustomenchant:
     description: Custom Enchantment Main Command
-  cfg:
+    aliases:
+      - vce
+  config:
     description: Configuration Main Command
+    aliases:
+      - cfg
   gravestone:
     description: Gravestone debug command.
   koth:
     description: Main Koth Command
-  sc:
+  staffchat:
     description: Staff Chat Command
+    aliases:
+      - sc
   dono:
     description: Donator Perks Command
   nv:
     description: Donator Night Vision Perk
-  sm:
+  staffmode:
     description: Staff Mode Commands
+    aliases:
+      - sm
   item:
     description: Display your Cool item
+  cooldown:
+    desription: Cooldown Command
+    aliases:
+      - cd
+      - cooldowns
