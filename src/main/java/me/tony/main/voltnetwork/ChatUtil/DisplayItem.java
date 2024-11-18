@@ -43,7 +43,11 @@ public class DisplayItem implements CommandExecutor {
                     DynamicJText text = new DynamicJText(p.getDisplayName());
                     text.add(": ");
                     text.add(output);
-                    text.hover(m.getLore().toArray(new String[m.getLore().size()]));
+                    if (m.getLore() != null) {
+                        text.hover(m.getLore().toArray(new String[m.getLore().size()]));
+                    } else {
+                        text.hover("No Lore");
+                    }
                     text.add(" ");
                     text.color(CColor.fromName("gray"));
                     if (EnchantmentUtil.getEnchantments(p) != null) {

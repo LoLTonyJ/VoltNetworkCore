@@ -115,9 +115,9 @@ public final class VoltNetwork extends JavaPlugin {
             getCommand("config").setExecutor(new ConfigCommands());
             getCommand("gravestone").setExecutor(new me.tony.main.voltnetwork.GravestoneUtil.Commands());
             getCommand("koth").setExecutor(new me.tony.main.voltnetwork.Koth.Commands());
-            getCommand("staffcchat").setExecutor(new StaffChatCommands());
+            getCommand("staffchat").setExecutor(new StaffChatCommands());
             getCommand("staffmode").setExecutor(new StaffModeCommands());
-            getCommand("cooldown");
+            getCommand("cooldown").setExecutor(new me.tony.main.voltnetwork.RemoveCooldown.Commands());
             getCommand("item").setExecutor(new DisplayItem());
 
             System.out.println("\n VoltNetwork v1.1.4 has been loaded Successfully \n If there is something wrong, please contact Ghostinq on Discord. \n");
