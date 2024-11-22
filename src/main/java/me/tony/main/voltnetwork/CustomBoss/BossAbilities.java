@@ -30,7 +30,7 @@ public class BossAbilities {
         for (Entity ent : e.getNearbyEntities(4, 4, 4)) {
             if (ent instanceof Player) {
                 Player p = (Player) ent;
-                p.setVelocity(new Vector(0, 5, 0));
+                p.setVelocity(new Vector(0, 1, 0));
                 p.sendMessage(ChatColor.translateAlternateColorCodes('&', bossName + " Be gone!"));
                 active = false;
             }

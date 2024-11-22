@@ -145,7 +145,7 @@ public final class VoltNetwork extends JavaPlugin {
             getCommand("customboss").setExecutor(new BossCommands());
             getCommand("experience").setExecutor(new ExperienceCommands());
 
-            System.out.println("\n VoltNetwork v1.1.4 has been loaded Successfully \n If there is something wrong, please contact Ghostinq on Discord. \n");
+            System.out.println("\n VoltNetwork v1.2.0 has been loaded Successfully \n If there is something wrong, please contact Ghostinq on Discord. \n");
 
 
         } else {
