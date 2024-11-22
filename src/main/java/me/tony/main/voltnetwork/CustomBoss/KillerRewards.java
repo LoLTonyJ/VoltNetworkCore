@@ -1,5 +1,6 @@
 package me.tony.main.voltnetwork.CustomBoss;
 
+import me.tony.main.voltnetwork.VoltNetwork;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;

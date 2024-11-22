@@ -139,6 +139,8 @@ public class BossUtil implements Listener {
     public static void BossDead(EntityDeathEvent e) {
 
         String bossName = VoltNetwork.getInstance().getConfig().getString("boss_name");
+        int minPlayers = VoltNetwork.getInstance().getConfig().getInt("min_players");
+        String prefix = VoltNetwork.getInstance().getConfig().getString("prefix");
 
         Entity ent = e.getEntity();
         EntityType entType = ent.getType();
@@ -153,25 +155,30 @@ public class BossUtil implements Listener {
 
                 List<TopDamager> leaderboard = getLeaderboard();
 
-                for (int i = 0; i < 3 || i == leaderboard.size(); i++) {
-                    TopDamager top = leaderboard.get(i);
-                    if (Player1.isEmpty() && !Player1.contains(Bukkit.getPlayer(top.getName()))) {
-                        Player1.add(Bukkit.getPlayer(top.getName()));
-                    }
-                    if (Player2.isEmpty() && !Player1.contains(Bukkit.getPlayer(top.getName()))) {
-                        Player2.add(Bukkit.getPlayer(top.getName()));
-                    }
-                    if (Player3.isEmpty() && !Player2.contains(Bukkit.getPlayer(top.getName())) || !Player1.contains(Bukkit.getPlayer(top.getName()))) {
-                        Player3.add(Bukkit.getPlayer(top.getName()));
-                    }
-                    int placement = i + 1;
-                    Bukkit.getServer().broadcastMessage(ChatColor.translateAlternateColorCodes('&',   "&b" + placement + ". " + Bukkit.getPlayer(top.getName()).getDisplayName() + " &b> &c❤ " + top.getDmg()));
-                    KillerRewards.getPlacements();
-                }
+                if (minPlayers != 0 && minPlayers > leaderboard.size()) {
 
-                BossCooldowns.BossRespawn.put(ent, 5);
-                BossCooldowns.RespawnCooldown(ent);
-                BossFileManager.getInstance().SaveData();
+                    for (int i = 0; i < 3 || i == leaderboard.size(); i++) {
+                        TopDamager top = leaderboard.get(i);
+                        if (Player1.isEmpty() && !Player1.contains(Bukkit.getPlayer(top.getName()))) {
+                            Player1.add(Bukkit.getPlayer(top.getName()));
+                        }
+                        if (Player2.isEmpty() && !Player1.contains(Bukkit.getPlayer(top.getName()))) {
+                            Player2.add(Bukkit.getPlayer(top.getName()));
+                        }
+                        if (Player3.isEmpty() && !Player2.contains(Bukkit.getPlayer(top.getName())) || !Player1.contains(Bukkit.getPlayer(top.getName()))) {
+                            Player3.add(Bukkit.getPlayer(top.getName()));
+                        }
+                        int placement = i + 1;
+                        Bukkit.getServer().broadcastMessage(ChatColor.translateAlternateColorCodes('&', "&b" + placement + ". " + Bukkit.getPlayer(top.getName()).getDisplayName() + " &b> &c❤ " + top.getDmg()));
+                        KillerRewards.getPlacements();
+                    }
+
+                    BossCooldowns.BossRespawn.put(ent, 5);
+                    BossCooldowns.RespawnCooldown(ent);
+                    BossFileManager.getInstance().SaveData();
+                }
+            } else {
+                Bukkit.getServer().broadcastMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &7Not enough Players participated in this fight! Rewards will not be given!"));
             }
         }
 
