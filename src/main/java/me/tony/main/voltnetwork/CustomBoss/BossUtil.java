@@ -12,10 +12,7 @@ import org.bukkit.boss.BossBar;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.event.entity.EntityTeleportEvent;
+import org.bukkit.event.entity.*;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -123,6 +120,19 @@ public class BossUtil implements Listener {
 
             e.setCancelled(true);
         }
+    }
+
+    @EventHandler
+    public static void EggSpawn(ItemSpawnEvent e) {
+
+        // Disable The Watchers Chickens from Laying Eggs.
+        World w = Bukkit.getWorld(BossCommands.World.get(0));
+        ItemStack i = e.getEntity().getItemStack();
+        Entity ent = e.getEntity();
+        if (w == null || BossCommands.World.isEmpty()) return;
+        if (!(ent instanceof Chicken)) return;
+        if (!i.getType().equals(Material.EGG)) return;
+        e.setCancelled(true);
     }
 
     @EventHandler
