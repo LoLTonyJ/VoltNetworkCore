@@ -8,6 +8,7 @@ import me.tony.main.voltnetwork.BonusFood.CooldownUtil;
 import me.tony.main.voltnetwork.BonusFood.CraftingUtil;
 import me.tony.main.voltnetwork.BonusFood.FoodUtil;
 import me.tony.main.voltnetwork.ChatUtil.DisplayItem;
+import me.tony.main.voltnetwork.CustomBoss.*;
 import me.tony.main.voltnetwork.CustomItems.DrillUtil;
 import me.tony.main.voltnetwork.CustomItems.HarvestUtil;
 import me.tony.main.voltnetwork.DonatorPerks.DonatorCommands;
@@ -17,6 +18,8 @@ import me.tony.main.voltnetwork.DonatorPerks.NightVisionCommand;
 import me.tony.main.voltnetwork.EnchantmentUtil.EnchantmentAdd;
 import me.tony.main.voltnetwork.EnchantmentUtil.HarvestListener;
 import me.tony.main.voltnetwork.Enchantments.Harvest;
+import me.tony.main.voltnetwork.Experience.ExperienceCommands;
+import me.tony.main.voltnetwork.Experience.ExperienceGUIEvents;
 import me.tony.main.voltnetwork.GravestoneUtil.Gravestones;
 import me.tony.main.voltnetwork.KothUtil.KothCap;
 import me.tony.main.voltnetwork.KothUtil.KothFileManager;
@@ -63,6 +66,15 @@ public final class VoltNetwork extends JavaPlugin {
         setupPermissions();
         setupChat();
 
+        try {
+            KothFileManager.getInstance().Load();
+            KothFileManager.getInstance().LoadData();
+            BossFileManager.getInstance().Load();
+            BossFileManager.getInstance().LoadData();
+        } catch (IOException | InvalidConfigurationException e) {
+            throw new RuntimeException(e);
+        }
+
         if (!setupEconomy() ) {
             getLogger().severe(String.format("[%s] - Disabled due to no Vault dependency found!", getDescription().getName()));
             getServer().getPluginManager().disablePlugin(this);
@@ -79,8 +91,14 @@ public final class VoltNetwork extends JavaPlugin {
             DonatorFileManagement.getInstance().LoadData();
 
             // Bukkit Runnable
+
+
             DonatorUtil.Cooldown();
             CooldownUtil.Cooldown();
+            BossCooldowns.DialogueQueue();
+            BossCooldowns.AbilityUse();
+            BossCooldowns.SpawnWatchers();
+            BossCooldowns.SpawnMinions();
 
             getServer().getPluginManager().registerEvents(new DonatorUtil(), this);
             getCommand("dono").setExecutor(new DonatorCommands());
@@ -107,6 +125,11 @@ public final class VoltNetwork extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new BlockCheckUtil(), this);
         getServer().getPluginManager().registerEvents(new StaffUtil(), this);
 
+        getServer().getPluginManager().registerEvents(new BossUtil(), this);
+        getServer().getPluginManager().registerEvents(new BossInventoryUtil(), this);
+
+        getServer().getPluginManager().registerEvents(new ExperienceGUIEvents(), this);
+
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
 
             getServer().getPluginManager().registerEvents(new Gravestones(), this);
@@ -119,6 +142,8 @@ public final class VoltNetwork extends JavaPlugin {
             getCommand("staffmode").setExecutor(new StaffModeCommands());
             getCommand("cooldown").setExecutor(new me.tony.main.voltnetwork.RemoveCooldown.Commands());
             getCommand("item").setExecutor(new DisplayItem());
+            getCommand("customboss").setExecutor(new BossCommands());
+            getCommand("experience").setExecutor(new ExperienceCommands());
 
             System.out.println("\n VoltNetwork v1.1.4 has been loaded Successfully \n If there is something wrong, please contact Ghostinq on Discord. \n");
 
@@ -126,13 +151,6 @@ public final class VoltNetwork extends JavaPlugin {
         } else {
             getLogger().log(Level.SEVERE, "Could not find PlaceHolderAPI, please install the plugin!");
             Bukkit.getPluginManager().disablePlugin(this);
-        }
-
-        try {
-            KothFileManager.getInstance().Load();
-            KothFileManager.getInstance().LoadData();
-        } catch (IOException | InvalidConfigurationException e) {
-            throw new RuntimeException(e);
         }
 
 
@@ -153,6 +171,7 @@ public final class VoltNetwork extends JavaPlugin {
 
         KothFileManager.getInstance().StoreData();
         DonatorFileManagement.getInstance().StoreData();
+        BossFileManager.getInstance().SaveData();
 
 
         for (Player p : Bukkit.getOnlinePlayers()) {

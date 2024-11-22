@@ -38,3 +38,13 @@ commands:
     aliases:
       - cd
       - cooldowns
+  customboss:
+    description: Custom Boss General Command
+    aliases:
+      - boss
+      - cb
+  experience:
+    description: Buy Experience Levels
+    aliases:
+      - xp
+      - exp

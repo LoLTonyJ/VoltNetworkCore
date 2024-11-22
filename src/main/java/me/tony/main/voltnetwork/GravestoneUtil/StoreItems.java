@@ -39,7 +39,7 @@ public class StoreItems {
 
 
         if (p.getName().contains(".")) {
-            String replaceName = p.getName().replace(".", " ");
+            String replaceName = p.getName().replace(".", "");
             DHAPI.createHologram(replaceName, loc, Collections.singletonList(ChatColor.translateAlternateColorCodes('&', "&7" + p.getName() + "'s Gravestone")));
             if (DHAPI.getHologram(replaceName) != null) {
                 for (String i : GraveStoneList) {

@@ -32,8 +32,8 @@ public class EnchantmentUtil {
         }
 
         // Unbreaking
-        if (item.containsEnchantment(Enchantment.DURABILITY)) {
-            int value = item.getEnchantmentLevel(Enchantment.DURABILITY);
+        if (item.containsEnchantment(Enchantment.UNBREAKING)) {
+            int value = item.getEnchantmentLevel(Enchantment.UNBREAKING);
             enchantmentType.add("Unbreaking " + value);
         }
 
@@ -48,31 +48,31 @@ public class EnchantmentUtil {
          */
 
         // Protection
-        if (item.containsEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL)) {
-            int value = item.getEnchantmentLevel(Enchantment.PROTECTION_ENVIRONMENTAL);
+        if (item.containsEnchantment(Enchantment.PROTECTION)) {
+            int value = item.getEnchantmentLevel(Enchantment.PROTECTION);
             enchantmentType.add("Protection " + value);
         }
         // Aqua Affinity
-        if (item.containsEnchantment(Enchantment.WATER_WORKER)) {
-            int value = item.getEnchantmentLevel(Enchantment.WATER_WORKER);
+        if (item.containsEnchantment(Enchantment.AQUA_AFFINITY)) {
+            int value = item.getEnchantmentLevel(Enchantment.AQUA_AFFINITY);
             enchantmentType.add("Aqua Affinity " + value);
         }
 
         // Blast Protection
-        if (item.containsEnchantment(Enchantment.PROTECTION_EXPLOSIONS)) {
-            int value = item.getEnchantmentLevel(Enchantment.PROTECTION_EXPLOSIONS);
+        if (item.containsEnchantment(Enchantment.BLAST_PROTECTION)) {
+            int value = item.getEnchantmentLevel(Enchantment.BLAST_PROTECTION);
             enchantmentType.add("Blast Protection " + value);
         }
 
         // Fire Protection
-        if (item.containsEnchantment(Enchantment.PROTECTION_FIRE)) {
-            int value = item.getEnchantmentLevel(Enchantment.PROTECTION_FIRE);
+        if (item.containsEnchantment(Enchantment.FIRE_PROTECTION)) {
+            int value = item.getEnchantmentLevel(Enchantment.FIRE_PROTECTION);
             enchantmentType.add("Fire Protection " + value);
         }
 
         // Projectile Protection
-        if (item.containsEnchantment(Enchantment.PROTECTION_PROJECTILE)) {
-            int value = item.getEnchantmentLevel(Enchantment.PROTECTION_PROJECTILE);
+        if (item.containsEnchantment(Enchantment.PROJECTILE_PROTECTION)) {
+            int value = item.getEnchantmentLevel(Enchantment.PROJECTILE_PROTECTION);
             enchantmentType.add("Projectile Protection " + value);
         }
 
@@ -83,8 +83,8 @@ public class EnchantmentUtil {
         }
 
         // Respiration
-        if (item.containsEnchantment(Enchantment.OXYGEN)) {
-            int value = item.getEnchantmentLevel(Enchantment.OXYGEN);
+        if (item.containsEnchantment(Enchantment.RESPIRATION)) {
+            int value = item.getEnchantmentLevel(Enchantment.RESPIRATION);
             enchantmentType.add("Respiration " + value);
         }
 
@@ -95,8 +95,8 @@ public class EnchantmentUtil {
         }
 
         // Feather Falling
-        if (item.containsEnchantment(Enchantment.PROTECTION_FALL)) {
-            int value = item.getEnchantmentLevel(Enchantment.PROTECTION_FALL);
+        if (item.containsEnchantment(Enchantment.FEATHER_FALLING)) {
+            int value = item.getEnchantmentLevel(Enchantment.FEATHER_FALLING);
             enchantmentType.add("Feather Falling " + value);
         }
 
@@ -111,19 +111,19 @@ public class EnchantmentUtil {
          */
 
         // Sharpness
-        if (item.containsEnchantment(Enchantment.DAMAGE_ALL)) {
-            int value = item.getEnchantmentLevel(Enchantment.DAMAGE_ALL);
+        if (item.containsEnchantment(Enchantment.SHARPNESS)) {
+            int value = item.getEnchantmentLevel(Enchantment.SHARPNESS);
             enchantmentType.add("Sharpness " + value);
         }
         // Bane of Arthropods
-        if (item.containsEnchantment(Enchantment.DAMAGE_ARTHROPODS)) {
-            int value = item.getEnchantmentLevel(Enchantment.DAMAGE_ARTHROPODS);
+        if (item.containsEnchantment(Enchantment.BANE_OF_ARTHROPODS)) {
+            int value = item.getEnchantmentLevel(Enchantment.BANE_OF_ARTHROPODS);
             enchantmentType.add("Bane of Arthropods " + value);
         }
 
         // Smite
-        if (item.containsEnchantment(Enchantment.DAMAGE_UNDEAD)) {
-            int value = item.getEnchantmentLevel(Enchantment.DAMAGE_UNDEAD);
+        if (item.containsEnchantment(Enchantment.SMITE)) {
+            int value = item.getEnchantmentLevel(Enchantment.SMITE);
             enchantmentType.add("Smite " + value);
         }
 
@@ -140,8 +140,8 @@ public class EnchantmentUtil {
         }
 
         // Looting
-        if (item.containsEnchantment(Enchantment.LOOT_BONUS_MOBS)) {
-            int value = item.getEnchantmentLevel(Enchantment.LOOT_BONUS_MOBS);
+        if (item.containsEnchantment(Enchantment.LOOTING)) {
+            int value = item.getEnchantmentLevel(Enchantment.LOOTING);
             enchantmentType.add("Looting " + value);
         }
 
@@ -196,8 +196,8 @@ public class EnchantmentUtil {
         }
 
         // Luck of the Sea
-        if (item.containsEnchantment(Enchantment.LUCK)) {
-            int value = item.getEnchantmentLevel(Enchantment.LUCK);
+        if (item.containsEnchantment(Enchantment.LUCK_OF_THE_SEA)) {
+            int value = item.getEnchantmentLevel(Enchantment.LUCK_OF_THE_SEA);
             enchantmentType.add("Luck of the Sea " + value);
         }
 
@@ -208,26 +208,26 @@ public class EnchantmentUtil {
          */
 
         // Power
-        if (item.containsEnchantment(Enchantment.ARROW_DAMAGE)) {
-            int value = item.getEnchantmentLevel(Enchantment.ARROW_DAMAGE);
+        if (item.containsEnchantment(Enchantment.POWER)) {
+            int value = item.getEnchantmentLevel(Enchantment.POWER);
             enchantmentType.add("Power " + value);
         }
 
         // Flame
-        if (item.containsEnchantment(Enchantment.ARROW_FIRE)) {
-            int value = item.getEnchantmentLevel(Enchantment.ARROW_FIRE);
+        if (item.containsEnchantment(Enchantment.FLAME)) {
+            int value = item.getEnchantmentLevel(Enchantment.FLAME);
             enchantmentType.add("Flame " + value);
         }
 
         // Punch
-        if (item.containsEnchantment(Enchantment.ARROW_KNOCKBACK)) {
-            int value = item.getEnchantmentLevel(Enchantment.ARROW_KNOCKBACK);
+        if (item.containsEnchantment(Enchantment.PUNCH)) {
+            int value = item.getEnchantmentLevel(Enchantment.PUNCH);
             enchantmentType.add("Punch " + value);
         }
 
         // Infinity
-        if (item.containsEnchantment(Enchantment.ARROW_INFINITE)) {
-            int value = item.getEnchantmentLevel(Enchantment.ARROW_INFINITE);
+        if (item.containsEnchantment(Enchantment.INFINITY)) {
+            int value = item.getEnchantmentLevel(Enchantment.INFINITY);
             enchantmentType.add("Infinity " + value);
         }
 
@@ -239,14 +239,14 @@ public class EnchantmentUtil {
          */
 
         // Efficiency
-        if (item.containsEnchantment(Enchantment.DIG_SPEED)) {
-            int value = item.getEnchantmentLevel(Enchantment.DIG_SPEED);
+        if (item.containsEnchantment(Enchantment.EFFICIENCY)) {
+            int value = item.getEnchantmentLevel(Enchantment.EFFICIENCY);
             enchantmentType.add("Efficiency " + value);
         }
 
         // Fortune
-        if (item.containsEnchantment(Enchantment.LOOT_BONUS_BLOCKS)) {
-            int value = item.getEnchantmentLevel(Enchantment.LOOT_BONUS_BLOCKS);
+        if (item.containsEnchantment(Enchantment.FORTUNE)) {
+            int value = item.getEnchantmentLevel(Enchantment.FORTUNE);
             enchantmentType.add("Fortune " + value);
         }
 

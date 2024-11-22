@@ -42,6 +42,61 @@ night_vision_cost: 1500
 night_vision_remove: 5000
 
 
+#######################################################################################################################
+#                                                                                                                     #
+#                                   BOSS CUSTOMIZATION                                                                #
+#                                                                                                                     #
+#######################################################################################################################
+
+# This will present itself whenever a Dialogue piece happens.
+boss_name: "&5King of Darkness"
+boss_health: 200.0
+boss_speed: 1.0
+# Works as normal armor, if a player does 5 dmg, only 2.8 will be dealt.
+boss_armor: 3.2
+# Represented in Player Hearts.
+# Every hit will do 3.5 hearts of damage (Depending on Player Armor)
+boss_damage: 3.5
+
+# Every 35 seconds, a new boss ability will be used.
+ability_cooldowns: 35
+
+# Every 20 seconds, the boss will say a piece of dialogue
+dialogue_occurrence: 20
+
+# Everytime the boss spawns minions, it will choose one of these dialogues.
+minion_spawn_dialogue:
+  - "My minions will handle %player%"
+  - "Minions, attack!"
+  - "Didn't like that set anyways"
+
+dialogue:
+  - "That tickles"
+  - "%player% is next!"
+  - "%player% is stinky!"
+
+# Represented in Seconds, it will spawn / add minions
+# If the boss has 2 minions present, and max is 4. It'll only spawn 2, and not 4.
+minion_cooldown: 35
+# Allows the boss to have minions
+minions: true
+# How many minions are allowed to spawn
+minions_amount_max: 4
+
+
+# -----------------/ Sign Customization \-----------------
+
+# Max players that can fight the boss
+max_queue: 4
+# Minimum amount of players that can fight the boss.
+min_queue: 1
+
+sign_lines:
+  - "&b[&7BossBattle&b]"
+  - "&8%queue%/%max_queue%"
+  - "&aClick to Join"
+  - "&a%status%"
+
 
 
 #######################################################################################################################
@@ -75,6 +130,23 @@ frozen_message:
   - "You have been frozen by %staff%"
   - "If you believe this is a mistake"
   - "Join our Discrd; discord.gg/invitehere"
+
+#######################################################################################################################
+#                                                                                                                     #
+#                                   XP SHOP SECTION                                                                   #
+#                                                                                                                     #
+#######################################################################################################################
+
+# This will determine how much 1 experience level cost.
+# Example, if a player wants to buy 25, it will cost 5000 * 25.
+price_per_experience: 5000
+price_per_sell: 1500
+
+# If enabled, this will return an item when a player clicks purchase.
+# If disabled, it will just add the amount they bought to their overall experience level.
+item_return: true
+
+
 
 
 #######################################################################################################################
@@ -153,7 +225,7 @@ night_vision_cooldown: 4
 #                                                                                                                     #
 #######################################################################################################################
 
-gravestone_enable: true
+gravestone_enable: false
 
 # How much will it cost the player to TP back to their Gravestone
 gravestone_tp_cost: 5000.0
@@ -295,7 +367,7 @@ Access_Blocks:
   - BROWN_SHULKER_BOX
   - ORANGE_SHULKER_BOX
   - YELLOW_SHULKER_BOX
-  - LIME_GREEN_SHULKER_BOX
+  - LIME_SHULKER_BOX
   - GREEN_SHULKER_BOX
   - CYAN_SHULKER_BOX
   - LIGHT_BLUE_SHULKER_BOX

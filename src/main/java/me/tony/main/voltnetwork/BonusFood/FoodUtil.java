@@ -42,7 +42,7 @@ public class FoodUtil implements Listener {
             e.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', "&7Have fun Mining!"));
         }
         if (e.getItem().equals(CraftingUtil.Stew())) {
-            e.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 3000, 1));
+            e.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.JUMP_BOOST, 3000, 1));
         }
         if (e.getItem().equals(CraftingUtil.SpeedSteak())) {
             e.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 6000, 1));

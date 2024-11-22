@@ -49,7 +49,7 @@ public class InventoryUtil {
         inv.setItem(9, createGUIItem(Material.STRING, ChatColor.translateAlternateColorCodes('&', "&7Spectate Player"), " ", " ", " ", " "));
         inv.setItem(13, createGUIItem(Material.EMERALD_BLOCK, ChatColor.translateAlternateColorCodes('&', "&bRank "), " ", VoltNetwork.getChat().getPrimaryGroup(p),  ChatColor.translateAlternateColorCodes('&', VoltNetwork.getChat().getPlayerPrefix(p)), " "));
         inv.setItem(21, createGUIItem(Material.EMERALD, ChatColor.translateAlternateColorCodes('&', "&a&LBalance "), " ", ChatColor.translateAlternateColorCodes('&', "&a&l$ " + VoltNetwork.getEconomy().getBalance(p)), " ", " "));
-        inv.setItem(22, createGUIItem(Material.SIGN, ChatColor.translateAlternateColorCodes('&', "&7Display NAME"), " ", ChatColor.translateAlternateColorCodes('&', p.getDisplayName()), " ", " "));
+        inv.setItem(22, createGUIItem(Material.OAK_SIGN, ChatColor.translateAlternateColorCodes('&', "&7Display NAME"), " ", ChatColor.translateAlternateColorCodes('&', p.getDisplayName()), " ", " "));
         inv.setItem(23, createGUIItem(Material.MAP, ChatColor.translateAlternateColorCodes('&', "&7Location"), "World > " + worldName, "X: " + x, "Y: " + y, "Z: " + z));
 
         FillInventory(Material.BLACK_STAINED_GLASS_PANE, inv);

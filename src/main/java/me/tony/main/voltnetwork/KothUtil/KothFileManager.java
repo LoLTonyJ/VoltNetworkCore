@@ -74,7 +74,7 @@ public class KothFileManager {
 
         }
 
-        System.out.println("\n Loaded Koth Data \n");
+        System.out.println("\n [VoltNetwork] Loaded Koth Data \n");
 
     }
 
