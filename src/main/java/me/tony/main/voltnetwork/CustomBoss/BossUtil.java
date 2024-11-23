@@ -5,9 +5,12 @@ import org.bukkit.*;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
+import org.bukkit.block.data.BlockData;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.*;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerPortalEvent;
@@ -55,6 +58,28 @@ public class BossUtil implements Listener {
     }
 
     @EventHandler
+    public static void onBreak(BlockBreakEvent e) {
+
+        Block b = e.getBlock();
+        Player p = e.getPlayer();
+        if (BossCommands.WorldBossSpawn.isEmpty()) return;
+        if (!p.getWorld().equals(Bukkit.getWorld(BossCommands.WorldBossSpawn.get(0)))) return;
+        if (!b.getType().equals(Material.END_STONE) || !b.getType().equals(Material.OBSIDIAN)) return;
+
+        BlockData bData = b.getBlockData();
+        b.setType(Material.BEDROCK);
+
+        Bukkit.getScheduler().runTaskTimer(VoltNetwork.getInstance(), new Runnable() {
+            @Override
+            public void run() {
+                b.setBlockData(bData);
+            }
+        },20, 200);
+
+
+    }
+
+    @EventHandler (priority = EventPriority.HIGH, ignoreCancelled = true)
     public static void EndPortal(PlayerPortalEvent e) {
         Player p = e.getPlayer();
 
