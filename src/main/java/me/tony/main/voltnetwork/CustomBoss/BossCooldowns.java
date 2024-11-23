@@ -11,6 +11,7 @@ import me.tony.main.voltnetwork.VoltNetwork;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -49,7 +50,7 @@ public class BossCooldowns {
                     if (MinionMax > MinionCount.size()) {
 
                         if (Bukkit.getOnlinePlayers().isEmpty()) return;
-                        if (Bukkit.getWorld(BossCommands.World.get(0)).getPlayers().isEmpty()) return;
+                        if (Bukkit.getWorld(BossCommands.WorldBossSpawn.get(0)).getPlayers().isEmpty()) return;
 
                         int rndmPlayer;
                         int choice;
@@ -59,13 +60,13 @@ public class BossCooldowns {
                             choice = choice - 1;
                         }
 
-                        rndmPlayer = rndm(0, Bukkit.getWorld(BossCommands.World.get(0)).getPlayers().size());
-                        if (rndmPlayer == Bukkit.getWorld(BossCommands.World.get(0)).getPlayers().size()) {
+                        rndmPlayer = rndm(0, Bukkit.getWorld(BossCommands.WorldBossSpawn.get(0)).getPlayers().size());
+                        if (rndmPlayer == Bukkit.getWorld(BossCommands.WorldBossSpawn.get(0)).getPlayers().size()) {
                             rndmPlayer = rndmPlayer - 1;
                         }
 
                         if (MinionDialogue.get(choice).contains("%player%")) {
-                            String replace = MinionDialogue.get(choice).replace("%player%", Bukkit.getWorld(BossCommands.World.get(0)).getPlayers().get(rndmPlayer).getName());
+                            String replace = MinionDialogue.get(choice).replace("%player%", Bukkit.getWorld(BossCommands.WorldBossSpawn.get(0)).getPlayers().get(rndmPlayer).getName());
                             Bukkit.getServer().broadcastMessage(ChatColor.translateAlternateColorCodes('&', bossName + ": " + replace));
                             return;
                         }
@@ -103,8 +104,9 @@ public class BossCooldowns {
                     if (EndMobs.MobCount.size() >= 25) {
                         return;
                     }
+                    if (!EndMobs.MiddleRegion(rg.getId(), BossCommands.WorldBossSpawn.get(0)).add(rndm(-50, 50), 0, rndm(-50, 50)).getBlock().getType().equals(Material.AIR)) return;
 
-                    EndMobs.Mob(EndMobs.MiddleRegion(rg.getId(), BossCommands.World.get(0)).add(rndm(-50, 50), 0, rndm(-50, 50)));
+                    EndMobs.Mob(EndMobs.MiddleRegion(rg.getId(), BossCommands.WorldBossSpawn.get(0)).add(rndm(-50, 50), 0, rndm(-50, 50)));
                     EndMobs.MobCount.add(1);
                 }
             }, 20, 200);
@@ -159,7 +161,7 @@ public class BossCooldowns {
                 if (!BossCommands.Alive.isEmpty()) {
 
                     if (Bukkit.getOnlinePlayers().isEmpty()) return;
-                    if (Bukkit.getWorld(BossCommands.World.get(0)).getPlayers().isEmpty()) return;
+                    if (Bukkit.getWorld(BossCommands.WorldBossSpawn.get(0)).getPlayers().isEmpty()) return;
 
                     int rndmPlayer;
                     int choice;
@@ -169,13 +171,13 @@ public class BossCooldowns {
                         choice = choice - 1;
                     }
 
-                    rndmPlayer = rndm(0, Bukkit.getWorld(BossCommands.World.get(0)).getPlayers().size());
-                    if (rndmPlayer == Bukkit.getWorld(BossCommands.World.get(0)).getPlayers().size()) {
+                    rndmPlayer = rndm(0, Bukkit.getWorld(BossCommands.WorldBossSpawn.get(0)).getPlayers().size());
+                    if (rndmPlayer == Bukkit.getWorld(BossCommands.WorldBossSpawn.get(0)).getPlayers().size()) {
                         rndmPlayer = rndmPlayer - 1;
                     }
 
                     if (DioOptions.get(choice).contains("%player%")) {
-                        String replace = DioOptions.get(choice).replace("%player%", Bukkit.getWorld(BossCommands.World.get(0)).getPlayers().get(rndmPlayer).getName());
+                        String replace = DioOptions.get(choice).replace("%player%", Bukkit.getWorld(BossCommands.WorldBossSpawn.get(0)).getPlayers().get(rndmPlayer).getName());
                         Bukkit.getServer().broadcastMessage(ChatColor.translateAlternateColorCodes('&', bossName + ": " + replace));
                         return;
                     }
@@ -213,7 +215,7 @@ public class BossCooldowns {
                     if (timeLeft == 0) {
                         BossRespawn.remove(e);
                         Bukkit.getServer().broadcastMessage(ChatColor.translateAlternateColorCodes('&', bossName + " &cSo you think you can challenge me?"));
-                        BossUtil.Boss(Bukkit.getWorld(BossCommands.World.get(0)), BossCommands.BossSpawn.get(0));
+                        BossUtil.Boss(Bukkit.getWorld(BossCommands.WorldBossSpawn.get(0)), BossCommands.BossSpawn.get(0));
                         BossCommands.Alive.add("1");
                     }
                 }

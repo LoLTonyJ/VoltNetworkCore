@@ -5,22 +5,19 @@ import org.bukkit.*;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
-import org.bukkit.block.data.BlockData;
-import org.bukkit.boss.BarColor;
-import org.bukkit.boss.BarStyle;
-import org.bukkit.boss.BossBar;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.*;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerPortalEvent;
+import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Random;
 
 import static me.tony.main.voltnetwork.CustomBoss.TopDamager.getLeaderboard;
 
@@ -55,6 +52,20 @@ public class BossUtil implements Listener {
             }
         }
 
+    }
+
+    @EventHandler
+    public static void EndPortal(PlayerPortalEvent e) {
+        Player p = e.getPlayer();
+
+        if (e.getCause() == PlayerTeleportEvent.TeleportCause.END_PORTAL) {
+            e.setCancelled(true);
+            if (BossCommands.WarpLoc.isEmpty()) {
+                p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&c&lComing Soon!"));
+                return;
+            }
+                p.teleport(BossCommands.WarpLoc.get(0));
+        }
     }
 
     @EventHandler
@@ -98,7 +109,7 @@ public class BossUtil implements Listener {
 
         if (BossCommands.Alive.isEmpty()) return;
 
-        if (p.getWorld().equals(Bukkit.getWorld(BossCommands.World.get(0)))) {
+        if (p.getWorld().equals(Bukkit.getWorld(BossCommands.WorldBossSpawn.get(0)))) {
             if (b.getType().equals(Material.MAGENTA_WOOL)) {
                 p.damage(0.5);
             }
@@ -112,7 +123,7 @@ public class BossUtil implements Listener {
 
         Entity ent = e.getEntity();
 
-        World w = Bukkit.getWorld(BossCommands.World.get(0));
+        World w = Bukkit.getWorld(BossCommands.WorldBossSpawn.get(0));
 
         if (ent instanceof Enderman) {
             if (ent.getCustomName() == null) return;
@@ -126,10 +137,10 @@ public class BossUtil implements Listener {
     public static void EggSpawn(ItemSpawnEvent e) {
 
         // Disable The Watchers Chickens from Laying Eggs.
-        World w = Bukkit.getWorld(BossCommands.World.get(0));
+        World w = Bukkit.getWorld(BossCommands.WorldBossSpawn.get(0));
         ItemStack i = e.getEntity().getItemStack();
         Entity ent = e.getEntity();
-        if (w == null || BossCommands.World.isEmpty()) return;
+        if (w == null || BossCommands.WorldBossSpawn.isEmpty()) return;
         if (!(ent instanceof Chicken)) return;
         if (!i.getType().equals(Material.EGG)) return;
         e.setCancelled(true);
@@ -227,7 +238,7 @@ public class BossUtil implements Listener {
             public void run() {
                 if (!zomb.isDead()) {
                     if (zomb.getTarget() == null) {
-                        for (Player p : Bukkit.getWorld(BossCommands.World.get(0)).getPlayers()) {
+                        for (Player p : Bukkit.getWorld(BossCommands.WorldBossSpawn.get(0)).getPlayers()) {
                             if (p != null) {
                                 zomb.setTarget(p);
                                 return;
@@ -273,7 +284,7 @@ public class BossUtil implements Listener {
 
                 if (!end.isDead()) {
                     if (end.getTarget() == null) {
-                        for (Player p : Bukkit.getWorld(BossCommands.World.get(0)).getPlayers()) {
+                        for (Player p : Bukkit.getWorld(BossCommands.WorldBossSpawn.get(0)).getPlayers()) {
                             if (p != null) {
                                 end.setTarget(p);
                                 return;

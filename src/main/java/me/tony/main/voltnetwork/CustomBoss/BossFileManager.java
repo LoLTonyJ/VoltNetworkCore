@@ -1,11 +1,8 @@
 package me.tony.main.voltnetwork.CustomBoss;
 
-import me.tony.main.voltnetwork.KothUtil.KothFileManager;
-import me.tony.main.voltnetwork.KothUtil.RewardEdit;
 import me.tony.main.voltnetwork.VoltNetwork;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.World;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -55,6 +52,25 @@ public class BossFileManager {
             BossCooldowns.BossRespawn.put(e, timeLeft);
         }
 
+        if (config.getConfigurationSection("Boss_Warp") != null) {
+            if (config.getConfigurationSection("Boss_Warp").get("X") == null) return;
+            if (config.getConfigurationSection("Boss_Warp").get("Y") == null) return;
+            if (config.getConfigurationSection("Boss_Warp").get("Z") == null) return;
+            if (config.getConfigurationSection("Boss_Warp").get("World") == null) return;
+
+            // Getting Data
+            int x = (int) config.getConfigurationSection("Boss_Warp").get("X");
+            int y = (int) config.getConfigurationSection("Boss_Warp").get("Y");
+            int z = (int) config.getConfigurationSection("Boss_Warp").get("Z");
+            String w = (String) config.getConfigurationSection("Boss_Warp").get("World");
+            BossCommands.XBossWarp.add(x);
+            BossCommands.WorldBossWarp.add(w);
+            BossCommands.YBossWarp.add(y);
+            BossCommands.ZBossWarp.add(z);
+            Location wLoc = new Location(Bukkit.getWorld(w), x, y, z);
+            BossCommands.WarpLoc.add(wLoc);
+        }
+
         if (config.getConfigurationSection("Boss_Spawn") != null) {
             if (config.getConfigurationSection("Boss_Spawn").get("X") == null) return;
             if (config.getConfigurationSection("Boss_Spawn").get("Y") == null) return;
@@ -67,10 +83,10 @@ public class BossFileManager {
             int z = (int) config.getConfigurationSection("Boss_Spawn").get("Z");
             String w = (String) config.getConfigurationSection("Boss_Spawn").get("World");
 
-            BossCommands.World.add(w);
-            BossCommands.XSpawn.add(x);
-            BossCommands.YSpawn.add(y);
-            BossCommands.ZSpawn.add(z);
+            BossCommands.WorldBossSpawn.add(w);
+            BossCommands.XBossSpawn.add(x);
+            BossCommands.YBossSpawn.add(y);
+            BossCommands.ZBossSpawn.add(z);
             Location l = new Location(Bukkit.getWorld(w), x, y, z);
             BossCommands.BossSpawn.add(l);
 
@@ -145,6 +161,7 @@ public class BossFileManager {
         }
 
         config.createSection("Boss_Spawn");
+        config.createSection("Boss_Warp");
 
         try {
             config.save(file);
@@ -152,11 +169,17 @@ public class BossFileManager {
             e.printStackTrace();
         }
 
+        ConfigurationSection warp = config.getConfigurationSection("Boss_Warp");
+        warp.set("World", BossCommands.WorldBossWarp.get(0));
+        warp.set("X", BossCommands.XBossWarp.get(0));
+        warp.set("Y", BossCommands.YBossWarp.get(0));
+        warp.set("Z", BossCommands.ZBossWarp.get(0));
+
         ConfigurationSection sect = config.getConfigurationSection("Boss_Spawn");
-        sect.set("World", BossCommands.World.get(0));
-        sect.set("X", BossCommands.XSpawn.get(0));
-        sect.set("Y", BossCommands.YSpawn.get(0));
-        sect.set("Z", BossCommands.ZSpawn.get(0));
+        sect.set("World", BossCommands.WorldBossSpawn.get(0));
+        sect.set("X", BossCommands.XBossSpawn.get(0));
+        sect.set("Y", BossCommands.YBossSpawn.get(0));
+        sect.set("Z", BossCommands.ZBossSpawn.get(0));
 
         Save();
 

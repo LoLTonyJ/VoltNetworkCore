@@ -58,6 +58,10 @@ boss_armor: 3.2
 # Every hit will do 3.5 hearts of damage (Depending on Player Armor)
 boss_damage: 3.5
 
+# Minimum amount of Players needed for rewards to be given.
+# Set to 0 to disable.
+min_players: 3
+
 # Every 35 seconds, a new boss ability will be used.
 ability_cooldowns: 35
 

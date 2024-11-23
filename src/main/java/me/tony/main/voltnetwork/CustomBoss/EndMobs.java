@@ -57,7 +57,7 @@ public class EndMobs {
 
         String bossName = VoltNetwork.getInstance().getConfig().getString("boss_name");
 
-        org.bukkit.World w = Bukkit.getWorld(BossCommands.World.get(0));
+        org.bukkit.World w = Bukkit.getWorld(BossCommands.WorldBossSpawn.get(0));
 
         Chicken end = (Chicken) w.spawnEntity(l, EntityType.CHICKEN);
         Enderman pas = (Enderman) w.spawnEntity(l, EntityType.ENDERMAN);
