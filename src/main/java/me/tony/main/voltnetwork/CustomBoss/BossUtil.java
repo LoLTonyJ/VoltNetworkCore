@@ -186,13 +186,13 @@ public class BossUtil implements Listener {
                 if (!BossCommands.Alive.isEmpty()) {
                     BossCommands.Alive.clear();
                 }
+                BossCooldowns.BossRespawn.put(ent, 5);
                 Bukkit.getServer().broadcastMessage(ChatColor.translateAlternateColorCodes('&', bossName + " &7Has been killed!"));
                 Bukkit.getServer().broadcastMessage(ChatColor.translateAlternateColorCodes('&', "&7Most Damage:"));
 
                 List<TopDamager> leaderboard = getLeaderboard();
 
                 if (minPlayers != 0 && minPlayers > leaderboard.size()) {
-
                     for (int i = 0; i < 3 || i == leaderboard.size(); i++) {
                         TopDamager top = leaderboard.get(i);
                         if (Player1.isEmpty() && !Player1.contains(Bukkit.getPlayer(top.getName()))) {
@@ -212,9 +212,9 @@ public class BossUtil implements Listener {
                     BossCooldowns.BossRespawn.put(ent, 5);
                     BossCooldowns.RespawnCooldown(ent);
                     BossFileManager.getInstance().SaveData();
+                }  else {
+                    Bukkit.getServer().broadcastMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &7Not enough Players participated in this fight! Rewards will not be given!"));
                 }
-            } else {
-                Bukkit.getServer().broadcastMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &7Not enough Players participated in this fight! Rewards will not be given!"));
             }
         }
 

@@ -60,7 +60,7 @@ public class KillerRewards {
         }
         if (!BossUtil.Player2.isEmpty()) {
             ArrayList<ItemStack> SelectRewards = new ArrayList<>();
-            if (BossInventoryUtil.TopRewards.isEmpty() || BossInventoryUtil.SecondRewards.isEmpty() || BossInventoryUtil.ThirdRewards.isEmpty()) return;
+            if (BossInventoryUtil.SecondRewards.isEmpty() || BossInventoryUtil.ThirdRewards.isEmpty()) return;
 
             if (num2 == BossInventoryUtil.TopRewards.size()) {
                 num2 = num2 - 1;
@@ -85,7 +85,7 @@ public class KillerRewards {
         }
         if (!BossUtil.Player3.isEmpty()) {
             ArrayList<ItemStack> SelectRewards = new ArrayList<>();
-            if (BossInventoryUtil.TopRewards.isEmpty() || BossInventoryUtil.SecondRewards.isEmpty() || BossInventoryUtil.ThirdRewards.isEmpty()) return;
+            if (BossInventoryUtil.ThirdRewards.isEmpty()) return;
             if (num3 == BossInventoryUtil.TopRewards.size()) {
                 num3 = num3 - 1;
             }

@@ -5,6 +5,8 @@ api-version: '1.21'
 
 softdepend:
   - DecentHolograms
+  - WorldGuard
+  - WorldEdit
 
 commands:
   voltcustomenchant:
@@ -48,3 +50,10 @@ commands:
     aliases:
       - xp
       - exp
+  displaycase:
+    description: Display an Item
+    aliases:
+      - dc
+      - case
+      - displayitem
+      - di

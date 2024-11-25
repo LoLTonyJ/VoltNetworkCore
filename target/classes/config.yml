@@ -58,6 +58,10 @@ boss_armor: 3.2
 # Every hit will do 3.5 hearts of damage (Depending on Player Armor)
 boss_damage: 3.5
 
+boss_world: world_the_end
+
+sign_shop_prefix: "&7[&5Darkened Shop&7]"
+
 # Minimum amount of Players needed for rewards to be given.
 # Set to 0 to disable.
 min_players: 3

@@ -42,9 +42,9 @@ public class HarvestUtil implements Listener {
         Location blockLoc = e.getClickedBlock().getLocation();
 
         if (e.getClickedBlock().getType().equals(Material.AIR)) return;
-        if (e.getHand().equals(EquipmentSlot.OFF_HAND)) return;
+        if (e.getHand().equals(EquipmentSlot.OFF_HAND) || e.getHand() == null) return;
         if (p.getGameMode().equals(GameMode.CREATIVE)) return;
-        if (p.getInventory().getItemInMainHand().getItemMeta() == null || p.getInventory().getItemInMainHand().getType() == null) return;
+        if (p.getInventory().getItemInMainHand().getItemMeta() == null) return;
 
         if (!e.isCancelled()) {
             if (p.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equals(ChatColor.translateAlternateColorCodes('&', "&b&lHarvest Hoe"))

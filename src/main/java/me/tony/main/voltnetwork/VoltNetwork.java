@@ -7,6 +7,7 @@ import me.tony.main.voltnetwork.Administration.Commands;
 import me.tony.main.voltnetwork.BonusFood.CooldownUtil;
 import me.tony.main.voltnetwork.BonusFood.CraftingUtil;
 import me.tony.main.voltnetwork.BonusFood.FoodUtil;
+import me.tony.main.voltnetwork.CaseItem.CaseCommands;
 import me.tony.main.voltnetwork.ChatUtil.DisplayItem;
 import me.tony.main.voltnetwork.CustomBoss.*;
 import me.tony.main.voltnetwork.CustomItems.DrillUtil;
@@ -90,16 +91,6 @@ public final class VoltNetwork extends JavaPlugin {
             }
             DonatorFileManagement.getInstance().LoadData();
 
-            // Bukkit Runnable
-
-
-            DonatorUtil.Cooldown();
-            CooldownUtil.Cooldown();
-            BossCooldowns.DialogueQueue();
-            BossCooldowns.AbilityUse();
-            BossCooldowns.SpawnWatchers();
-            BossCooldowns.SpawnMinions();
-
             getServer().getPluginManager().registerEvents(new DonatorUtil(), this);
             getCommand("dono").setExecutor(new DonatorCommands());
             getCommand("nv").setExecutor(new NightVisionCommand());
@@ -144,6 +135,7 @@ public final class VoltNetwork extends JavaPlugin {
             getCommand("item").setExecutor(new DisplayItem());
             getCommand("customboss").setExecutor(new BossCommands());
             getCommand("experience").setExecutor(new ExperienceCommands());
+            getCommand("displaycase").setExecutor(new CaseCommands());
 
             System.out.println("\n VoltNetwork v1.2.0 has been loaded Successfully \n If there is something wrong, please contact Ghostinq on Discord. \n");
 
@@ -156,6 +148,16 @@ public final class VoltNetwork extends JavaPlugin {
 
         // Registering Custom Food Events.
         getServer().getPluginManager().registerEvents(new FoodUtil(), this);
+
+        // Bukkit Runnable
+
+
+        DonatorUtil.Cooldown();
+        CooldownUtil.Cooldown();
+        BossCooldowns.DialogueQueue();
+        BossCooldowns.AbilityUse();
+        BossCooldowns.SpawnWatchers();
+        BossCooldowns.SpawnMinions();
 
         // Loading Custom Recipes.
         CraftingUtil.SpeedySteak();

@@ -87,7 +87,8 @@ public class BossCooldowns {
     public static void SpawnWatchers() {
 
         ProtectedRegion rg;
-        World w = BukkitAdapter.adapt(Bukkit.getWorld(BossCommands.WorldBossSpawn.get(0)));
+        String wrld = VoltNetwork.getInstance().getConfig().getString("boss_world");
+        World w = BukkitAdapter.adapt(Bukkit.getWorld(wrld));
 
         RegionContainer container = WorldGuard.getInstance().getPlatform().getRegionContainer();
         RegionManager regions = container.get(w);
