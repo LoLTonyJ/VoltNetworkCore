@@ -40,6 +40,8 @@ public class DisplayItem implements CommandExecutor {
                         output = m.getDisplayName();
                     }
 
+                    // Using DynamicJText API made by PerryPlaysMC
+                    // https://github.com/PerryPlaysMC/DynamicJson
                     DynamicJText text = new DynamicJText(p.getDisplayName());
                     text.add(": ");
                     text.add(output);

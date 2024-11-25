@@ -35,7 +35,6 @@ public class CaseCommands implements CommandExecutor {
 
         if (p.hasPermission(perm)) {
             if (args.length == 0) {
-                p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&b/display sign <Item/list> <Buy/Sell> <Price>"));
                 p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&b/display create <hand/itemstack> <rotation> <size>"));
                 p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&b/display remove"));
             }

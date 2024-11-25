@@ -44,6 +44,7 @@ public class BossUtil implements Listener {
 
         String bossName = VoltNetwork.getInstance().getConfig().getString("boss_name");
 
+        // Damage Leaderboard Util.
         Entity ent = e.getEntity();
         if (ent instanceof Enderman) {
             if (ent.getCustomName() == null) return;
@@ -89,8 +90,10 @@ public class BossUtil implements Listener {
     public static void EndPortal(PlayerPortalEvent e) {
         Player p = e.getPlayer();
 
+        // Cancels the Original Teleport to the End
         if (e.getCause() == PlayerTeleportEvent.TeleportCause.END_PORTAL) {
             e.setCancelled(true);
+            // If Warp Loc is not set, cancel.
             if (BossCommands.WarpLoc.isEmpty()) {
                 p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&c&lComing Soon!"));
                 return;
@@ -108,10 +111,13 @@ public class BossUtil implements Listener {
         Player p = e.getEntity().getKiller();
 
 
+        // Checks Entity Typpe
         if (ent.getType().equals(EntityType.ZOMBIE)) {
             if (ent.getCustomName() != null) {
+                // Checks to see if the Entity has Custom Name of x
                 if (ent.getCustomName().equals(ChatColor.translateAlternateColorCodes('&', bossName + "'s Minion"))) {
 
+                    // Reduce size of MinionCount.
                     if (BossCooldowns.MinionCount.size() > 1) {
                         BossCooldowns.MinionCount.remove(0);
                     }
@@ -151,6 +157,7 @@ public class BossUtil implements Listener {
 
         if (BossCommands.Alive.isEmpty()) return;
 
+        // Poison Square Damage.
         if (p.getWorld().equals(Bukkit.getWorld(BossCommands.WorldBossSpawn.get(0)))) {
             if (b.getType().equals(Material.MAGENTA_WOOL)) {
                 p.damage(0.5);
@@ -167,6 +174,7 @@ public class BossUtil implements Listener {
 
         World w = Bukkit.getWorld(BossCommands.WorldBossSpawn.get(0));
 
+        // Cancels the Teleportation of Endermen in Boss World.
         if (ent instanceof Enderman) {
             if (ent.getCustomName() == null) return;
             if (ent.getWorld() != w) return;
@@ -209,9 +217,11 @@ public class BossUtil implements Listener {
 
                 List<TopDamager> leaderboard = getLeaderboard();
 
+                // If the Amount of Players who fought the boss is > minPlayers (Refer to Config) then run code..
                 if (minPlayers != 0 && minPlayers > leaderboard.size()) {
                     for (int i = 0; i < 3 || i == leaderboard.size(); i++) {
                         TopDamager top = leaderboard.get(i);
+                        // Setting Players Placement.
                         if (Player1.isEmpty() && !Player1.contains(Bukkit.getPlayer(top.getName()))) {
                             Player1.add(Bukkit.getPlayer(top.getName()));
                         }
@@ -221,11 +231,13 @@ public class BossUtil implements Listener {
                         if (Player3.isEmpty() && !Player2.contains(Bukkit.getPlayer(top.getName())) || !Player1.contains(Bukkit.getPlayer(top.getName()))) {
                             Player3.add(Bukkit.getPlayer(top.getName()));
                         }
+                        // Broadcasting Placement to Server.
                         int placement = i + 1;
                         Bukkit.getServer().broadcastMessage(ChatColor.translateAlternateColorCodes('&', "&b" + placement + ". " + Bukkit.getPlayer(top.getName()).getDisplayName() + " &b> &c❤ " + top.getDmg()));
                         KillerRewards.getPlacements();
                     }
 
+                    // Edit Boss Respawn Counter.
                     BossCooldowns.BossRespawn.put(ent, 5);
                     BossCooldowns.RespawnCooldown(ent);
                     BossFileManager.getInstance().SaveData();
@@ -242,6 +254,7 @@ public class BossUtil implements Listener {
         List<String> signList = VoltNetwork.getInstance().getConfig().getStringList("sign_lines");
         String prefix = VoltNetwork.getInstance().getConfig().getString("prefix");
 
+        // Not being used.
         Block b = p.getTargetBlock(null, 5);
         if (b.getType().equals(Material.OAK_SIGN)) {
             Sign s = (Sign) b.getState();
@@ -276,6 +289,7 @@ public class BossUtil implements Listener {
         new BukkitRunnable() {
 
 
+            // Checks the Mobs Target, if its null set it to any player in Boss World.
             @Override
             public void run() {
                 if (!zomb.isDead()) {
