@@ -112,15 +112,6 @@ public class BossUtil implements Listener {
             if (ent.getCustomName() != null) {
                 if (ent.getCustomName().equals(ChatColor.translateAlternateColorCodes('&', bossName + "'s Minion"))) {
 
-                    if (p != null) {
-                        if (rndm(1, 10) > 5) {
-                            e.getDrops().clear();
-                            ent.getWorld().dropItemNaturally(ent.getLocation(), BossItems.bossPearl());
-                            p.sendTitle(ChatColor.translateAlternateColorCodes('&', "&b&lRARE DROP!"), ChatColor.translateAlternateColorCodes('&', "&7You dropped a Boss Heart Shard!")
-                                    , 15, 15, 15);
-                        }
-                    }
-
                     if (BossCooldowns.MinionCount.size() > 1) {
                         BossCooldowns.MinionCount.remove(0);
                     }
@@ -130,6 +121,15 @@ public class BossUtil implements Listener {
 
         if (!ent.getType().equals(EntityType.ENDERMAN)) return;
         if (ent.getCustomName() == null || !ent.getCustomName().equals(ChatColor.translateAlternateColorCodes('&', bossName + " Watcher"))) return;
+
+        if (p != null) {
+            if (rndm(1, 10) > 7) { // %25 Drop
+                e.getDrops().clear();
+                ent.getWorld().dropItemNaturally(ent.getLocation(), BossItems.bossPearl());
+                p.sendTitle(ChatColor.translateAlternateColorCodes('&', "&b&lRARE DROP!"), ChatColor.translateAlternateColorCodes('&', "&7You dropped a Boss Heart Shard!")
+                        , 15, 15, 15);
+            }
+        }
 
         if (EndMobs.MobCount.size() > 1) {
             EndMobs.MobCount.remove(0);
