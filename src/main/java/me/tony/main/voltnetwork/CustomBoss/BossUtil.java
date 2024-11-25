@@ -21,6 +21,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 import static me.tony.main.voltnetwork.CustomBoss.TopDamager.getLeaderboard;
 
@@ -32,6 +33,11 @@ public class BossUtil implements Listener {
     public static ArrayList<Player> Player1 = new ArrayList<>();
     public static ArrayList<Player> Player2 = new ArrayList<>();
     public static ArrayList<Player> Player3 = new ArrayList<>();
+
+    public static int rndm(int min, int max) {
+        Random DropAmount = new Random();
+        return DropAmount.nextInt((max - min) + 1) + min;
+    }
 
     @EventHandler
     public void BossDmg(EntityDamageByEntityEvent e) {
@@ -99,13 +105,24 @@ public class BossUtil implements Listener {
         String bossName = VoltNetwork.getInstance().getConfig().getString("boss_name");
 
         Entity ent = e.getEntity();
+        Player p = e.getEntity().getKiller();
+
 
         if (ent.getType().equals(EntityType.ZOMBIE)) {
             if (ent.getCustomName() != null) {
                 if (ent.getCustomName().equals(ChatColor.translateAlternateColorCodes('&', bossName + "'s Minion"))) {
+
+                    if (p != null) {
+                        if (rndm(1, 10) > 5) {
+                            e.getDrops().clear();
+                            ent.getWorld().dropItemNaturally(ent.getLocation(), BossItems.bossPearl());
+                            p.sendTitle(ChatColor.translateAlternateColorCodes('&', "&b&lRARE DROP!"), ChatColor.translateAlternateColorCodes('&', "&7You dropped a Boss Heart Shard!")
+                                    , 15, 15, 15);
+                        }
+                    }
+
                     if (BossCooldowns.MinionCount.size() > 1) {
                         BossCooldowns.MinionCount.remove(0);
-                        System.out.println(BossCooldowns.MinionCount.size());
                     }
                 }
             }
