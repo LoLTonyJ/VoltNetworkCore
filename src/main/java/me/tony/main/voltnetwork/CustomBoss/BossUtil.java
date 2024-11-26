@@ -74,7 +74,7 @@ public class BossUtil implements Listener {
                     p.getInventory().addItem(BossItems.BossShard());
                 }
             }
-        }A
+        }
 
         // If a player is clicking an End Portal Frame with the Boss Item. This code will run.
         if (i.getType().equals(Material.GHAST_TEAR) && i.getItemMeta().getDisplayName().equals(ChatColor.translateAlternateColorCodes('&', "&5Boss Heart Shard"))) {
