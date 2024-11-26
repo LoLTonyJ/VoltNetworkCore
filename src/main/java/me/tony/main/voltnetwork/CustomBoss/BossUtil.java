@@ -6,15 +6,18 @@ import org.bukkit.attribute.Attribute;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
 import org.bukkit.block.data.BlockData;
+import org.bukkit.block.data.type.EndPortalFrame;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.*;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerPortalEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -33,10 +36,86 @@ public class BossUtil implements Listener {
     public static ArrayList<Player> Player1 = new ArrayList<>();
     public static ArrayList<Player> Player2 = new ArrayList<>();
     public static ArrayList<Player> Player3 = new ArrayList<>();
+    public static HashMap<Location, BlockData> Frames = new HashMap<>();
+
+    public static ArrayList<Player> PlacedShards = new ArrayList<>();
 
     public static int rndm(int min, int max) {
         Random DropAmount = new Random();
         return DropAmount.nextInt((max - min) + 1) + min;
+    }
+
+    @EventHandler
+    public void BossSpawnAlter(PlayerInteractEvent e) {
+        Player p = e.getPlayer();
+        ItemStack i = e.getPlayer().getInventory().getItemInMainHand();
+        Block b = e.getClickedBlock();
+        String w = VoltNetwork.getInstance().getConfig().getString("boss_world");
+
+        if (b == null) return;
+        if (!b.getType().equals(Material.END_PORTAL_FRAME) || b.getType().equals(Material.AIR)) return;
+        if (e.getHand().equals(EquipmentSlot.OFF_HAND)) return;
+        if (!p.getWorld().equals(Bukkit.getWorld(w))) return;
+
+
+
+        EndPortalFrame frame = (EndPortalFrame) b.getBlockData();
+
+        // If a player is clicking an End Portal frame that has an eye, with their hand. This code will run.
+        if (i.getType().equals(Material.AIR)) {
+            if (frame.hasEye()) {
+                if (PlacedShards.contains(p)) {
+                    PlacedShards.remove(p);
+                    Frames.remove(b.getLocation());
+                    frame.setEye(false);
+                    b.setBlockData(frame);
+                    int count = PlacedShards.size();
+                    Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', "&5&l&oEND ALTER >> &7" + p.getName() + " has removed a Heart Shard! (" + count + "/8)"));
+                    p.getInventory().addItem(BossItems.BossShard());
+                }
+            }
+        }A
+
+        // If a player is clicking an End Portal Frame with the Boss Item. This code will run.
+        if (i.getType().equals(Material.GHAST_TEAR) && i.getItemMeta().getDisplayName().equals(ChatColor.translateAlternateColorCodes('&', "&5Boss Heart Shard"))) {
+
+            e.setCancelled(true);
+
+            if (BossCommands.WorldBossSpawn.isEmpty()) return;
+            if (BossCommands.BossSpawn.isEmpty()) return;
+
+            if (PlacedShards.size() == 8) {
+                BossCommands.Alive.add("true");
+                PlacedShards.clear();
+                for (Location l : Frames.keySet()) {
+                    if (l.getBlock().getType().equals(Material.END_PORTAL_FRAME)) {
+                        EndPortalFrame bData = (EndPortalFrame) l.getBlock().getBlockData();
+                        if (bData.hasEye()) {
+                            bData.setEye(false);
+                            l.getBlock().setBlockData(bData);
+                        }
+                    }
+                }
+
+                BossUtil.Boss(Bukkit.getWorld(BossCommands.WorldBossSpawn.get(0)), BossCommands.BossSpawn.get(0));
+            }
+
+            if (!BossCommands.Alive.isEmpty()) {
+                p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7The Boss has already Awoken! Beware!"));
+                return;
+            }
+
+            if (!frame.hasEye()) {
+                if (p.getInventory().getItemInMainHand().getAmount() > 1) p.getInventory().getItemInMainHand().setAmount(p.getInventory().getItemInMainHand().getAmount() - 1);
+                if (p.getInventory().getItemInMainHand().getAmount() == 1) p.getInventory().getItemInMainHand().setAmount(0);
+                PlacedShards.add(p);
+                int count = PlacedShards.size();
+                Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', "&5&l&oEND ALTER >> &7" + p.getName() + " has placed a Heart Shard! (" + count + "/8)"));
+                frame.setEye(true);
+                b.setBlockData(frame);
+                Frames.put(b.getLocation(), frame);
+            }
+        }
     }
 
     @EventHandler
@@ -131,7 +210,7 @@ public class BossUtil implements Listener {
         if (p != null) {
             if (rndm(1, 10) > 7) { // %25 Drop
                 e.getDrops().clear();
-                ent.getWorld().dropItemNaturally(ent.getLocation(), BossItems.bossPearl());
+                ent.getWorld().dropItemNaturally(ent.getLocation(), BossItems.BossShard());
                 p.sendTitle(ChatColor.translateAlternateColorCodes('&', "&b&lRARE DROP!"), ChatColor.translateAlternateColorCodes('&', "&7You dropped a Boss Heart Shard!")
                         , 15, 15, 15);
             }
@@ -208,9 +287,7 @@ public class BossUtil implements Listener {
 
         if (entType.equals(EntityType.ENDERMAN)) {
             if (ent.getCustomName().equals(ChatColor.translateAlternateColorCodes('&', bossName))) {
-                if (!BossCommands.Alive.isEmpty()) {
-                    BossCommands.Alive.clear();
-                }
+                BossCommands.Alive.clear();
                 BossCooldowns.BossRespawn.put(ent, 5);
                 Bukkit.getServer().broadcastMessage(ChatColor.translateAlternateColorCodes('&', bossName + " &7Has been killed!"));
                 Bukkit.getServer().broadcastMessage(ChatColor.translateAlternateColorCodes('&', "&7Most Damage:"));
@@ -238,6 +315,9 @@ public class BossUtil implements Listener {
                     }
 
                     // Edit Boss Respawn Counter.
+                    if (BossCooldowns.BossRespawn.containsKey(ent)) {
+                        BossCooldowns.BossRespawn.replace(ent, BossCooldowns.BossRespawn.get(ent), 5);
+                    }
                     BossCooldowns.BossRespawn.put(ent, 5);
                     BossCooldowns.RespawnCooldown(ent);
                     BossFileManager.getInstance().SaveData();
