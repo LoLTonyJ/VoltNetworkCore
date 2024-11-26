@@ -86,6 +86,13 @@ public class CaseCommands implements CommandExecutor {
 
                     if (item.equalsIgnoreCase("hand")) {
                         Block b = p.getTargetBlock(null, 5);
+
+                        for (Location l : ItemDisplayList.values()) {
+                            if (b.getLocation() == l) {
+                                p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &7That has already been defined as a Display Case."));
+                            }
+                        }
+
                         if (b.getType().equals(Material.AIR)) {
                             p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &7You cannot set AIR as a Display Case!"));
                             return true;
@@ -113,6 +120,13 @@ public class CaseCommands implements CommandExecutor {
                     } else {
                         ItemStack i = new ItemStack(Material.valueOf(item.toUpperCase()));
                         Block b = p.getTargetBlock(null, 5);
+
+                        for (Location l : ItemDisplayList.values()) {
+                            if (b.getLocation() == l) {
+                                p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &7That has already been defined as a Display Case."));
+                            }
+                        }
+
                         if (b.getType().equals(Material.AIR) || !b.getType().equals(Material.GLASS)) {
                             p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &7That is not a compatible block!"));
                             return true;
