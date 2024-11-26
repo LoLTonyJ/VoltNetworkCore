@@ -11,11 +11,11 @@ import java.util.ArrayList;
 
 public class BossItems {
 
-    public static ItemStack bossPearl() {
+    public static ItemStack BossShard() {
 
         String bossName = VoltNetwork.getInstance().getConfig().getString("boss_name");
 
-        ItemStack i = new ItemStack(Material.ENDER_PEARL);
+        ItemStack i = new ItemStack(Material.GHAST_TEAR);
         ItemMeta meta = i.getItemMeta();
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&5Boss Heart Shard"));
         ArrayList<String> lore = new ArrayList<>();
