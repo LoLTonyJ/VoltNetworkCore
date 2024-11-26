@@ -96,6 +96,13 @@ public class DonatorCommands implements CommandExecutor {
                             }
                         }
                     }
+                    if (subCommand.equalsIgnoreCase("check")) {
+                        if (NightVisionCommand.NightVision.contains(target)) {
+                            p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&aNight-Vision &7> &aTrue"));
+                        } else {
+                            p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&aNight-Vision &7> &cFalse"));
+                        }
+                    }
                 }
             }
         }
