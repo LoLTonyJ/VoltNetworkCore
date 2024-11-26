@@ -119,6 +119,9 @@ public class BossCommands implements CommandExecutor {
                 if (subCommand.equalsIgnoreCase("rewards")) {
                     BossInventoryUtil.RewardEdit(p);
                 }
+                if (subCommand.equalsIgnoreCase("test")) {
+                    EndMobs.Mob(p.getLocation());
+                }
             }
         }
         return true;
