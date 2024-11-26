@@ -32,6 +32,8 @@ public class ConfigCommands implements CommandExecutor {
                 if (subCommand.equalsIgnoreCase("modules")) {
                     HelpMenu.ConfigModules(p);
                 }
+            } else {
+                HelpMenu.ConfigSyntaxError(p);
             }
             if (args.length == 3) {
                 String subCommand = args[0];
@@ -40,21 +42,24 @@ public class ConfigCommands implements CommandExecutor {
                 if (subCommand.equalsIgnoreCase("edit")) {
                     if (cfgEdit.equalsIgnoreCase("prefix")) {
                         VoltNetwork.getInstance().getConfig().set("prefix", ChatColor.translateAlternateColorCodes('&', toEdit));
-                        VoltNetwork.getInstance().saveDefaultConfig();
+                        VoltNetwork.getInstance().saveConfig();
+                        VoltNetwork.getInstance().reloadConfig();
                         p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &aThe Plugin prefix has been changed!"));
                     }
                     if (cfgEdit.equalsIgnoreCase("bePerm")) {
                         VoltNetwork.getInstance().getConfig().set("backend_permission", toEdit);
-                        VoltNetwork.getInstance().saveDefaultConfig();
+                        VoltNetwork.getInstance().saveConfig();
+                        VoltNetwork.getInstance().reloadConfig();
                         p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &aThe Backend Permission has been changed!"));
                     }
                     if (cfgEdit.equalsIgnoreCase("aPerm")) {
                         VoltNetwork.getInstance().getConfig().set("administration_permission", toEdit);
-                        VoltNetwork.getInstance().saveDefaultConfig();
+                        VoltNetwork.getInstance().saveConfig();
+                        VoltNetwork.getInstance().reloadConfig();
                         p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &aThe Administration Permission has been changed!"));
                     }
                 }
-            } else if (args.length > 3 || args.length == 2) {
+            } else {
                 HelpMenu.ConfigSyntaxError(p);
             }
         }
