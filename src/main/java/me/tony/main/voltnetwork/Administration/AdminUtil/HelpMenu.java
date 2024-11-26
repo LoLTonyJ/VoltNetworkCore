@@ -65,10 +65,11 @@ public class HelpMenu {
     public static void ConfigSyntaxError(Player p) {
         p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&c&l&o!! PLEASE READ CAREFULLY !!"));
         p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cEditing a Value from In-Game to the config is &c&l!! RISKY !! &cplease do this at your own risk! \n I have tried" +
-                " my best to make it as safe as possible, theres no data leaks within testing, please be &c&l!! CAREFUL !! Continue at your own risk!"));
+                " my best to make it as safe as possible, theres no data leaks within testing, please be &c&l!! CAREFUL !! &cContinue at your own risk!"));
         p.sendMessage(" ");
         p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&c&lSyntax Error!"));
         p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7Please specify which module you'd like to edit in the Configuration!"));
         p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7Example -> &c/cfg edit prefix &7[&cCoolPlugin&7]"));
+        p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7Example -> &c/cfg reload"));
     }
 }
