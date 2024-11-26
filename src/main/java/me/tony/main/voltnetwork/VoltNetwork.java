@@ -68,6 +68,7 @@ public final class VoltNetwork extends JavaPlugin {
         setupChat();
 
         try {
+            // Data File Util.
             KothFileManager.getInstance().Load();
             KothFileManager.getInstance().LoadData();
             BossFileManager.getInstance().Load();
@@ -83,7 +84,7 @@ public final class VoltNetwork extends JavaPlugin {
         }
 
         if (this.getConfig().getBoolean("donator_perks_active")) {
-
+            // Load Donator Perks.
             try {
                 DonatorFileManagement.getInstance().Load();
             } catch (IOException | InvalidConfigurationException e) {
@@ -95,49 +96,60 @@ public final class VoltNetwork extends JavaPlugin {
             getCommand("dono").setExecutor(new DonatorCommands());
             getCommand("nv").setExecutor(new NightVisionCommand());
 
-            // Load Donator Perks.
         } else {
-            getLogger().log(Level.WARNING, "\nVoltNetwork\n Donator Perks are Disabled.");
+            getLogger().log(Level.WARNING, "\nVoltNetwork v1.2.2\n Donator Perks are Disabled.");
         }
 
+        // Custom Enchantments
         getServer().getPluginManager().registerEvents(new Harvest(), this);
         getServer().getPluginManager().registerEvents(new EnchantmentAdd(), this);
         getServer().getPluginManager().registerEvents(new HarvestListener(), this);
 
+        // Configuration Chat Util
         getServer().getPluginManager().registerEvents(new ConfigReloadConfirm(), this);
 
+        // Koth Listeners
         getServer().getPluginManager().registerEvents(new RewardEdit(), this);
         getServer().getPluginManager().registerEvents(new KothCap(), this);
-        getServer().getPluginManager().registerEvents(new StaffChatUtil(), this);
+
+        // Custom Items Listeners
         getServer().getPluginManager().registerEvents(new DrillUtil(), this);
         getServer().getPluginManager().registerEvents(new HarvestUtil(), this);
-        getServer().getPluginManager().registerEvents(new InventoryUtil(), this);
 
-        getServer().getPluginManager().registerEvents(new BlockCheckUtil(), this);
+        // Staff Mode Listeners / Util.
+        getServer().getPluginManager().registerEvents(new StaffChatUtil(), this);
         getServer().getPluginManager().registerEvents(new StaffUtil(), this);
+        getServer().getPluginManager().registerEvents(new BlockCheckUtil(), this);
 
+        // Registering Custom Food Events.
+        getServer().getPluginManager().registerEvents(new InventoryUtil(), this);
+        getServer().getPluginManager().registerEvents(new FoodUtil(), this);
+
+        // Boss Listeners / Util.
         getServer().getPluginManager().registerEvents(new BossUtil(), this);
         getServer().getPluginManager().registerEvents(new BossInventoryUtil(), this);
 
+        // Experience GUI Listeners / Util.
         getServer().getPluginManager().registerEvents(new ExperienceGUIEvents(), this);
+
+
+        // Commands
+        getCommand("koth").setExecutor(new me.tony.main.voltnetwork.Koth.Commands());
+        getCommand("staffchat").setExecutor(new StaffChatCommands());
+        getCommand("staffmode").setExecutor(new StaffModeCommands());
+        getCommand("cooldown").setExecutor(new me.tony.main.voltnetwork.RemoveCooldown.Commands());
+        getCommand("item").setExecutor(new DisplayItem());
+        getCommand("customboss").setExecutor(new BossCommands());
+        getCommand("experience").setExecutor(new ExperienceCommands());
+        getCommand("displaycase").setExecutor(new CaseCommands());
+        getCommand("voltcustomenchant").setExecutor(new Commands());
+        getCommand("config").setExecutor(new ConfigCommands());
 
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
 
             getServer().getPluginManager().registerEvents(new Gravestones(), this);
 
-            getCommand("voltcustomenchant").setExecutor(new Commands());
-            getCommand("config").setExecutor(new ConfigCommands());
             getCommand("gravestone").setExecutor(new me.tony.main.voltnetwork.GravestoneUtil.Commands());
-            getCommand("koth").setExecutor(new me.tony.main.voltnetwork.Koth.Commands());
-            getCommand("staffchat").setExecutor(new StaffChatCommands());
-            getCommand("staffmode").setExecutor(new StaffModeCommands());
-            getCommand("cooldown").setExecutor(new me.tony.main.voltnetwork.RemoveCooldown.Commands());
-            getCommand("item").setExecutor(new DisplayItem());
-            getCommand("customboss").setExecutor(new BossCommands());
-            getCommand("experience").setExecutor(new ExperienceCommands());
-            getCommand("displaycase").setExecutor(new CaseCommands());
-
-            System.out.println("\n VoltNetwork v1.2.0 has been loaded Successfully \n If there is something wrong, please contact Ghostinq on Discord. \n");
 
 
         } else {
@@ -145,15 +157,17 @@ public final class VoltNetwork extends JavaPlugin {
             Bukkit.getPluginManager().disablePlugin(this);
         }
 
-
-        // Registering Custom Food Events.
-        getServer().getPluginManager().registerEvents(new FoodUtil(), this);
-
         // Bukkit Runnable
 
 
-        DonatorUtil.Cooldown();
+        if (this.getConfig().getBoolean("donator_cooldown") && this.getConfig().getBoolean("donator_perks_active")) {
+            DonatorUtil.Cooldown();
+        }
+
+        // Custom Food Runnables.
         CooldownUtil.Cooldown();
+
+        // Custom Boss Runnables.
         BossCooldowns.DialogueQueue();
         BossCooldowns.AbilityUse();
         BossCooldowns.SpawnWatchers();
@@ -164,7 +178,7 @@ public final class VoltNetwork extends JavaPlugin {
         CraftingUtil.SuperStew();
         CraftingUtil.SpecialCookie();
 
-
+        System.out.println("\n VoltNetwork v1.2.2 has been loaded Successfully \n If there is something wrong, please contact Ghostinq on Discord. \n");
 
     }
 
@@ -177,6 +191,7 @@ public final class VoltNetwork extends JavaPlugin {
 
 
         for (Player p : Bukkit.getOnlinePlayers()) {
+            // Restores Inventory before Plugin Restart.
             StaffUtil.FailSafe(p);
         }
 
