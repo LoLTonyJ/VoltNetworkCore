@@ -19,12 +19,19 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Transformation;
 import org.jetbrains.annotations.NotNull;
 
+import java.security.KeyStore;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 public class CaseCommands implements CommandExecutor {
 
-    public static HashMap<ItemDisplay, Location> ItemDisplayList = new HashMap<>();
+    public static HashMap<String, Location> ItemDisplayList = new HashMap<>();
+    public static HashMap<String, Integer> DisplayX = new HashMap<>();
+    public static HashMap<String, Integer> DisplayY = new HashMap<>();
+    public static HashMap<String, Integer> DisplayZ = new HashMap<>();
+    public static HashMap<String, String> DisplayWorld = new HashMap<>();
     public static ArrayList<Boolean> bHolder = new ArrayList<>();
 
     @Override
@@ -32,6 +39,8 @@ public class CaseCommands implements CommandExecutor {
         String perm = VoltNetwork.getInstance().getConfig().getString("administration_permission");
         String prefix = VoltNetwork.getInstance().getConfig().getString("prefix");
         Player p = (Player) sender;
+
+        String displayName = null;
 
         if (p.hasPermission(perm)) {
             if (args.length == 0) {
@@ -53,17 +62,19 @@ public class CaseCommands implements CommandExecutor {
                         p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &7There are no ItemDisplays"));
                         return true;
                     }
-                    for (Entity ent : ItemDisplayList.keySet()) {
-                        if (ItemDisplayList.get(ent).equals(bLoc)) {
-                            ent.remove();
-                            ItemDisplayList.remove(ent);
-                            p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &7Successfully removed " + ent));
-                        } else {
-                            p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &7Thats not a removable ItemDisplay"));
-                            break;
+
+                    for (Location l : ItemDisplayList.values()) {
+                        if (bLoc.equals(l)) {
+                            for (Entity ent : Objects.requireNonNull(bLoc.getWorld()).getNearbyEntities(bLoc, 0.5,0.5,0.5)) {
+                                if (ent != null) {
+                                    ent.remove();
+                                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &7Removed Display Case"));
+                                }else{
+                                    System.out.println("false");
+                                }
+                            }
                         }
                     }
-
                 }
             }
 
@@ -114,7 +125,12 @@ public class CaseCommands implements CommandExecutor {
                         dItemTrans.getScale().set(size);
                         dItem.setTransformation(dItemTrans);
 
-                        ItemDisplayList.put(dItem, bLoc);
+                        ItemDisplayList.put(i.getType().toString().toLowerCase(), bLoc);
+                        DisplayX.put(i.getType().toString().toLowerCase(), (int) bLoc.getX());
+                        DisplayY.put(i.getType().toString().toLowerCase(), (int) bLoc.getY());
+                        DisplayZ.put(i.getType().toString().toLowerCase(), (int) bLoc.getZ());
+                        DisplayWorld.put(i.getType().toString().toLowerCase(), bLoc.getWorld().getName());
+
 
                     // Arg is not hand
                     } else {
@@ -147,7 +163,11 @@ public class CaseCommands implements CommandExecutor {
                         dItemTrans.getScale().set(size);
                         dItem.setTransformation(dItemTrans);
 
-                        ItemDisplayList.put(dItem, bLoc);
+                        ItemDisplayList.put(i.getType().toString().toLowerCase(), bLoc);
+                        DisplayX.put(i.getType().toString().toLowerCase(), (int) bLoc.getX());
+                        DisplayY.put(i.getType().toString().toLowerCase(), (int) bLoc.getY());
+                        DisplayZ.put(i.getType().toString().toLowerCase(), (int) bLoc.getZ());
+                        DisplayWorld.put(i.getType().toString().toLowerCase(), bLoc.getWorld().getName());
                     }
                 }
             }
