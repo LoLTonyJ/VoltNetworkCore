@@ -28,11 +28,10 @@ import java.util.Objects;
 public class CaseCommands implements CommandExecutor {
 
     public static HashMap<String, Location> ItemDisplayList = new HashMap<>();
-    public static HashMap<String, Integer> DisplayX = new HashMap<>();
-    public static HashMap<String, Integer> DisplayY = new HashMap<>();
-    public static HashMap<String, Integer> DisplayZ = new HashMap<>();
+    public static HashMap<String, Double> DisplayX = new HashMap<>();
+    public static HashMap<String, Double> DisplayY = new HashMap<>();
+    public static HashMap<String, Double> DisplayZ = new HashMap<>();
     public static HashMap<String, String> DisplayWorld = new HashMap<>();
-    public static ArrayList<Boolean> bHolder = new ArrayList<>();
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, @NotNull String[] args) {
@@ -44,7 +43,7 @@ public class CaseCommands implements CommandExecutor {
 
         if (p.hasPermission(perm)) {
             if (args.length == 0) {
-                p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&b/display create <hand/itemstack> <rotation> <size>"));
+                p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&b/display create <hand/item> <rotation> <size>"));
                 p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&b/display remove"));
             }
             if (args.length == 1) {
@@ -58,21 +57,13 @@ public class CaseCommands implements CommandExecutor {
                         return true;
                     }
 
-                    if (ItemDisplayList.isEmpty()) {
-                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &7There are no ItemDisplays"));
-                        return true;
-                    }
-
-                    for (Location l : ItemDisplayList.values()) {
-                        if (bLoc.equals(l)) {
-                            for (Entity ent : Objects.requireNonNull(bLoc.getWorld()).getNearbyEntities(bLoc, 0.5,0.5,0.5)) {
-                                if (ent != null) {
-                                    ent.remove();
-                                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &7Removed Display Case"));
-                                }else{
-                                    System.out.println("false");
-                                }
-                            }
+                    for (Entity ent : bLoc.getWorld().getNearbyEntities(bLoc, 0.5, 0.5, 0.5)) {
+                        if (ent != null) {
+                            ent.remove();
+                        } else {
+                            p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&c&lERROR! See console for details!"));
+                            System.out.println("Block doesn't have a valid Entity Attached. If there is a floating item, until a better way is implemented, use /killall all ! ! BE CAREFUL ! ! this will remove all entities, arrows, boats, minecarts, etc in the " +
+                                    "executed world!");
                         }
                     }
                 }
@@ -98,12 +89,6 @@ public class CaseCommands implements CommandExecutor {
                     if (item.equalsIgnoreCase("hand")) {
                         Block b = p.getTargetBlock(null, 5);
 
-                        for (Location l : ItemDisplayList.values()) {
-                            if (b.getLocation() == l) {
-                                p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &7That has already been defined as a Display Case."));
-                            }
-                        }
-
                         if (b.getType().equals(Material.AIR)) {
                             p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &7You cannot set AIR as a Display Case!"));
                             return true;
@@ -126,10 +111,6 @@ public class CaseCommands implements CommandExecutor {
                         dItem.setTransformation(dItemTrans);
 
                         ItemDisplayList.put(i.getType().toString().toLowerCase(), bLoc);
-                        DisplayX.put(i.getType().toString().toLowerCase(), (int) bLoc.getX());
-                        DisplayY.put(i.getType().toString().toLowerCase(), (int) bLoc.getY());
-                        DisplayZ.put(i.getType().toString().toLowerCase(), (int) bLoc.getZ());
-                        DisplayWorld.put(i.getType().toString().toLowerCase(), bLoc.getWorld().getName());
 
 
                     // Arg is not hand
@@ -164,10 +145,6 @@ public class CaseCommands implements CommandExecutor {
                         dItem.setTransformation(dItemTrans);
 
                         ItemDisplayList.put(i.getType().toString().toLowerCase(), bLoc);
-                        DisplayX.put(i.getType().toString().toLowerCase(), (int) bLoc.getX());
-                        DisplayY.put(i.getType().toString().toLowerCase(), (int) bLoc.getY());
-                        DisplayZ.put(i.getType().toString().toLowerCase(), (int) bLoc.getZ());
-                        DisplayWorld.put(i.getType().toString().toLowerCase(), bLoc.getWorld().getName());
                     }
                 }
             }
