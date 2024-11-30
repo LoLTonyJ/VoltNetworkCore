@@ -132,7 +132,7 @@ public class KothFileManager {
         config.set("Koth_Rewards", RewardList);
         Save();
 
-        System.out.println("\n Stored Koth Data \n VoltNetwork v1.0.2");
+        System.out.println("\n Stored Koth Data \n");
         
     }
 

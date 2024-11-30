@@ -215,7 +215,7 @@ night_vision_item_lore:
 night_vision_permission: "VoltNetwork.Donator.NV"
 
 night_vision_unlimited: true
-# If Night Vision is false.
+# If Night Vision Unlimited is false.
 # Represented in Seconds, Night Vision will only last for 50 Seconds.
 night_vision_duration: 50
 

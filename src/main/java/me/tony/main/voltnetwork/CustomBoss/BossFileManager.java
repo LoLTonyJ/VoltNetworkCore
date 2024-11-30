@@ -48,15 +48,12 @@ public class BossFileManager {
             int timeLeft = 0;
 
             e = (Entity) config.getConfigurationSection("Boss_Respawn").get("Boss");
+            if (e == null) return;
             timeLeft = (int) config.getConfigurationSection("Boss_Respawn").get("Time Left");
             BossCooldowns.BossRespawn.put(e, timeLeft);
         }
 
         if (config.getConfigurationSection("Boss_Warp") != null) {
-            if (config.getConfigurationSection("Boss_Warp").get("X") == null) return;
-            if (config.getConfigurationSection("Boss_Warp").get("Y") == null) return;
-            if (config.getConfigurationSection("Boss_Warp").get("Z") == null) return;
-            if (config.getConfigurationSection("Boss_Warp").get("World") == null) return;
 
             // Getting Data
             int x = (int) config.getConfigurationSection("Boss_Warp").get("X");
@@ -72,10 +69,6 @@ public class BossFileManager {
         }
 
         if (config.getConfigurationSection("Boss_Spawn") != null) {
-            if (config.getConfigurationSection("Boss_Spawn").get("X") == null) return;
-            if (config.getConfigurationSection("Boss_Spawn").get("Y") == null) return;
-            if (config.getConfigurationSection("Boss_Spawn").get("Z") == null) return;
-            if (config.getConfigurationSection("Boss_Spawn").get("World") == null) return;
 
             // Getting Location Data from Data File
             int x = (int) config.getConfigurationSection("Boss_Spawn").get("X");
