@@ -46,6 +46,14 @@ public class BossCommands implements CommandExecutor {
                 int y = (int) p.getLocation().getY();
                 int z = (int) p.getLocation().getZ();
 
+                if (subCommand.equalsIgnoreCase("warp")) {
+                    if (WarpLoc.isEmpty()) {
+                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &7Boss warp is not setup!"));
+                    } else {
+                        p.teleport(WarpLoc.get(0));
+                    }
+                }
+
                 if (subCommand.equalsIgnoreCase("setwarp")) {
                     if (XBossWarp.isEmpty() && YBossWarp.isEmpty() && ZBossWarp.isEmpty() && WorldBossWarp.isEmpty() && WarpYaw.isEmpty() && WarpPitch.isEmpty()) {
                         XBossWarp.add(x);
