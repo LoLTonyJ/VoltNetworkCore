@@ -25,6 +25,11 @@ public class KothUtil {
     public static ArrayList<ItemStack> rewardList = new ArrayList<>();
     public static ArrayList<String> kothContested = new ArrayList<>();
 
+    public static int rndm(int min, int max) {
+        Random DropAmount = new Random();
+        return DropAmount.nextInt((max - min) + 1) + min;
+    }
+
     public static void Hologram(String kothName, Integer duration, Location loc) {
 
         Boolean holoEnab = VoltNetwork.getInstance().getConfig().getBoolean("koth_hologram");
@@ -138,11 +143,9 @@ public class KothUtil {
                 for (Player p : Bukkit.getOnlinePlayers())
                     // Checks to see if any of the players are victorious
                     if (kothCap.containsKey(p)) {
-                        for (ItemStack items : RewardEdit.rewards) {
-                            if (items != null) {
-                                kothReward.put(p, items);
-                            }
-                        }
+                        int num = rndm(0, RewardEdit.rewards.size());
+                        if (num == RewardEdit.rewards.size()) num = num -1;
+                        p.getInventory().addItem(RewardEdit.rewards.get(num));
                         kothVictor.add(p);
                         if (vMsg.contains("%koth%")) {
                             String replace = vMsg.replace("%koth%", kothName);
