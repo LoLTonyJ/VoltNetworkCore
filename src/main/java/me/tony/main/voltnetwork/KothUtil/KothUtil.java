@@ -20,7 +20,6 @@ import static me.tony.main.voltnetwork.Koth.Commands.kothLocation;
 public class KothUtil {
 
     public static HashMap<Player, String> kothCap = new HashMap<>();
-    public static ArrayList<Player> kothVictor = new ArrayList<>();
     public static HashMap<Player, ItemStack> kothReward = new HashMap<>();
     public static ArrayList<ItemStack> rewardList = new ArrayList<>();
     public static ArrayList<String> kothContested = new ArrayList<>();
@@ -146,13 +145,6 @@ public class KothUtil {
                         int num = rndm(0, RewardEdit.rewards.size());
                         if (num == RewardEdit.rewards.size()) num = num -1;
                         p.getInventory().addItem(RewardEdit.rewards.get(num));
-                        kothVictor.add(p);
-                        if (vMsg.contains("%koth%")) {
-                            String replace = vMsg.replace("%koth%", kothName);
-                            p.sendMessage(ChatColor.translateAlternateColorCodes('&', kPrefix + " &7" + replace));
-                        } else {
-                            p.sendMessage(ChatColor.translateAlternateColorCodes('&', kPrefix + " &7" + vMsg));
-                        }
                     }
             } else {
                 if (bcEnd.contains("%koth%")) {

@@ -309,8 +309,6 @@ koth_cap_leave: "&c%koth% is empty! Capture it!"
 koth_victor: "%player_displayname% has won %koth%"
 
 koth_end_no_capper: "Nobody captured %koth% in time!"
-# Sends this message to whoever won the koth event.
-victor_message: "You have won %koth%, /koth rewards to claim your rewards!"
 
 # Allows a hologram to be displayed in the middle of the koth region
 koth_hologram: true
