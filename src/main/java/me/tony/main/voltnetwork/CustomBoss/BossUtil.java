@@ -190,7 +190,7 @@ public class BossUtil implements Listener {
         Player p = e.getEntity().getKiller();
 
 
-        // Checks Entity Typpe
+        // Checks Entity Type
         if (ent.getType().equals(EntityType.ZOMBIE)) {
             if (ent.getCustomName() != null) {
                 // Checks to see if the Entity has Custom Name of x
