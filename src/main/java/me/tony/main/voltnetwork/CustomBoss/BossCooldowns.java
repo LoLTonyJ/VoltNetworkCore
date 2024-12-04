@@ -90,31 +90,31 @@ public class BossCooldowns {
         String wrld = VoltNetwork.getInstance().getConfig().getString("boss_world");
         World w = BukkitAdapter.adapt(Bukkit.getWorld(wrld));
 
-        RegionContainer container = WorldGuard.getInstance().getPlatform().getRegionContainer();
-        RegionManager regions = container.get(w);
-        if (regions != null) {
-            rg = regions.getRegion("bossarena");
+        if (!BossCommands.WorldBossSpawn.isEmpty()) {
+            RegionContainer container = WorldGuard.getInstance().getPlatform().getRegionContainer();
+            RegionManager regions = container.get(w);
+            if (regions != null) {
+                rg = regions.getRegion("bossarena");
 
-            Bukkit.getScheduler().runTaskTimer(VoltNetwork.getInstance(), new Runnable() {
-                @Override
-                public void run() {
+                Bukkit.getScheduler().runTaskTimer(VoltNetwork.getInstance(), new Runnable() {
+                    @Override
+                    public void run() {
 
-                    if (!BossCommands.Alive.isEmpty()) return;
+                        if (!BossCommands.Alive.isEmpty()) return;
 
-                    if (EndMobs.MobCount.size() >= 25) {
-                        return;
+                        if (EndMobs.MobCount.size() >= 25) {
+                            return;
+                        }
+                        if (!EndMobs.MiddleRegion(rg.getId(), BossCommands.WorldBossSpawn.get(0)).add(rndm(-50, 50), 0, rndm(-50, 50)).getBlock().getType().equals(Material.AIR))
+                            return;
+
+                        EndMobs.Mob(EndMobs.MiddleRegion(rg.getId(), BossCommands.WorldBossSpawn.get(0)).add(rndm(-50, 50), 0, rndm(-50, 50)));
+                        EndMobs.MobCount.add(1);
                     }
-                    if (!EndMobs.MiddleRegion(rg.getId(), BossCommands.WorldBossSpawn.get(0)).add(rndm(-50, 50), 0, rndm(-50, 50)).getBlock().getType().equals(Material.AIR)) return;
+                }, 20, 200);
 
-                    EndMobs.Mob(EndMobs.MiddleRegion(rg.getId(), BossCommands.WorldBossSpawn.get(0)).add(rndm(-50, 50), 0, rndm(-50, 50)));
-                    EndMobs.MobCount.add(1);
-                }
-            }, 20, 200);
-
+            }
         }
-
-
-
     }
 
     public static void AbilityUse() {
