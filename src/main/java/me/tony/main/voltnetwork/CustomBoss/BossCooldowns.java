@@ -130,7 +130,7 @@ public class BossCooldowns {
                 int rndm = rndm(1, 4);
 
                 if (rndm == 1) {
-                    BossAbilities.PoisonSquare();
+                    BossAbilities.PoisonCircle();
                 }
                 if (rndm == 2) {
                     BossAbilities.NegateDamage();
