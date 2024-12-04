@@ -11,6 +11,7 @@ import org.bukkit.inventory.ItemStack;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Level;
 
 public class BossFileManager {
 
@@ -56,33 +57,41 @@ public class BossFileManager {
         if (config.getConfigurationSection("Boss_Warp") != null) {
 
             // Getting Data
-            int x = (int) config.getConfigurationSection("Boss_Warp").get("X");
-            int y = (int) config.getConfigurationSection("Boss_Warp").get("Y");
-            int z = (int) config.getConfigurationSection("Boss_Warp").get("Z");
-            String w = (String) config.getConfigurationSection("Boss_Warp").get("World");
-            BossCommands.XBossWarp.add(x);
-            BossCommands.WorldBossWarp.add(w);
-            BossCommands.YBossWarp.add(y);
-            BossCommands.ZBossWarp.add(z);
-            Location wLoc = new Location(Bukkit.getWorld(w), x, y, z);
-            BossCommands.WarpLoc.add(wLoc);
+            if (config.getConfigurationSection("Boss_Warp").get("X") != null || config.getConfigurationSection("Boss_Warp").get("Y") != null || config.getConfigurationSection("Boss_Warp").get("Z") != null) {
+                int x = (int) config.getConfigurationSection("Boss_Warp").get("X");
+                int y = (int) config.getConfigurationSection("Boss_Warp").get("Y");
+                int z = (int) config.getConfigurationSection("Boss_Warp").get("Z");
+                String w = (String) config.getConfigurationSection("Boss_Warp").get("World");
+                BossCommands.XBossWarp.add(x);
+                BossCommands.WorldBossWarp.add(w);
+                BossCommands.YBossWarp.add(y);
+                BossCommands.ZBossWarp.add(z);
+                Location wLoc = new Location(Bukkit.getWorld(w), x, y, z);
+                BossCommands.WarpLoc.add(wLoc);
+            } else {
+                Bukkit.getServer().getLogger().log(Level.SEVERE, "Boss Warp is not set! Continuing....");
+            }
         }
 
         if (config.getConfigurationSection("Boss_Spawn") != null) {
 
-            // Getting Location Data from Data File
-            int x = (int) config.getConfigurationSection("Boss_Spawn").get("X");
-            int y = (int) config.getConfigurationSection("Boss_Spawn").get("Y");
-            int z = (int) config.getConfigurationSection("Boss_Spawn").get("Z");
-            String w = (String) config.getConfigurationSection("Boss_Spawn").get("World");
+            if (config.getConfigurationSection("Boss_Spawn").get("X") != null || config.getConfigurationSection("Boss_Spawn").get("Y") != null || config.getConfigurationSection("Boss_Spawn").get("Z") != null) {
+                // Getting Location Data from Data File
+                int x = (int) config.getConfigurationSection("Boss_Spawn").get("X");
+                int y = (int) config.getConfigurationSection("Boss_Spawn").get("Y");
+                int z = (int) config.getConfigurationSection("Boss_Spawn").get("Z");
+                String w = (String) config.getConfigurationSection("Boss_Spawn").get("World");
 
-            BossCommands.WorldBossSpawn.add(w);
-            BossCommands.XBossSpawn.add(x);
-            BossCommands.YBossSpawn.add(y);
-            BossCommands.ZBossSpawn.add(z);
-            Location l = new Location(Bukkit.getWorld(w), x, y, z);
-            BossCommands.BossSpawn.add(l);
+                BossCommands.WorldBossSpawn.add(w);
+                BossCommands.XBossSpawn.add(x);
+                BossCommands.YBossSpawn.add(y);
+                BossCommands.ZBossSpawn.add(z);
+                Location l = new Location(Bukkit.getWorld(w), x, y, z);
+                BossCommands.BossSpawn.add(l);
 
+            } else {
+                Bukkit.getServer().getLogger().log(Level.SEVERE, "Boss Spawn is not set! Continuing....");
+            }
         }
         else {
             System.out.println("Boss Spawn Null");
@@ -162,21 +171,26 @@ public class BossFileManager {
             e.printStackTrace();
         }
 
-        ConfigurationSection warp = config.getConfigurationSection("Boss_Warp");
-        warp.set("World", BossCommands.WorldBossWarp.get(0));
-        warp.set("X", BossCommands.XBossWarp.get(0));
-        warp.set("Y", BossCommands.YBossWarp.get(0));
-        warp.set("Z", BossCommands.ZBossWarp.get(0));
+        if (!BossCommands.WorldBossWarp.isEmpty() || !BossCommands.XBossWarp.isEmpty() || !BossCommands.YBossWarp.isEmpty() || !BossCommands.ZBossWarp.isEmpty()) {
+            ConfigurationSection warp = config.getConfigurationSection("Boss_Warp");
+            warp.set("World", BossCommands.WorldBossWarp.get(0));
+            warp.set("X", BossCommands.XBossWarp.get(0));
+            warp.set("Y", BossCommands.YBossWarp.get(0));
+            warp.set("Z", BossCommands.ZBossWarp.get(0));
+            Save();
+        }
 
-        ConfigurationSection sect = config.getConfigurationSection("Boss_Spawn");
-        sect.set("World", BossCommands.WorldBossSpawn.get(0));
-        sect.set("X", BossCommands.XBossSpawn.get(0));
-        sect.set("Y", BossCommands.YBossSpawn.get(0));
-        sect.set("Z", BossCommands.ZBossSpawn.get(0));
+        if (!BossCommands.WorldBossSpawn.isEmpty() || !BossCommands.XBossSpawn.isEmpty() || !BossCommands.YBossSpawn.isEmpty() || !BossCommands.ZBossSpawn.isEmpty()) {
+            ConfigurationSection sect = config.getConfigurationSection("Boss_Spawn");
+            sect.set("World", BossCommands.WorldBossSpawn.get(0));
+            sect.set("X", BossCommands.XBossSpawn.get(0));
+            sect.set("Y", BossCommands.YBossSpawn.get(0));
+            sect.set("Z", BossCommands.ZBossSpawn.get(0));
 
-        Save();
+            Save();
 
-        System.out.println("Saved Boss Data");
+            System.out.println("Saved Boss Data");
+        }
     }
 
 
