@@ -26,6 +26,12 @@ backend_permission: "VoltNetwork.Admin"
 display_item_require_permission: true
 display_item_permission: "VoltNetwork.DisplayItem"
 
+crate_key_amount: 5000
+# Only supports %player% placeholder.
+crate_key_command: "ac key give %player% common"
+announce_key_purchase: true
+announce_key_message: "&7[&cVoltNetwork&7] %player% has just bought a Common Crate Key! You can purchase yours using /vce key!"
+
 #######################################################################################################################
 #                                                                                                                     #
 #                                   SPECIAL FOODS SECTION                                                             #
@@ -309,8 +315,6 @@ koth_cap_leave: "&c%koth% is empty! Capture it!"
 koth_victor: "%player_displayname% has won %koth%"
 
 koth_end_no_capper: "Nobody captured %koth% in time!"
-# Sends this message to whoever won the koth event.
-victor_message: "You have won %koth%, /koth rewards to claim your rewards!"
 
 # Allows a hologram to be displayed in the middle of the koth region
 koth_hologram: true

@@ -26,6 +26,12 @@ backend_permission: "VoltNetwork.Admin"
 display_item_require_permission: true
 display_item_permission: "VoltNetwork.DisplayItem"
 
+crate_key_amount: 5000
+# Only supports %player% placeholder.
+crate_key_command: "ac key give %player% common"
+announce_key_purchase: true
+announce_key_message: "&7[&cVoltNetwork&7] %player% has just bought a Common Crate Key! You can purchase yours using /vce key!"
+
 #######################################################################################################################
 #                                                                                                                     #
 #                                   SPECIAL FOODS SECTION                                                             #
