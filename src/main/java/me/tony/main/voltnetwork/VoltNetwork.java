@@ -101,7 +101,7 @@ public final class VoltNetwork extends JavaPlugin {
             getCommand("nv").setExecutor(new NightVisionCommand());
 
         } else {
-            getLogger().log(Level.WARNING, "\nVoltNetwork v1.2.3\n Donator Perks are Disabled.");
+            getLogger().log(Level.WARNING, "\nVoltNetwork v1.2.5\n Donator Perks are Disabled.");
         }
 
         // Custom Enchantments
@@ -189,7 +189,7 @@ public final class VoltNetwork extends JavaPlugin {
         CraftingUtil.SpecialCookie();
         SuperBonemeal.SuperBone();
 
-        System.out.println("\n VoltNetwork v1.2.3 has been loaded Successfully \n If there is something wrong, please contact Ghostinq on Discord. \n");
+        System.out.println("\n VoltNetwork v1.2.5 has been loaded Successfully \n If there is something wrong, please contact Ghostinq on Discord. \n");
 
     }
 
