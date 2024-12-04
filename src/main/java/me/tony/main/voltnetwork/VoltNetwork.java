@@ -12,6 +12,8 @@ import me.tony.main.voltnetwork.ChatUtil.DisplayItem;
 import me.tony.main.voltnetwork.CustomBoss.*;
 import me.tony.main.voltnetwork.CustomItems.DrillUtil;
 import me.tony.main.voltnetwork.CustomItems.HarvestUtil;
+import me.tony.main.voltnetwork.CustomItems.TPBowUtil;
+import me.tony.main.voltnetwork.CustomItemsUtil.SuperBonemeal;
 import me.tony.main.voltnetwork.DonatorPerks.DonatorCommands;
 import me.tony.main.voltnetwork.DonatorPerks.DonatorFileManagement;
 import me.tony.main.voltnetwork.DonatorPerks.DonatorUtil;
@@ -31,6 +33,8 @@ import me.tony.main.voltnetwork.StaffChat.StaffChatUtil;
 import me.tony.main.voltnetwork.StaffMode.BlockCheckUtil;
 import me.tony.main.voltnetwork.StaffMode.StaffModeCommands;
 import me.tony.main.voltnetwork.StaffMode.StaffUtil;
+import me.tony.main.voltnetwork.Vouchers.VoucherCommand;
+import me.tony.main.voltnetwork.Vouchers.VoucherUtil;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.economy.Economy;
@@ -97,7 +101,7 @@ public final class VoltNetwork extends JavaPlugin {
             getCommand("nv").setExecutor(new NightVisionCommand());
 
         } else {
-            getLogger().log(Level.WARNING, "\nVoltNetwork v1.2.2\n Donator Perks are Disabled.");
+            getLogger().log(Level.WARNING, "\nVoltNetwork v1.2.3\n Donator Perks are Disabled.");
         }
 
         // Custom Enchantments
@@ -115,6 +119,8 @@ public final class VoltNetwork extends JavaPlugin {
         // Custom Items Listeners
         getServer().getPluginManager().registerEvents(new DrillUtil(), this);
         getServer().getPluginManager().registerEvents(new HarvestUtil(), this);
+        getServer().getPluginManager().registerEvents(new TPBowUtil(), this);
+        getServer().getPluginManager().registerEvents(new SuperBonemeal(), this);
 
         // Staff Mode Listeners / Util.
         getServer().getPluginManager().registerEvents(new StaffChatUtil(), this);
@@ -132,6 +138,9 @@ public final class VoltNetwork extends JavaPlugin {
         // Experience GUI Listeners / Util.
         getServer().getPluginManager().registerEvents(new ExperienceGUIEvents(), this);
 
+        // Vouchers
+        getServer().getPluginManager().registerEvents(new VoucherUtil(), this);
+
 
         // Commands
         getCommand("koth").setExecutor(new me.tony.main.voltnetwork.Koth.Commands());
@@ -144,6 +153,7 @@ public final class VoltNetwork extends JavaPlugin {
         getCommand("displaycase").setExecutor(new CaseCommands());
         getCommand("voltcustomenchant").setExecutor(new Commands());
         getCommand("config").setExecutor(new ConfigCommands());
+        getCommand("voucher").setExecutor(new VoucherCommand());
 
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
 
@@ -177,8 +187,9 @@ public final class VoltNetwork extends JavaPlugin {
         CraftingUtil.SpeedySteak();
         CraftingUtil.SuperStew();
         CraftingUtil.SpecialCookie();
+        SuperBonemeal.SuperBone();
 
-        System.out.println("\n VoltNetwork v1.2.2 has been loaded Successfully \n If there is something wrong, please contact Ghostinq on Discord. \n");
+        System.out.println("\n VoltNetwork v1.2.3 has been loaded Successfully \n If there is something wrong, please contact Ghostinq on Discord. \n");
 
     }
 
