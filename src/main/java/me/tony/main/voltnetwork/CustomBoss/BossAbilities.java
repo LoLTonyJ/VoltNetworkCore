@@ -72,7 +72,7 @@ public class BossAbilities {
         }
     }
 
-    public static void PoisonSquare() {
+    public static void PoisonCircle() {
 
         String bossName = VoltNetwork.getInstance().getConfig().getString("boss_name");
 
@@ -88,18 +88,20 @@ public class BossAbilities {
                 int radius = 5;
                 for (int xMod = -radius; xMod <= radius; xMod++) {
                     for (int zMod = -radius; zMod <= radius; zMod++) {
-                        Block b = circLoc.getBlock().getRelative(xMod, -1, zMod);
-                        BlockData save = b.getBlockData();
-                        b.setType(Material.MAGENTA_WOOL);
-                        b.getWorld().spawnParticle(Particle.DRAGON_BREATH, circLoc, 5);
+                        if ((xMod * xMod) + (zMod * zMod) <= (radius * radius)) {
+                            Block b = circLoc.getBlock().getRelative(xMod, -1, zMod);
+                            BlockData save = b.getBlockData();
+                            b.setType(Material.MAGENTA_WOOL);
+                            b.getWorld().spawnParticle(Particle.DRAGON_BREATH, circLoc, 5);
 
 
-                        Bukkit.getScheduler().runTaskTimer(VoltNetwork.getInstance(), new Runnable() {
-                            @Override
-                            public void run() {
-                                b.setBlockData(save);
-                            }
-                        }, 200, 20);
+                            Bukkit.getScheduler().runTaskTimer(VoltNetwork.getInstance(), new Runnable() {
+                                @Override
+                                public void run() {
+                                    b.setBlockData(save);
+                                }
+                            }, 200, 20);
+                        }
                     }
                 }
             }
