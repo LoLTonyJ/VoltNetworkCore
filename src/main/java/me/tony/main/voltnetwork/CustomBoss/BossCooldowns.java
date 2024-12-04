@@ -89,12 +89,13 @@ public class BossCooldowns {
         ProtectedRegion rg;
         String wrld = VoltNetwork.getInstance().getConfig().getString("boss_world");
         World w = BukkitAdapter.adapt(Bukkit.getWorld(wrld));
+        String regionID = VoltNetwork.getInstance().getConfig().getString("boss_region_name");
 
         if (!BossCommands.WorldBossSpawn.isEmpty()) {
             RegionContainer container = WorldGuard.getInstance().getPlatform().getRegionContainer();
             RegionManager regions = container.get(w);
             if (regions != null) {
-                rg = regions.getRegion("bossarena");
+                rg = regions.getRegion(regionID);
 
                 Bukkit.getScheduler().runTaskTimer(VoltNetwork.getInstance(), new Runnable() {
                     @Override
