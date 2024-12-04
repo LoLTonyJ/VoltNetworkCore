@@ -4,13 +4,14 @@ import me.tony.main.voltnetwork.VoltNetwork;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
-import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
+
+import static me.tony.main.voltnetwork.StaffMode.StaffUtil.prefix;
 
 public class BossCommands implements CommandExecutor {
 
@@ -55,67 +56,12 @@ public class BossCommands implements CommandExecutor {
                 }
 
                 if (subCommand.equalsIgnoreCase("setwarp")) {
-                    if (XBossWarp.isEmpty() && YBossWarp.isEmpty() && ZBossWarp.isEmpty() && WorldBossWarp.isEmpty() && WarpYaw.isEmpty() && WarpPitch.isEmpty()) {
-                        XBossWarp.add(x);
-                        YBossWarp.add(y);
-                        ZBossWarp.add(z);
-                        WorldBossWarp.add(w);
-                        Location wLoc = new Location(Bukkit.getWorld(w), x, y, z);
-
-                        WarpLoc.add(wLoc);
-
-                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " You've set the Warp!"));
-                    } else {
-                        XBossWarp.clear();
-                        YBossWarp.clear();
-                        ZBossWarp.clear();
-                        WorldBossWarp.clear();
-                        WarpYaw.clear();
-                        WarpPitch.clear();
-                        WarpLoc.clear();
-
-                        XBossWarp.add(x);
-                        YBossWarp.add(y);
-                        ZBossWarp.add(z);
-                        WorldBossWarp.add(w);
-
-                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " You've replaced the Warp!"));
-                    }
-                    BossFileManager.getInstance().SaveData();
+                    registerBossWarp(p);
                 }
 
                 if (subCommand.equalsIgnoreCase("setspawn")) {
-                    if (XBossSpawn.isEmpty() && YBossSpawn.isEmpty() && ZBossSpawn.isEmpty() && WorldBossSpawn.isEmpty() && BossSpawn.isEmpty()) {
-                        XBossSpawn.add(x);
-                        YBossSpawn.add(y);
-                        ZBossSpawn.add(z);
-                        WorldBossSpawn.add(w);
-
-                        Location bLoc = new Location(Bukkit.getWorld(w), x, y, z);
-                        BossSpawn.add(bLoc);
-
-                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " Set Boss Spawn"));
-                    } else {
-                        XBossSpawn.remove(0);
-                        XBossSpawn.add(x);
-                        YBossSpawn.remove(0);
-                        YBossSpawn.add(y);
-                        ZBossSpawn.remove(0);
-                        ZBossSpawn.add(z);
-                        WorldBossSpawn.remove(0);
-                        WorldBossSpawn.add(w);
-                        Location bLoc = new Location(Bukkit.getWorld(w), x, y, z);
-
-                        BossSpawn.clear();
-                        BossSpawn.add(bLoc);
-
-                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " Replaced Boss Spawn"));
-
-                    }
-                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', "X: " + x));
-                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', "Y: " + y));
-                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', "Z: " + z));
-                    BossFileManager.getInstance().SaveData();
+                    registerBossSpawn(p);
+                    BossCommands.BossSpawn.add(registerBossSpawn(p));
                 }
                 if (subCommand.equalsIgnoreCase("create")) {
                     BossUtil.SignCreate(p);
@@ -133,5 +79,75 @@ public class BossCommands implements CommandExecutor {
             }
         }
         return true;
+    }
+
+    public Location registerBossSpawn(Player p) {
+        Location loc = p.getLocation();
+        int x = (int) loc.getX();
+        int y = (int) loc.getY();
+        int z = (int) loc.getZ();
+        String worldName = loc.getWorld().getName();
+
+        if (XBossSpawn.isEmpty() || YBossSpawn.isEmpty() || ZBossSpawn.isEmpty() || WorldBossSpawn.isEmpty()) {
+            XBossSpawn.add(x);
+            YBossSpawn.add(y);
+            ZBossSpawn.add(z);
+            WorldBossSpawn.add(worldName);
+
+            BossFileManager.getInstance().SaveData();
+
+            return new Location(Bukkit.getWorld(worldName), x, y, z);
+        } else {
+
+            XBossSpawn.clear();
+            YBossSpawn.clear();
+            ZBossSpawn.clear();
+            WorldBossSpawn.clear();
+
+            p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &7You've replaced the Boss Spawn Point!"));
+
+            XBossSpawn.add(x);
+            YBossSpawn.add(y);
+            ZBossSpawn.add(z);
+            WorldBossSpawn.add(worldName);
+
+            BossFileManager.getInstance().SaveData();
+
+            return new Location(Bukkit.getWorld(worldName), x, y, z);
+
+        }
+    }
+
+    public Location registerBossWarp(Player p) {
+        Location loc = p.getLocation();
+        int x = (int) loc.getX();
+        int y = (int) loc.getY();
+        int z = (int) loc.getZ();
+        String worldName = loc.getWorld().getName();
+
+        if (XBossWarp.isEmpty() || YBossWarp.isEmpty() || ZBossWarp.isEmpty() || WorldBossWarp.isEmpty()) {
+            XBossWarp.add(x);
+            YBossWarp.add(y);
+            ZBossWarp.add(z);
+            WorldBossWarp.add(worldName);
+            p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &7You've set the Boss Warp!"));
+
+            BossFileManager.getInstance().SaveData();
+
+        } else {
+            XBossWarp.clear();;
+            ZBossWarp.clear();
+            YBossWarp.clear();
+            WorldBossWarp.clear();
+
+            XBossWarp.add(x);
+            YBossWarp.add(y);
+            ZBossWarp.add(z);
+            p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &7You've replaced the Boss Warp"));
+
+            BossFileManager.getInstance().SaveData();
+        }
+
+        return loc;
     }
 }

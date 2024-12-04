@@ -25,11 +25,10 @@ public class BlockCheckUtil implements Listener {
         for (String block : VoltNetwork.getInstance().getConfig().getStringList("Check_Blocks")) {
             if (e.getBlock().getType().equals(Material.valueOf(block))) {
                 for (Player staff : Bukkit.getOnlinePlayers()) {
-                    if (staff.hasPermission(alertPerm)) {
-                        if (!StaffUtil.Alerts.contains(staff)) {
-                            staff.sendMessage(ChatColor.translateAlternateColorCodes('&', alertPrefix + " &7" + e.getPlayer().getDisplayName() + " has broken " + block));
-                        }
-                    }
+                    if (!staff.hasPermission(alertPerm)) return;
+                    if (!e.getPlayer().hasPermission(exempt)) return;
+                    if (!StaffUtil.Alerts.contains(staff)) return;
+                    staff.sendMessage(ChatColor.translateAlternateColorCodes('&', alertPrefix + " &7" + e.getPlayer().getDisplayName() + " has broken " + block));
                 }
             }
         }
