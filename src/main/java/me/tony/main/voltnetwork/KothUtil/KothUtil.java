@@ -2,6 +2,7 @@ package me.tony.main.voltnetwork.KothUtil;
 
 import eu.decentsoftware.holograms.api.DHAPI;
 import eu.decentsoftware.holograms.api.holograms.Hologram;
+import me.tony.main.voltnetwork.GeneralUtil.PlaceHolderUtil;
 import me.tony.main.voltnetwork.Koth.Commands;
 import me.tony.main.voltnetwork.VoltNetwork;
 import org.bukkit.Bukkit;
@@ -92,8 +93,7 @@ public class KothUtil {
                     String result = replaceChars.replace("%duration%", String.valueOf(kothDuration.get(koth)));
                     Bukkit.getServer().broadcastMessage(ChatColor.translateAlternateColorCodes('&', kothPrefix + " " + result));
                 } else if (broadcastMessage.contains("%koth%")) {
-                    String bc = broadcastMessage.replace("%koth%", koth);
-                    Bukkit.getServer().broadcastMessage(ChatColor.translateAlternateColorCodes('&', kothPrefix + " " + bc));
+                    Bukkit.getServer().broadcastMessage(ChatColor.translateAlternateColorCodes('&', kothPrefix + " " + PlaceHolderUtil.stringReplace(broadcastMessage, "%koth%", koth)));
                 }
             }
         }

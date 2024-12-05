@@ -7,8 +7,8 @@ import org.bukkit.entity.Player;
 public class PlaceHolderUtil {
 
 
-    public static String stringReplace(String msg, String replace, String toReplace) {
-        return msg.replace(replace, toReplace);
+    public static String stringReplace(String msg, String toReplace, String replace) {
+        return msg.replace(toReplace, replace);
     }
 
     public static String playerReplace(String msg, String placeHolder, Player p) {
