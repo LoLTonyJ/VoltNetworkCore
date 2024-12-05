@@ -9,6 +9,8 @@ import me.tony.main.voltnetwork.CustomItems.TPBowUtil;
 import me.tony.main.voltnetwork.CustomItemsUtil.SuperBonemeal;
 import me.tony.main.voltnetwork.EnchantmentUtil.RemoveEnchant;
 import me.tony.main.voltnetwork.Enchantments.Harvest;
+import me.tony.main.voltnetwork.GeneralUtil.ChatUtil;
+import me.tony.main.voltnetwork.GeneralUtil.PlaceHolderUtil;
 import me.tony.main.voltnetwork.VoltNetwork;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
@@ -142,8 +144,7 @@ public class Commands implements CommandExecutor {
                 balance.withdrawPlayer(p, price * amount);
                 p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &7You have bought the Common Crate key"));
                 if (announce) {
-                    String replaceBC = announceMsg.replace("%player%", p.getName());
-                    Bukkit.getServer().broadcastMessage(ChatColor.translateAlternateColorCodes('&', replaceBC));
+                    Bukkit.getServer().broadcastMessage(ChatColor.translateAlternateColorCodes('&', PlaceHolderUtil.playerReplace(announceMsg, "%player%", p)));
                 }
             } else {
                 p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &cYou do not have enough money to buy that many keys!"));
