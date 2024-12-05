@@ -1,9 +1,7 @@
 package me.tony.main.voltnetwork.CustomItemsUtil;
 
 import me.tony.main.voltnetwork.VoltNetwork;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.Ageable;
 import org.bukkit.event.EventHandler;
@@ -17,6 +15,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.ArrayList;
 
 public class SuperBonemeal implements Listener {
+
+    public static final NamespacedKey Super_Bonemeal_Key = NamespacedKey.minecraft("super_bonemeal");
 
     public static void SuperBone() {
 
@@ -32,7 +32,7 @@ public class SuperBonemeal implements Listener {
         superBone.setIngredient('X', Material.BONE_MEAL, 2);
         superBone.setIngredient('D', Material.DIAMOND, 1);
 
-        VoltNetwork.getInstance().getServer().addRecipe(superBone);
+        Bukkit.addRecipe(superBone);
 
     }
 

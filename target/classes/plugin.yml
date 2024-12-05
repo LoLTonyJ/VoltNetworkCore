@@ -63,3 +63,9 @@ commands:
       - vouch
       - v
       - vch
+  recipe:
+    description: View a crafting recipe
+    aliases:
+      - craftrecipe
+      - viewrecipe
+      - craft

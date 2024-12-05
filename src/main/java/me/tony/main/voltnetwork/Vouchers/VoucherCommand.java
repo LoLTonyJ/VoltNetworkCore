@@ -11,6 +11,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+
 public class VoucherCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, @NotNull String[] args) {
@@ -34,6 +36,12 @@ public class VoucherCommand implements CommandExecutor {
                     p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &7Both Min and Max must be Integers"));
                     p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &7Usage /vouch create <min> <max>"));
                 }
+
+                if (min > max || min == max) {
+                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " Min must be lower than Max!"));
+                    return true;
+                }
+
                 VoucherGive(p, min, max);
             }
         }
@@ -44,7 +52,11 @@ public class VoucherCommand implements CommandExecutor {
     public static void VoucherGive(Player p, Integer min, Integer max) {
         ItemStack voucher = new ItemStack(Material.PAPER);
         ItemMeta meta = voucher.getItemMeta();
-        meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&a&l" + min + " - " + max));
+        ArrayList<String> lore = new ArrayList<>();
+        lore.add(" ");
+        lore.add(ChatColor.translateAlternateColorCodes('&', "&7(Right-Click) to claim your voucher!"));
+        lore.add(" ");
+        meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&a&l$" + min + " - $" + max));
         voucher.setItemMeta(meta);
 
         p.getInventory().addItem(voucher);

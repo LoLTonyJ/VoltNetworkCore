@@ -1,8 +1,11 @@
 package me.tony.main.voltnetwork.BonusFood;
 
+import me.tony.main.voltnetwork.GeneralUtil.ChatUtil;
 import me.tony.main.voltnetwork.VoltNetwork;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -10,6 +13,11 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.ArrayList;
 
 public class CraftingUtil {
+
+
+    public static final NamespacedKey Custom_Cookie_Key = NamespacedKey.minecraft("special_cookie");
+    public static final NamespacedKey Speed_Steak_Key = NamespacedKey.minecraft("speedy_steak");
+    public static final NamespacedKey Super_Stew_Key = NamespacedKey.minecraft("super_stew");
 
     public static ItemStack SpeedSteak() {
 
@@ -19,7 +27,7 @@ public class CraftingUtil {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&b&lSpeedy Steak"));
         ArrayList<String> lore = new ArrayList<>();
         lore.add(" ");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7Grants Speed II for 5 minutes"));
+        lore.add(ChatUtil.format("&7Grants Speed II for 5 minutes"));
         meta.setLore(lore);
         item.setItemMeta(meta);
 
@@ -31,12 +39,12 @@ public class CraftingUtil {
         ItemStack item = new ItemStack(Material.COOKIE);
         ItemMeta meta = item.getItemMeta();
 
-        meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&6&lSpecial Cookie"));
+        meta.setDisplayName(ChatUtil.format("&6&lSpecial Cookie"));
 
         ArrayList<String> lore = new ArrayList<>();
         lore.add(" ");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7Grants Block Fortune for 1 minute"));
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7Every block mined adds &a$5 &7to your Bank!"));
+        lore.add(ChatUtil.format("&7Grants Block Fortune for 1 minute"));
+        lore.add(ChatUtil.format("&7Every block mined adds &a$5 &7to your Bank!"));
         meta.setLore(lore);
         item.setItemMeta(meta);
 
@@ -48,10 +56,10 @@ public class CraftingUtil {
         ItemStack item = new ItemStack(Material.MUSHROOM_STEW);
         ItemMeta meta = item.getItemMeta();
 
-        meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&b&lSuper Stew"));
+        meta.setDisplayName(ChatUtil.format("&b&lSuper Stew"));
         ArrayList<String> lore = new ArrayList<>();
         lore.add(" ");
-        lore.add(ChatColor.translateAlternateColorCodes('&', "&7Grants Jump Boost II for 2 minutes"));
+        lore.add(ChatUtil.format("&7Grants Jump Boost II for 2 minutes"));
         meta.setLore(lore);
         item.setItemMeta(meta);
 
@@ -76,7 +84,7 @@ public class CraftingUtil {
         specialCookie.setIngredient('E', Material.EMERALD_BLOCK, 2);
         specialCookie.setIngredient('R', Material.EMERALD, 2);
 
-        VoltNetwork.getInstance().getServer().addRecipe(specialCookie);
+        Bukkit.addRecipe(specialCookie);
 
     }
 
@@ -96,7 +104,7 @@ public class CraftingUtil {
         superStew.setIngredient('F', Material.FEATHER, 2);
         superStew.setIngredient('M', Material.MUSHROOM_STEW, 2);
 
-        VoltNetwork.getInstance().getServer().addRecipe(superStew);
+        Bukkit.addRecipe(superStew);
 
     }
 
@@ -115,7 +123,7 @@ public class CraftingUtil {
         steakSpeed.setIngredient('*', Material.COOKED_BEEF, 1);
         steakSpeed.setIngredient('C', Material.SUGAR_CANE, 2);
 
-        VoltNetwork.getInstance().getServer().addRecipe(steakSpeed);
+        Bukkit.addRecipe(steakSpeed);
 
     }
 

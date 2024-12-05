@@ -3,6 +3,7 @@ package me.tony.main.voltnetwork.Koth;
 import com.google.gson.Gson;
 import eu.decentsoftware.holograms.api.DHAPI;
 import me.tony.main.voltnetwork.Administration.AdminUtil.HelpMenu;
+import me.tony.main.voltnetwork.GeneralUtil.ChatUtil;
 import me.tony.main.voltnetwork.KothUtil.*;
 import me.tony.main.voltnetwork.VoltNetwork;
 import org.bukkit.Bukkit;
@@ -57,13 +58,13 @@ public class Commands implements CommandExecutor {
                 String subCommand = args[0];
                 if (subCommand.equalsIgnoreCase("list")) {
                     if (kothNames.isEmpty()) {
-                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &cNo Koths available to list!"));
+                        p.sendMessage(ChatUtil.format(prefix + " &cNo Koths available to list!"));
                     } else {
-                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&b/koth info <koth>"));
-                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &7Here is a list of Koths"));
+                        p.sendMessage(ChatUtil.format("&b/koth info <koth>"));
+                        p.sendMessage(ChatUtil.format(prefix + " &7Here is a list of Koths"));
                         for (String kothList : kothNames) {
                             String jointList = String.join(",", kothList);
-                            p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7- " + jointList));
+                            p.sendMessage(ChatUtil.format("&7- " + jointList));
                         }
                     }
                 }
@@ -94,24 +95,24 @@ public class Commands implements CommandExecutor {
                         } else {
                             s = "false";
                         }
-                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&aActive -> " + s));
-                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&bLocation -> " + kothLocation.get(editing)));
-                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&bDuration -> " + kothDuration.getOrDefault(editing, 0)));
+                        p.sendMessage(ChatUtil.format("&aActive -> " + s));
+                        p.sendMessage(ChatUtil.format("&bLocation -> " + kothLocation.get(editing)));
+                        p.sendMessage(ChatUtil.format("&bDuration -> " + kothDuration.getOrDefault(editing, 0)));
                     } else {
-                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &cInvalid Koth Name / Koth Doesn't Exist"));
+                        p.sendMessage(ChatUtil.format(prefix + " &cInvalid Koth Name / Koth Doesn't Exist"));
                     }
                 }
 
                 if (subCommand.equalsIgnoreCase("start")) {
                     if (kothActive.size() == 1) {
-                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &7Only 1 koth can be active"));
+                        p.sendMessage(ChatUtil.format(prefix + " &7Only 1 koth can be active"));
                     }
                     KothUtil.KothStart(editing, duration);
                 }
 
                 if (subCommand.equalsIgnoreCase("stop")) {
                     if (kothActive.isEmpty()) {
-                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " Koth is not active!"));
+                        p.sendMessage(ChatUtil.format(prefix + " Koth is not active!"));
                     }
                     KothAutoStart.toStart.remove(editing);
                     if (kothActive.contains(editing)) {

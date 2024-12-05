@@ -33,6 +33,7 @@ import me.tony.main.voltnetwork.StaffChat.StaffChatUtil;
 import me.tony.main.voltnetwork.StaffMode.BlockCheckUtil;
 import me.tony.main.voltnetwork.StaffMode.StaffModeCommands;
 import me.tony.main.voltnetwork.StaffMode.StaffUtil;
+import me.tony.main.voltnetwork.ViewCraftingRecipe.RecipeCommand;
 import me.tony.main.voltnetwork.Vouchers.VoucherCommand;
 import me.tony.main.voltnetwork.Vouchers.VoucherUtil;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
@@ -141,6 +142,9 @@ public final class VoltNetwork extends JavaPlugin {
         // Vouchers
         getServer().getPluginManager().registerEvents(new VoucherUtil(), this);
 
+        // Recipe Command
+        getServer().getPluginManager().registerEvents(new RecipeCommand(), this);
+
 
         // Commands
         getCommand("koth").setExecutor(new me.tony.main.voltnetwork.Koth.Commands());
@@ -154,6 +158,7 @@ public final class VoltNetwork extends JavaPlugin {
         getCommand("voltcustomenchant").setExecutor(new Commands());
         getCommand("config").setExecutor(new ConfigCommands());
         getCommand("voucher").setExecutor(new VoucherCommand());
+        getCommand("recipe").setExecutor(new RecipeCommand());
 
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
 

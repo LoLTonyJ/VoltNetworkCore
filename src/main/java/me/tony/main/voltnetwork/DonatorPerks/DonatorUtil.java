@@ -1,5 +1,6 @@
 package me.tony.main.voltnetwork.DonatorPerks;
 
+import me.tony.main.voltnetwork.GeneralUtil.ChatUtil;
 import me.tony.main.voltnetwork.VoltNetwork;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -32,7 +33,7 @@ public class DonatorUtil implements Listener {
 
                         if (cd == 0) {
                             NightVisionCommand.Cooldown.remove(p);
-                            p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &7Night Vision is off Cooldown!"));
+                            p.sendMessage(ChatUtil.format(prefix + " &7Night Vision is off Cooldown!"));
                         }
                         if (cd > 0) {
                             NightVisionCommand.Cooldown.remove(p);
@@ -72,10 +73,10 @@ public class DonatorUtil implements Listener {
                         p.getInventory().remove(e.getItem());
                         DonatorCommands.NVPlayers.add(p.getName());
                         DonatorFileManagement.getInstance().StoreData();
-                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &7You have been granted permission for Night Vision!"));
-                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7To Enable Night Vision, please do /nv"));
+                        p.sendMessage(ChatUtil.format(prefix + " &7You have been granted permission for Night Vision!"));
+                        p.sendMessage(ChatUtil.format("&7To Enable Night Vision, please do /nv"));
                     } else {
-                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &cYou already claimed this Voucher!"));
+                        p.sendMessage(ChatUtil.format(prefix + " &cYou already claimed this Voucher!"));
                     }
                 }
             }

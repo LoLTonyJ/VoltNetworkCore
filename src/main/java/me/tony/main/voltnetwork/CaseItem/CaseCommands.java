@@ -1,6 +1,7 @@
 package me.tony.main.voltnetwork.CaseItem;
 
 import me.tony.main.voltnetwork.CustomItems.DrillUtil;
+import me.tony.main.voltnetwork.GeneralUtil.ChatUtil;
 import me.tony.main.voltnetwork.VoltNetwork;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -43,8 +44,8 @@ public class CaseCommands implements CommandExecutor {
 
         if (p.hasPermission(perm)) {
             if (args.length == 0) {
-                p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&b/display create <hand/item> <rotation> <size>"));
-                p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&b/display remove"));
+                p.sendMessage(ChatUtil.format("&b/display create <hand/item> <rotation> <size>"));
+                p.sendMessage(ChatUtil.format("&b/display remove"));
             }
             if (args.length == 1) {
                 String subCommand = args[0];
@@ -53,7 +54,7 @@ public class CaseCommands implements CommandExecutor {
                     Location bLoc = b.getLocation().add(0.5, 0.5, 0.5);
 
                     if (!b.getType().equals(Material.GLASS)) {
-                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &7Thats not a compatible Display Item Block!"));
+                        p.sendMessage(ChatUtil.format(prefix + " &7Thats not a compatible Display Item Block!"));
                         return true;
                     }
 
@@ -61,7 +62,7 @@ public class CaseCommands implements CommandExecutor {
                         if (ent != null) {
                             ent.remove();
                         } else {
-                            p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&c&lERROR! See console for details!"));
+                            p.sendMessage(ChatUtil.format("&c&lERROR! See console for details!"));
                             System.out.println("Block doesn't have a valid Entity Attached. If there is a floating item, until a better way is implemented, use /killall all ! ! BE CAREFUL ! ! this will remove all entities, arrows, boats, minecarts, etc in the " +
                                     "executed world!");
                         }
@@ -78,11 +79,11 @@ public class CaseCommands implements CommandExecutor {
                 if (subCommand.equalsIgnoreCase("create")) {
 
                     if (size > 1F || rotation > 1F) {
-                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " Max Rotation; 1, Max Size; 1"));
+                        p.sendMessage(ChatUtil.format(prefix + " Max Rotation; 1, Max Size; 1"));
                         return true;
                     }
                     if (size <= 0F || rotation <= 0F) {
-                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + "Min Rotation; 0, Min Size; 0"));
+                        p.sendMessage(ChatUtil.format(prefix + "Min Rotation; 0, Min Size; 0"));
                         return true;
                     }
 
@@ -90,7 +91,7 @@ public class CaseCommands implements CommandExecutor {
                         Block b = p.getTargetBlock(null, 5);
 
                         if (b.getType().equals(Material.AIR)) {
-                            p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &7You cannot set AIR as a Display Case!"));
+                            p.sendMessage(ChatUtil.format(prefix + " &7You cannot set AIR as a Display Case!"));
                             return true;
                         }
                         Location bLoc = b.getLocation().add(0.5, 0.5, 0.5);
@@ -120,12 +121,12 @@ public class CaseCommands implements CommandExecutor {
 
                         for (Location l : ItemDisplayList.values()) {
                             if (b.getLocation() == l) {
-                                p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &7That has already been defined as a Display Case."));
+                                p.sendMessage(ChatUtil.format(prefix + " &7That has already been defined as a Display Case."));
                             }
                         }
 
                         if (b.getType().equals(Material.AIR) || !b.getType().equals(Material.GLASS)) {
-                            p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &7That is not a compatible block!"));
+                            p.sendMessage(ChatUtil.format(prefix + " &7That is not a compatible block!"));
                             return true;
                         }
                         Location bLoc = b.getLocation().add(0.5, 0.5, 0.5);

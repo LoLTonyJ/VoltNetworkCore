@@ -1,6 +1,7 @@
 package me.tony.main.voltnetwork.DonatorPerks;
 
 import me.tony.main.voltnetwork.Administration.AdminUtil.HelpMenu;
+import me.tony.main.voltnetwork.GeneralUtil.ChatUtil;
 import me.tony.main.voltnetwork.VoltNetwork;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -80,10 +81,10 @@ public class DonatorCommands implements CommandExecutor {
                                 voucherName.equalsIgnoreCase("nv")) {
                             if (availSlot(target)) {
                                 target.getInventory().addItem(VouchItems.NightVisionVouch());
-                                target.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " You have been given a NightVision Voucher!"));
-                                p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &7Given " + target.getDisplayName() + " NightVision Voucher!"));
+                                target.sendMessage(ChatUtil.format(prefix + " You have been given a NightVision Voucher!"));
+                                p.sendMessage(ChatUtil.format(prefix + " &7Given " + target.getDisplayName() + " NightVision Voucher!"));
                             } else if (!availSlot(target)) {
-                                p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " " + target.getDisplayName() + " Does not have an available slot in their inventory!"));
+                                p.sendMessage(ChatUtil.format(prefix + " " + target.getDisplayName() + " Does not have an available slot in their inventory!"));
                             }
                         }
                     }
@@ -92,15 +93,15 @@ public class DonatorCommands implements CommandExecutor {
                                 voucherName.equalsIgnoreCase("nv")) {
                             if (DonatorCommands.NVPlayers.contains(target.getName())) {
                                 DonatorCommands.NVPlayers.remove(target.getName());
-                                p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &7Removed Night Vision Perms from " + target.getDisplayName()));
+                                p.sendMessage(ChatUtil.format(prefix + " &7Removed Night Vision Perms from " + target.getDisplayName()));
                             }
                         }
                     }
                     if (subCommand.equalsIgnoreCase("check")) {
                         if (NightVisionCommand.NightVision.contains(target)) {
-                            p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&aNight-Vision &7> &aTrue"));
+                            p.sendMessage(ChatUtil.format("&aNight-Vision &7> &aTrue"));
                         } else {
-                            p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&aNight-Vision &7> &cFalse"));
+                            p.sendMessage(ChatUtil.format("&aNight-Vision &7> &cFalse"));
                         }
                     }
                 }

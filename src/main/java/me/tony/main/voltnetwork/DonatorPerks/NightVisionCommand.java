@@ -1,5 +1,6 @@
 package me.tony.main.voltnetwork.DonatorPerks;
 
+import me.tony.main.voltnetwork.GeneralUtil.ChatUtil;
 import me.tony.main.voltnetwork.VoltNetwork;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -32,7 +33,7 @@ public class NightVisionCommand implements CommandExecutor {
                 if (!Cooldown.containsKey(p)) {
                     if (nvUnlimited) {
                         p.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 999999999, 5));
-                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &7You've enabled Night-Vision!"));
+                        p.sendMessage(ChatUtil.format(prefix + " &7You've enabled Night-Vision!"));
                         NightVision.add(p);
                         if (cdEnabled) {
                             Cooldown.put(p, cd);
@@ -40,22 +41,22 @@ public class NightVisionCommand implements CommandExecutor {
                     } else {
                         int duration = VoltNetwork.getInstance().getConfig().getInt("night_vision_duration");
                         p.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, duration, 5));
-                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &7You've enabled Night-Vision!"));
+                        p.sendMessage(ChatUtil.format(prefix + " &7You've enabled Night-Vision!"));
                         NightVision.add(p);
                         if (cdEnabled) {
                             Cooldown.put(p, cd);
                         }
                     }
                 } else {
-                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &7This Command is on Cooldown for " + Cooldown.get(p) + " minutes!"));
+                    p.sendMessage(ChatUtil.format(prefix + " &7This Command is on Cooldown for " + Cooldown.get(p) + " minutes!"));
                 }
             } else {
                 NightVision.remove(p);
                 p.removePotionEffect(PotionEffectType.NIGHT_VISION);
-                p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &7You've disabled Night-Vision!"));
+                p.sendMessage(ChatUtil.format(prefix + " &7You've disabled Night-Vision!"));
             }
         } else {
-            p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " " + noPerm));
+            p.sendMessage(ChatUtil.format(prefix + " " + noPerm));
         }
 
         return true;

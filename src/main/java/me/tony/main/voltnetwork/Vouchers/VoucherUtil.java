@@ -24,8 +24,8 @@ public class VoucherUtil implements Listener {
             String displayName = meta.getDisplayName();
             String colorlessName = ChatColor.stripColor(displayName);
 
-            if (colorlessName.matches("\\d+ - \\d+")) {
-                String[] parts = colorlessName.split(" - ");
+            if (colorlessName.matches("\\$\\d+ - \\$\\d+")) {
+                String[] parts = colorlessName.replace("$", "").split(" - ");
                 int min = Integer.parseInt(parts[0]);
                 int max = Integer.parseInt(parts[1]);
 

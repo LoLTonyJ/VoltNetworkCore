@@ -1,5 +1,6 @@
 package me.tony.main.voltnetwork.Experience;
 
+import me.tony.main.voltnetwork.GeneralUtil.ChatUtil;
 import me.tony.main.voltnetwork.VoltNetwork;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.ChatColor;
@@ -37,14 +38,14 @@ public class ExperienceGUIEvents implements Listener {
                 if (p.getExpToLevel() >= amt) {
                     p.giveExpLevels(-amt);
                     balance.depositPlayer(p, amt * sell);
-                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &7You have sold " + amt + " levels of experience! &a+$" + sell * amt));
+                    p.sendMessage(ChatUtil.format(prefix + " &7You have sold " + amt + " levels of experience! &a+$" + sell * amt));
                     sellXp.remove(p);
                 } else {
-                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &cYou do not have &a" + amt + " of experience levels to sell"));
+                    p.sendMessage(ChatUtil.format(prefix + " &cYou do not have &a" + amt + " of experience levels to sell"));
                     sellXp.remove(p);
                 }
             } catch (NumberFormatException n) {
-                p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &7" + msg + " &7is not a number! If you'd like to cancel, please type &c&lCancel!"));
+                p.sendMessage(ChatUtil.format(prefix + " &7" + msg + " &7is not a number! If you'd like to cancel, please type &c&lCancel!"));
             }
 
         }
@@ -61,14 +62,14 @@ public class ExperienceGUIEvents implements Listener {
                 if (balance.getBalance(p) >= amt * price) {
                     p.giveExpLevels(amt);
                     balance.withdrawPlayer(p, amt * price);
-                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &aYou have bought " + amt + " levels of experience! &c-$" + price * amt));
+                    p.sendMessage(ChatUtil.format(prefix + " &aYou have bought " + amt + " levels of experience! &c-$" + price * amt));
                     chooseXP.remove(p);
                 } else {
-                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &cYou do not have &a$" + amt * price + "!"));
+                    p.sendMessage(ChatUtil.format(prefix + " &cYou do not have &a$" + amt * price + "!"));
                     chooseXP.remove(p);
                 }
             } catch (NumberFormatException n) {
-                p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &7" + msg + " &7is not a number! If you'd like to cancel, please type &c&lCancel!"));
+                p.sendMessage(ChatUtil.format(prefix + " &7" + msg + " &7is not a number! If you'd like to cancel, please type &c&lCancel!"));
             }
         }
     }
@@ -91,10 +92,10 @@ public class ExperienceGUIEvents implements Listener {
             if (e.getSlot() == 10) {
                 if (balance.getBalance(p) >= cost * 25) {
                     p.giveExpLevels(25);
-                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &7You've bought 25 levels of experience! &c-$" + cost * 25));
+                    p.sendMessage(ChatUtil.format(prefix + " &7You've bought 25 levels of experience! &c-$" + cost * 25));
                     balance.withdrawPlayer(p, cost * 25);
                 } else {
-                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &cYou do not have &a$" + cost * 25 + "!"));
+                    p.sendMessage(ChatUtil.format(prefix + " &cYou do not have &a$" + cost * 25 + "!"));
                     p.closeInventory();
                 }
             }
@@ -102,10 +103,10 @@ public class ExperienceGUIEvents implements Listener {
             if (e.getSlot() == 11) {
                 if (balance.getBalance(p) >= cost * 50) {
                     p.giveExpLevels(50);
-                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &7You've bought 50 levels of experience! &c-$" + cost * 50));
+                    p.sendMessage(ChatUtil.format(prefix + " &7You've bought 50 levels of experience! &c-$" + cost * 50));
                     balance.withdrawPlayer(p, cost * 50);
                 } else {
-                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &cYou do not have &a$" + cost * 50 + "!"));
+                    p.sendMessage(ChatUtil.format(prefix + " &cYou do not have &a$" + cost * 50 + "!"));
                     p.closeInventory();
                 }
             }
@@ -113,10 +114,10 @@ public class ExperienceGUIEvents implements Listener {
             if (e.getSlot() == 12) {
                 if (balance.getBalance(p) >= cost * 75) {
                     p.giveExpLevels(75);
-                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &7You've bought 75 levels of experience! &c-$" + cost * 75));
+                    p.sendMessage(ChatUtil.format(prefix + " &7You've bought 75 levels of experience! &c-$" + cost * 75));
                     balance.withdrawPlayer(p, cost * 75);
                 } else {
-                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &cYou do not have &a$" + cost * 75 + "!"));
+                    p.sendMessage(ChatUtil.format(prefix + " &cYou do not have &a$" + cost * 75 + "!"));
                     p.closeInventory();
                 }
             }
@@ -124,10 +125,10 @@ public class ExperienceGUIEvents implements Listener {
             if (e.getSlot() == 13) {
                 if (balance.getBalance(p) >= cost * 100) {
                     p.giveExpLevels(100);
-                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &7You've bought 100 levels of experience! &c-$" + cost * 100));
+                    p.sendMessage(ChatUtil.format(prefix + " &7You've bought 100 levels of experience! &c-$" + cost * 100));
                     balance.withdrawPlayer(p, cost * 100);
                 } else {
-                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &cYou do not have &a$" + cost * 100 + "!"));
+                    p.sendMessage(ChatUtil.format(prefix + " &cYou do not have &a$" + cost * 100 + "!"));
                     p.closeInventory();
                 }
             }
@@ -135,7 +136,7 @@ public class ExperienceGUIEvents implements Listener {
             if (e.getSlot() == 16) {
                 chooseXP.add(p);
                 p.closeInventory();
-                p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &7Please type the amount you'd like to buy!"));
+                p.sendMessage(ChatUtil.format(prefix + " &7Please type the amount you'd like to buy!"));
             }
             // Close Inventory
             if (e.getSlot() == 18) {
@@ -157,36 +158,36 @@ public class ExperienceGUIEvents implements Listener {
                 if (p.getExpToLevel() >= 25) {
                     p.giveExpLevels(-25);
                     balance.depositPlayer(p, sell * 25);
-                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &7You've sold 25 levels of experience! &a+$" + sell * 25));
+                    p.sendMessage(ChatUtil.format(prefix + " &7You've sold 25 levels of experience! &a+$" + sell * 25));
                 } else {
-                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &cYou do not have 25 experience levels to sell!"));
+                    p.sendMessage(ChatUtil.format(prefix + " &cYou do not have 25 experience levels to sell!"));
                 }
             }
             if (e.getSlot() == 11) {
                 if (p.getExpToLevel() >= 50) {
                     p.giveExpLevels(-50);
                     balance.depositPlayer(p, sell * 50);
-                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &7You've sold 25 levels of experience! &a+$" + sell * 50));
+                    p.sendMessage(ChatUtil.format(prefix + " &7You've sold 25 levels of experience! &a+$" + sell * 50));
                 } else {
-                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &cYou do not have 50 experience levels to sell!"));
+                    p.sendMessage(ChatUtil.format(prefix + " &cYou do not have 50 experience levels to sell!"));
                 }
             }
             if (e.getSlot() == 12) {
                 if (p.getExpToLevel() >= 75) {
                     p.giveExpLevels(-75);
                     balance.depositPlayer(p, sell * 75);
-                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &7You've sold 75 levels of experience! &a+$" + sell * 75));
+                    p.sendMessage(ChatUtil.format(prefix + " &7You've sold 75 levels of experience! &a+$" + sell * 75));
                 } else {
-                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &cYou do not have 75 experience levels to sell!"));
+                    p.sendMessage(ChatUtil.format(prefix + " &cYou do not have 75 experience levels to sell!"));
                 }
             }
             if (e.getSlot() == 13) {
                 if (p.getExpToLevel() >= 100) {
                     p.giveExpLevels(-100);
                     balance.depositPlayer(p, sell * 100);
-                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &7You've sold 100 levels of experience! &a+$" + sell * 100));
+                    p.sendMessage(ChatUtil.format(prefix + " &7You've sold 100 levels of experience! &a+$" + sell * 100));
                 } else {
-                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &cYou do not have 100 experience levels to sell!"));
+                    p.sendMessage(ChatUtil.format(prefix + " &cYou do not have 100 experience levels to sell!"));
                 }
             }
 
@@ -194,7 +195,7 @@ public class ExperienceGUIEvents implements Listener {
             if (e.getSlot() == 16) {
                 sellXp.add(p);
                 p.closeInventory();
-                p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + " &7Please type the amount you'd like to sell!"));
+                p.sendMessage(ChatUtil.format(prefix + " &7Please type the amount you'd like to sell!"));
             }
             // Close Inventory
             if (e.getSlot() == 18) {
