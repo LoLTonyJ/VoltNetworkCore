@@ -1,8 +1,7 @@
 package me.tony.main.voltnetwork.Administration.AdminUtil;
 
-import me.tony.main.voltnetwork.GeneralUtil.ChatUtil;
+import me.tony.main.voltnetwork.GeneralUtil.Chat;
 import me.tony.main.voltnetwork.VoltNetwork;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -25,11 +24,11 @@ public class ConfigReloadConfirm implements Listener {
             if (msg.equalsIgnoreCase("yes")) {
                 VoltNetwork.getInstance().reloadConfig();
                 e.setCancelled(true);
-                p.sendMessage(ChatUtil.format("&a&lReloaded Configuration File"));
+                p.sendMessage(Chat.format("&a&lReloaded Configuration File"));
             } else if (msg.equalsIgnoreCase("no")) {
                 ConfigCommands.CFGReload.remove(p);
                 e.setCancelled(true);
-                p.sendMessage(ChatUtil.format("&c&lCancelled Config Reload"));
+                p.sendMessage(Chat.format("&c&lCancelled Config Reload"));
             }
         }
     }

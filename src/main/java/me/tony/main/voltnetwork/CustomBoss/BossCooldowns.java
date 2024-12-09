@@ -7,7 +7,7 @@ import com.sk89q.worldguard.WorldGuard;
 import com.sk89q.worldguard.protection.managers.RegionManager;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 import com.sk89q.worldguard.protection.regions.RegionContainer;
-import me.tony.main.voltnetwork.GeneralUtil.ChatUtil;
+import me.tony.main.voltnetwork.GeneralUtil.Chat;
 import me.tony.main.voltnetwork.VoltNetwork;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -204,19 +204,19 @@ public class BossCooldowns {
                     int timeLeft = BossRespawn.get(e);
 
                     if (timeLeft == 5) {
-                        Bukkit.getServer().broadcastMessage(ChatUtil.format("&7Congratulations on a victorious fight!"));
-                        Bukkit.getServer().broadcastMessage(ChatUtil.format(bossName + " &7Will spawn again in " + timeLeft + " days"));
+                        Bukkit.getServer().broadcastMessage(Chat.format("&7Congratulations on a victorious fight!"));
+                        Bukkit.getServer().broadcastMessage(Chat.format(bossName + " &7Will spawn again in " + timeLeft + " days"));
                         return;
                     }
 
                     if (timeLeft > 0) {
                         BossRespawn.replace(e, timeLeft, timeLeft - 1);
                         int newTime = BossRespawn.get(e);
-                        Bukkit.getServer().broadcastMessage(ChatUtil.format(bossName + " &7is spawning in " + newTime + " days!"));
+                        Bukkit.getServer().broadcastMessage(Chat.format(bossName + " &7is spawning in " + newTime + " days!"));
                     }
                     if (timeLeft == 0) {
                         BossRespawn.remove(e);
-                        Bukkit.getServer().broadcastMessage(ChatUtil.format(bossName + " &cSo you think you can challenge me?"));
+                        Bukkit.getServer().broadcastMessage(Chat.format(bossName + " &cSo you think you can challenge me?"));
                         BossUtil.Boss(Bukkit.getWorld(BossCommands.WorldBossSpawn.get(0)), BossCommands.BossSpawn.get(0));
                         BossCommands.Alive.add("1");
                     }

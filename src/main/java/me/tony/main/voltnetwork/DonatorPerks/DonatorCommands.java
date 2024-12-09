@@ -1,7 +1,7 @@
 package me.tony.main.voltnetwork.DonatorPerks;
 
 import me.tony.main.voltnetwork.Administration.AdminUtil.HelpMenu;
-import me.tony.main.voltnetwork.GeneralUtil.ChatUtil;
+import me.tony.main.voltnetwork.GeneralUtil.Chat;
 import me.tony.main.voltnetwork.VoltNetwork;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -14,7 +14,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
-import java.util.UUID;
 import java.util.logging.Level;
 
 public class DonatorCommands implements CommandExecutor {
@@ -81,10 +80,10 @@ public class DonatorCommands implements CommandExecutor {
                                 voucherName.equalsIgnoreCase("nv")) {
                             if (availSlot(target)) {
                                 target.getInventory().addItem(VouchItems.NightVisionVouch());
-                                target.sendMessage(ChatUtil.format(prefix + " You have been given a NightVision Voucher!"));
-                                p.sendMessage(ChatUtil.format(prefix + " &7Given " + target.getDisplayName() + " NightVision Voucher!"));
+                                target.sendMessage(Chat.format(prefix + " You have been given a NightVision Voucher!"));
+                                p.sendMessage(Chat.format(prefix + " &7Given " + target.getDisplayName() + " NightVision Voucher!"));
                             } else if (!availSlot(target)) {
-                                p.sendMessage(ChatUtil.format(prefix + " " + target.getDisplayName() + " Does not have an available slot in their inventory!"));
+                                p.sendMessage(Chat.format(prefix + " " + target.getDisplayName() + " Does not have an available slot in their inventory!"));
                             }
                         }
                     }
@@ -93,15 +92,15 @@ public class DonatorCommands implements CommandExecutor {
                                 voucherName.equalsIgnoreCase("nv")) {
                             if (DonatorCommands.NVPlayers.contains(target.getName())) {
                                 DonatorCommands.NVPlayers.remove(target.getName());
-                                p.sendMessage(ChatUtil.format(prefix + " &7Removed Night Vision Perms from " + target.getDisplayName()));
+                                p.sendMessage(Chat.format(prefix + " &7Removed Night Vision Perms from " + target.getDisplayName()));
                             }
                         }
                     }
                     if (subCommand.equalsIgnoreCase("check")) {
                         if (NightVisionCommand.NightVision.contains(target)) {
-                            p.sendMessage(ChatUtil.format("&aNight-Vision &7> &aTrue"));
+                            p.sendMessage(Chat.format("&aNight-Vision &7> &aTrue"));
                         } else {
-                            p.sendMessage(ChatUtil.format("&aNight-Vision &7> &cFalse"));
+                            p.sendMessage(Chat.format("&aNight-Vision &7> &cFalse"));
                         }
                     }
                 }

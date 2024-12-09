@@ -1,7 +1,6 @@
 package me.tony.main.voltnetwork.BonusFood;
 
-import me.tony.main.voltnetwork.GeneralUtil.ChatUtil;
-import me.tony.main.voltnetwork.VoltNetwork;
+import me.tony.main.voltnetwork.GeneralUtil.Chat;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -27,7 +26,7 @@ public class CraftingUtil {
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&b&lSpeedy Steak"));
         ArrayList<String> lore = new ArrayList<>();
         lore.add(" ");
-        lore.add(ChatUtil.format("&7Grants Speed II for 5 minutes"));
+        lore.add(Chat.format("&7Grants Speed II for 5 minutes"));
         meta.setLore(lore);
         item.setItemMeta(meta);
 
@@ -39,12 +38,12 @@ public class CraftingUtil {
         ItemStack item = new ItemStack(Material.COOKIE);
         ItemMeta meta = item.getItemMeta();
 
-        meta.setDisplayName(ChatUtil.format("&6&lSpecial Cookie"));
+        meta.setDisplayName(Chat.format("&6&lSpecial Cookie"));
 
         ArrayList<String> lore = new ArrayList<>();
         lore.add(" ");
-        lore.add(ChatUtil.format("&7Grants Block Fortune for 1 minute"));
-        lore.add(ChatUtil.format("&7Every block mined adds &a$5 &7to your Bank!"));
+        lore.add(Chat.format("&7Grants Block Fortune for 1 minute"));
+        lore.add(Chat.format("&7Every block mined adds &a$5 &7to your Bank!"));
         meta.setLore(lore);
         item.setItemMeta(meta);
 
@@ -56,10 +55,10 @@ public class CraftingUtil {
         ItemStack item = new ItemStack(Material.MUSHROOM_STEW);
         ItemMeta meta = item.getItemMeta();
 
-        meta.setDisplayName(ChatUtil.format("&b&lSuper Stew"));
+        meta.setDisplayName(Chat.format("&b&lSuper Stew"));
         ArrayList<String> lore = new ArrayList<>();
         lore.add(" ");
-        lore.add(ChatUtil.format("&7Grants Jump Boost II for 2 minutes"));
+        lore.add(Chat.format("&7Grants Jump Boost II for 2 minutes"));
         meta.setLore(lore);
         item.setItemMeta(meta);
 

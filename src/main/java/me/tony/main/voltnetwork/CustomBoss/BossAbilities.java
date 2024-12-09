@@ -1,6 +1,6 @@
 package me.tony.main.voltnetwork.CustomBoss;
 
-import me.tony.main.voltnetwork.GeneralUtil.ChatUtil;
+import me.tony.main.voltnetwork.GeneralUtil.Chat;
 import me.tony.main.voltnetwork.VoltNetwork;
 import org.bukkit.*;
 import org.bukkit.block.Block;
@@ -32,7 +32,7 @@ public class BossAbilities {
             if (ent instanceof Player) {
                 Player p = (Player) ent;
                 p.setVelocity(new Vector(0, 1, 0));
-                p.sendMessage(ChatUtil.format(bossName + " Be gone!"));
+                p.sendMessage(Chat.format(bossName + " Be gone!"));
                 active = false;
             }
         }
@@ -51,7 +51,7 @@ public class BossAbilities {
             for (Entity p : e.getNearbyEntities(4, 4, 4)) {
                 if (p instanceof Player) {
                     ((Player) p).damage(dmg);
-                    p.sendMessage(ChatUtil.format(bossName + "&7: &cDealt ❤" + dmg + " to you!"));
+                    p.sendMessage(Chat.format(bossName + "&7: &cDealt ❤" + dmg + " to you!"));
                     active = false;
                 }
             }

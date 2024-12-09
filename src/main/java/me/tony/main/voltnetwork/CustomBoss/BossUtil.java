@@ -1,6 +1,6 @@
 package me.tony.main.voltnetwork.CustomBoss;
 
-import me.tony.main.voltnetwork.GeneralUtil.ChatUtil;
+import me.tony.main.voltnetwork.GeneralUtil.Chat;
 import me.tony.main.voltnetwork.VoltNetwork;
 import org.bukkit.*;
 import org.bukkit.attribute.Attribute;
@@ -71,14 +71,14 @@ public class BossUtil implements Listener {
                     frame.setEye(false);
                     b.setBlockData(frame);
                     int count = PlacedShards.size();
-                    Bukkit.broadcastMessage(ChatUtil.format("&5&l&oEND ALTER >> &7" + p.getName() + " has removed a Heart Shard! (" + count + "/8)"));
+                    Bukkit.broadcastMessage(Chat.format("&5&l&oEND ALTER >> &7" + p.getName() + " has removed a Heart Shard! (" + count + "/8)"));
                     p.getInventory().addItem(BossItems.BossShard());
                 }
             }
         }
 
         // If a player is clicking an End Portal Frame with the Boss Item. This code will run.
-        if (i.getType().equals(Material.GHAST_TEAR) && i.getItemMeta().getDisplayName().equals(ChatUtil.format("&5Boss Heart Shard"))) {
+        if (i.getType().equals(Material.GHAST_TEAR) && i.getItemMeta().getDisplayName().equals(Chat.format("&5Boss Heart Shard"))) {
 
             e.setCancelled(true);
 
@@ -102,7 +102,7 @@ public class BossUtil implements Listener {
             }
 
             if (!BossCommands.Alive.isEmpty()) {
-                p.sendMessage(ChatUtil.format("&7The Boss has already Awoken! Beware!"));
+                p.sendMessage(Chat.format("&7The Boss has already Awoken! Beware!"));
                 return;
             }
 
@@ -111,7 +111,7 @@ public class BossUtil implements Listener {
                 if (p.getInventory().getItemInMainHand().getAmount() == 1) p.getInventory().getItemInMainHand().setAmount(0);
                 PlacedShards.add(p);
                 int count = PlacedShards.size();
-                Bukkit.broadcastMessage(ChatUtil.format("&5&l&oEND ALTER >> &7" + p.getName() + " has placed a Heart Shard! (" + count + "/8)"));
+                Bukkit.broadcastMessage(Chat.format("&5&l&oEND ALTER >> &7" + p.getName() + " has placed a Heart Shard! (" + count + "/8)"));
                 frame.setEye(true);
                 b.setBlockData(frame);
                 Frames.put(b.getLocation(), frame);
@@ -175,7 +175,7 @@ public class BossUtil implements Listener {
             e.setCancelled(true);
             // If Warp Loc is not set, cancel.
             if (BossCommands.WarpLoc.isEmpty()) {
-                p.sendMessage(ChatUtil.format("&c&lComing Soon!"));
+                p.sendMessage(Chat.format("&c&lComing Soon!"));
                 return;
             }
                 p.teleport(BossCommands.WarpLoc.get(0));

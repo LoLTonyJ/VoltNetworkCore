@@ -69,3 +69,8 @@ commands:
       - craftrecipe
       - viewrecipe
       - craft
+  premiumfurnace:
+    description: Premium Furnaces
+    aliases:
+      - pf
+      - fp

@@ -1,9 +1,8 @@
 package me.tony.main.voltnetwork.CustomBoss;
 
-import me.tony.main.voltnetwork.GeneralUtil.ChatUtil;
+import me.tony.main.voltnetwork.GeneralUtil.Chat;
 import me.tony.main.voltnetwork.VoltNetwork;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -50,7 +49,7 @@ public class BossCommands implements CommandExecutor {
 
                 if (subCommand.equalsIgnoreCase("warp")) {
                     if (WarpLoc.isEmpty()) {
-                        p.sendMessage(ChatUtil.format(prefix + " &7Boss warp is not setup!"));
+                        p.sendMessage(Chat.format(prefix + " &7Boss warp is not setup!"));
                     } else {
                         p.teleport(WarpLoc.get(0));
                     }
@@ -105,7 +104,7 @@ public class BossCommands implements CommandExecutor {
             ZBossSpawn.clear();
             WorldBossSpawn.clear();
 
-            p.sendMessage(ChatUtil.format(prefix + " &7You've replaced the Boss Spawn Point!"));
+            p.sendMessage(Chat.format(prefix + " &7You've replaced the Boss Spawn Point!"));
 
             XBossSpawn.add(x);
             YBossSpawn.add(y);
@@ -131,7 +130,7 @@ public class BossCommands implements CommandExecutor {
             YBossWarp.add(y);
             ZBossWarp.add(z);
             WorldBossWarp.add(worldName);
-            p.sendMessage(ChatUtil.format(prefix + " &7You've set the Boss Warp!"));
+            p.sendMessage(Chat.format(prefix + " &7You've set the Boss Warp!"));
 
             BossFileManager.getInstance().SaveData();
 
@@ -144,7 +143,7 @@ public class BossCommands implements CommandExecutor {
             XBossWarp.add(x);
             YBossWarp.add(y);
             ZBossWarp.add(z);
-            p.sendMessage(ChatUtil.format(prefix + " &7You've replaced the Boss Warp"));
+            p.sendMessage(Chat.format(prefix + " &7You've replaced the Boss Warp"));
 
             BossFileManager.getInstance().SaveData();
         }

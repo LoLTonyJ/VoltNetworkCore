@@ -34,6 +34,44 @@ announce_key_message: "&7[&cVoltNetwork&7] %player% has just bought a Common Cra
 
 #######################################################################################################################
 #                                                                                                                     #
+#                                   PREMIUM FURNACE SECTION                                                           #
+#                                                                                                                     #
+#######################################################################################################################
+
+# If this is set to false, it will allow the player to have one furnace only.
+multiple_furnace: false
+
+# Tier Cook Times
+# From what I've read, the Cook Time is represented in Ticks equaling out to how long it'll take to cook 1 item.
+# If a player has 64 Raw Iron in a tier 1 it'll take 100 ticks to cook 1 item (5 Seconds) formula - cookTime = seconds / 20 = ticks.
+# ! ! LOWER IS BETTER ! !
+
+tier1: 100
+tier2: 70
+tier3: 50
+tier4: 35
+tier5: 20
+
+# ! ! IGNORE IF MULTIPLE IS SET TO FALSE ! !
+
+# If the player doesn't have the specific permission, their default amount of furnaces that can be placed will be 3
+default_furnace_limit: 3
+premium_furnace_limit: 5
+permission_multiple_furnace: "VoltNetwork.PremiumFurnace.Multiple"
+
+# This will give premium players the discounted price that is set.
+premium_discount: false
+premium_discount_permission: "VoltNetwork.PremiumFurnace.Discount"
+discount_upgrade_price: 1500
+
+cost_per_tier: 2500
+# Can either be set to Economy, or Experience.
+# If it is set to Experience, the "cost_per_upgrade" will be represented in experience levels.
+currency: Economy
+
+
+#######################################################################################################################
+#                                                                                                                     #
 #                                   SPECIAL FOODS SECTION                                                             #
 #                                                                                                                     #
 #######################################################################################################################

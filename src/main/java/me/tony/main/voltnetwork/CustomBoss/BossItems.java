@@ -1,8 +1,7 @@
 package me.tony.main.voltnetwork.CustomBoss;
 
-import me.tony.main.voltnetwork.GeneralUtil.ChatUtil;
+import me.tony.main.voltnetwork.GeneralUtil.Chat;
 import me.tony.main.voltnetwork.VoltNetwork;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -18,12 +17,12 @@ public class BossItems {
 
         ItemStack i = new ItemStack(Material.GHAST_TEAR);
         ItemMeta meta = i.getItemMeta();
-        meta.setDisplayName(ChatUtil.format("&5Boss Heart Shard"));
+        meta.setDisplayName(Chat.format("&5Boss Heart Shard"));
         ArrayList<String> lore = new ArrayList<>();
         lore.add(" ");
-        lore.add(ChatUtil.format("&7Used to spawn the " + bossName));
+        lore.add(Chat.format("&7Used to spawn the " + bossName));
         lore.add(" ");
-        lore.add(ChatUtil.format("&7Place 8 Boss Heart Shards in the Alter to instantly spawn the boss!"));
+        lore.add(Chat.format("&7Place 8 Boss Heart Shards in the Alter to instantly spawn the boss!"));
         meta.setLore(lore);
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         meta.addItemFlags(ItemFlag.HIDE_ADDITIONAL_TOOLTIP);

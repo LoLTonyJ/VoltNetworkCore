@@ -1,8 +1,7 @@
 package me.tony.main.voltnetwork.BonusFood;
 
-import me.tony.main.voltnetwork.GeneralUtil.ChatUtil;
+import me.tony.main.voltnetwork.GeneralUtil.Chat;
 import me.tony.main.voltnetwork.VoltNetwork;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -24,7 +23,7 @@ public class FoodUtil implements Listener {
 
         if (SpecialCookie.containsKey(p)) {
             VoltNetwork.getEconomy().depositPlayer(p, 5);
-            p.sendMessage(ChatUtil.format("&6&lCOOKIE BUFF! &a&l+$5"));
+            p.sendMessage(Chat.format("&6&lCOOKIE BUFF! &a&l+$5"));
         }
 
     }
@@ -35,12 +34,12 @@ public class FoodUtil implements Listener {
         if (e.getItem().equals(CraftingUtil.Cookie())) {
             if (SpecialCookie.containsKey(e.getPlayer())) {
                 int timeLeft = SpecialCookie.get(e.getPlayer());
-                e.getPlayer().sendMessage(ChatUtil.format("&6This item is on Cooldown for " + timeLeft + " minutes."));
+                e.getPlayer().sendMessage(Chat.format("&6This item is on Cooldown for " + timeLeft + " minutes."));
                 e.setCancelled(true);
                 return;
             }
             SpecialCookie.put(e.getPlayer(), 5);
-            e.getPlayer().sendMessage(ChatUtil.format("&7Have fun Mining!"));
+            e.getPlayer().sendMessage(Chat.format("&7Have fun Mining!"));
         }
         if (e.getItem().equals(CraftingUtil.Stew())) {
             e.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.JUMP_BOOST, 3000, 1));

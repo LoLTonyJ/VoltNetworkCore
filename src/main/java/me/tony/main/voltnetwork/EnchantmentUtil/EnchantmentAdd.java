@@ -1,7 +1,7 @@
 package me.tony.main.voltnetwork.EnchantmentUtil;
 
 import me.tony.main.voltnetwork.Enchantments.Harvest;
-import me.tony.main.voltnetwork.GeneralUtil.ChatUtil;
+import me.tony.main.voltnetwork.GeneralUtil.Chat;
 import me.tony.main.voltnetwork.VoltNetwork;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -43,7 +43,7 @@ public class EnchantmentAdd implements Listener {
                         if (p.getInventory().getItemInMainHand().getItemMeta().hasLore()) {
                             // Checks for Harvest Enchantment.
                             if (p.getInventory().getItemInMainHand().getItemMeta().getLore().contains(ChatColor.GRAY + "Harvest Yield I") || p.getInventory().getItemInMainHand().getItemMeta().getLore().contains(ChatColor.GRAY + "Harvest Yield II")) {
-                                p.sendMessage(ChatUtil.format(prefix + " &7You cannot enchant this item!"));
+                                p.sendMessage(Chat.format(prefix + " &7You cannot enchant this item!"));
                                 return;
                             }
                             // If the tool already has an existing Lore, this runs.
@@ -55,12 +55,12 @@ public class EnchantmentAdd implements Listener {
                             lore.add(ChatColor.GRAY + "Harvest Yield I");
                             m.setLore(lore);
                             i.setItemMeta(m);
-                            p.sendMessage(ChatUtil.format(prefix + " &7Enchanted your tool!"));
+                            p.sendMessage(Chat.format(prefix + " &7Enchanted your tool!"));
                         } else {
                             // If the tool doesn't have an existing Lore, it'll create a template.
                             HarvestI.remove(p);
                             AddLore.LoreTemplate(p, "Harvest Yield I");
-                            p.sendMessage(ChatUtil.format(prefix + " &7Enchanted your tool!"));
+                            p.sendMessage(Chat.format(prefix + " &7Enchanted your tool!"));
                         }
                         for (ItemStack book : p.getInventory().getContents()) {
                             if (book == null) return;
@@ -76,7 +76,7 @@ public class EnchantmentAdd implements Listener {
                     if (p.getInventory().getItemInMainHand().getType().equals(Material.valueOf(canEnchant))) {
                         if (p.getInventory().getItemInMainHand().getItemMeta().hasLore()) {
                             if (p.getInventory().getItemInMainHand().getItemMeta().getLore().contains(ChatColor.GRAY + "Harvest Yield I") || p.getInventory().getItemInMainHand().getItemMeta().getLore().contains(ChatColor.GRAY + "Harvest Yield II")) {
-                                p.sendMessage(ChatUtil.format(prefix + " &7You cannot enchant this item!"));
+                                p.sendMessage(Chat.format(prefix + " &7You cannot enchant this item!"));
                                 return;
                             }
                             HarvestII.remove(p);
@@ -86,11 +86,11 @@ public class EnchantmentAdd implements Listener {
                             lore.add(ChatColor.GRAY + "Harvest Yield II");
                             m.setLore(lore);
                             i.setItemMeta(m);
-                            p.sendMessage(ChatUtil.format(prefix + " &7Enchanted your tool!"));
+                            p.sendMessage(Chat.format(prefix + " &7Enchanted your tool!"));
                         } else {
                             HarvestII.remove(p);
                             AddLore.LoreTemplate(p, "Harvest Yield II");
-                            p.sendMessage(ChatUtil.format(prefix + " &7Enchanted your tool!"));
+                            p.sendMessage(Chat.format(prefix + " &7Enchanted your tool!"));
                         }
                         for (ItemStack book : p.getInventory().getContents()) {
                             if (book == null) return;
@@ -135,11 +135,11 @@ public class EnchantmentAdd implements Listener {
             // If the List contains the player, it will add them to a list for enchanting.
             if (!HarvestI.contains(p)) {
                 HarvestI.add(p);
-                p.sendMessage(ChatUtil.format(prefix + " " + applyEnchant));
+                p.sendMessage(Chat.format(prefix + " " + applyEnchant));
             } else {
                 // If the list ALREADY contains the player, it will remove the player from list for enchanting.
                 HarvestI.remove(p);
-                p.sendMessage(ChatUtil.format(prefix + " " + undoEnchant));
+                p.sendMessage(Chat.format(prefix + " " + undoEnchant));
             }
             // Debugging.
             System.out.println("Clicked Lv 1");
@@ -152,11 +152,11 @@ public class EnchantmentAdd implements Listener {
             // Line 93
             if (!HarvestII.contains(p)) {
                 HarvestII.add(p);
-                p.sendMessage(ChatUtil.format(prefix + " " + applyEnchant));
+                p.sendMessage(Chat.format(prefix + " " + applyEnchant));
             } else {
                 // Line 99
                 HarvestII.remove(p);
-                p.sendMessage(ChatUtil.format(prefix + " " + undoEnchant));
+                p.sendMessage(Chat.format(prefix + " " + undoEnchant));
             }
             System.out.println("Clicked Lv 2");
         }

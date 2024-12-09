@@ -27,6 +27,8 @@ import me.tony.main.voltnetwork.GravestoneUtil.Gravestones;
 import me.tony.main.voltnetwork.KothUtil.KothCap;
 import me.tony.main.voltnetwork.KothUtil.KothFileManager;
 import me.tony.main.voltnetwork.KothUtil.RewardEdit;
+import me.tony.main.voltnetwork.PremiumFurnaces.FurnaceCommand;
+import me.tony.main.voltnetwork.PremiumFurnaces.PlayerUtil;
 import me.tony.main.voltnetwork.RemoveCooldown.InventoryUtil;
 import me.tony.main.voltnetwork.StaffChat.StaffChatCommands;
 import me.tony.main.voltnetwork.StaffChat.StaffChatUtil;
@@ -145,6 +147,9 @@ public final class VoltNetwork extends JavaPlugin {
         // Recipe Command
         getServer().getPluginManager().registerEvents(new RecipeCommand(), this);
 
+        // Premium Furnaces
+        getServer().getPluginManager().registerEvents(new PlayerUtil(), this);
+
 
         // Commands
         getCommand("koth").setExecutor(new me.tony.main.voltnetwork.Koth.Commands());
@@ -159,6 +164,7 @@ public final class VoltNetwork extends JavaPlugin {
         getCommand("config").setExecutor(new ConfigCommands());
         getCommand("voucher").setExecutor(new VoucherCommand());
         getCommand("recipe").setExecutor(new RecipeCommand());
+        getCommand("premiumfurnace").setExecutor(new FurnaceCommand());
 
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
 

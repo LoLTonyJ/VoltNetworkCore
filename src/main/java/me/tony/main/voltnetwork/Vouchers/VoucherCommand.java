@@ -1,6 +1,6 @@
 package me.tony.main.voltnetwork.Vouchers;
 
-import me.tony.main.voltnetwork.GeneralUtil.ChatUtil;
+import me.tony.main.voltnetwork.GeneralUtil.Chat;
 import me.tony.main.voltnetwork.VoltNetwork;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -34,12 +34,12 @@ public class VoucherCommand implements CommandExecutor {
                     min = Integer.parseInt(args[1]);
                     max = Integer.parseInt(args[2]);
                 } catch (NumberFormatException e) {
-                    p.sendMessage(ChatUtil.format(prefix + " &7Both Min and Max must be Integers"));
-                    p.sendMessage(ChatUtil.format(prefix + " &7Usage /vouch create <min> <max>"));
+                    p.sendMessage(Chat.format(prefix + " &7Both Min and Max must be Integers"));
+                    p.sendMessage(Chat.format(prefix + " &7Usage /vouch create <min> <max>"));
                 }
 
                 if (min > max || min == max) {
-                    p.sendMessage(ChatUtil.format(prefix + " Min must be lower than Max!"));
+                    p.sendMessage(Chat.format(prefix + " Min must be lower than Max!"));
                     return true;
                 }
 
@@ -55,7 +55,7 @@ public class VoucherCommand implements CommandExecutor {
         ItemMeta meta = voucher.getItemMeta();
         ArrayList<String> lore = new ArrayList<>();
         lore.add(" ");
-        lore.add(ChatUtil.format("&7(Right-Click) to claim your voucher!"));
+        lore.add(Chat.format("&7(Right-Click) to claim your voucher!"));
         lore.add(" ");
         meta.setLore(lore);
         meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&a&l$" + min + " - $" + max));
