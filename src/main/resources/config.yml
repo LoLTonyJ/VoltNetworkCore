@@ -44,7 +44,7 @@ multiple_furnace: false
 
 # Tier Cook Times
 # From what I've read, the Cook Time is represented in Ticks equaling out to how long it'll take to cook 1 item.
-# If a player has 64 Raw Iron in a tier 1 it'll take 100 ticks to cook 1 item (5 Seconds) formula - cookTime = seconds / 20 = ticks.
+# If a player has 64 Raw Iron in a tier 1 it'll take 100 ticks to cook 1 item (5 Seconds) formula - cookTime = seconds * 20 = ticks.
 # ! ! LOWER IS BETTER ! !
 
 tier1: 100

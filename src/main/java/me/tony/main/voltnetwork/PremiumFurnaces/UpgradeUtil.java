@@ -16,18 +16,6 @@ public class UpgradeUtil implements Listener {
         Integer cost = VoltNetwork.getInstance().getConfig().getInt("cost_per_tier");
         String currency = VoltNetwork.getInstance().getConfig().getString("currency");
 
-        int cookTimeTier1 = VoltNetwork.getInstance().getConfig().getInt("tier1");
-        int cookTimeTier2 = VoltNetwork.getInstance().getConfig().getInt("tier2");
-        int cookTimeTier3 = VoltNetwork.getInstance().getConfig().getInt("tier3");
-        int cookTimeTier4 = VoltNetwork.getInstance().getConfig().getInt("tier4");
-        int cookTimeTier5 = VoltNetwork.getInstance().getConfig().getInt("tier5");
-
-        double result1 = FurnaceUtil.PercentageOf(cookTimeTier1, 200);
-        double result2 = FurnaceUtil.PercentageOf(cookTimeTier2, 200);
-        double result3 = FurnaceUtil.PercentageOf(cookTimeTier3, 200);
-        double result4 = FurnaceUtil.PercentageOf(cookTimeTier4, 200);
-        double result5 = FurnaceUtil.PercentageOf(cookTimeTier5, 200);
-
         String symbol = "";
         if (currency.equalsIgnoreCase("economy")) {
             symbol = "$";

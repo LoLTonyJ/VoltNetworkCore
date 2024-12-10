@@ -29,4 +29,16 @@ public class PlaceHolderUtil {
         }
     }
 
+
+    /*
+    param.
+    @num is your main number.
+    @find is your division number.
+
+    Example > Want to find percentage 200 of 5. Num = 200, find = 5;
+     */
+    public static Integer PercentageOf(Integer find, Integer num) {
+        return (int) find * 100 / num;
+    }
+
 }

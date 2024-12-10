@@ -15,6 +15,7 @@ public class FurnaceCommand implements CommandExecutor {
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, @NotNull String[] args) {
 
         String adminPerm = VoltNetwork.getInstance().getConfig().getString("administration_permission");
+        String prefix = VoltNetwork.getInstance().getConfig().getString("prefix");
 
         if (!(sender instanceof Player)) {
             sender.sendMessage(Chat.format("&cPlayers can use this command only!"));
@@ -38,6 +39,11 @@ public class FurnaceCommand implements CommandExecutor {
             if (args.length == 2) {
                 String subCommand = args[0];
                 Player target = Bukkit.getPlayer(args[1]);
+
+                if (target == null || !target.isOnline()) {
+                    p.sendMessage(Chat.format(prefix + " &cPLAYER_NULL"));
+                }
+
                 if (subCommand.equalsIgnoreCase("fix")) {
                     FurnaceUtil.FixFurnaces(p, target);
                 }
@@ -49,8 +55,12 @@ public class FurnaceCommand implements CommandExecutor {
                 String subCommand = args[0];
                 Player target = Bukkit.getPlayer(args[1]);
                 String tier = args[2];
+                if (target == null || !target.isOnline()) {
+                    p.sendMessage(Chat.format(prefix + " &cPLAYER_NULL"));
+                }
+
                 if (subCommand.equalsIgnoreCase("give")) {
-                    p.getInventory().addItem(FurnaceUtil.Furnace(tier));
+                    target.getInventory().addItem(FurnaceUtil.Furnace(tier));
                 }
             }
         }

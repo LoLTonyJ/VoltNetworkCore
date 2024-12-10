@@ -12,6 +12,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class FurnaceUtil {
@@ -57,8 +58,7 @@ public class FurnaceUtil {
                 p.sendMessage(Chat.format(prefix + " &bYou have placed a Tier " + PlaceHolderUtil.numberExtractor(displayName) + " Furnace!"));
             }
             registerFurnace(b, PlaceHolderUtil.numberExtractor(displayName));
-            logInformation("placed", p, String.valueOf(getFurnaceTier(p, b)));
-            System.out.println(FurnaceLocations.size());
+            logInformation(Chat.getTime(), "break", p, String.valueOf(getFurnaceTier(p, b)));
         }
     }
 
@@ -83,16 +83,16 @@ public class FurnaceUtil {
         return false;
     }
 
-    public static void logInformation(String action, Player p, String tier) {
+    public static void logInformation(String date, String action, Player p, String tier) {
 
         if (PlayerLogs.containsKey(p.getUniqueId())) {
             List<String> logList = PlayerLogs.get(p.getUniqueId());
-            logList.add("&b&lPF LOG > &7" + p.getDisplayName() + " " + action + " " + "&6[Tier " + tier + "]&7" +  " Premium Furnace");
+            logList.add("&b&lPF LOG > &7" + date + " " + p.getDisplayName() + " " + action + " " + "&6[Tier " + tier + "]&7" +  " Premium Furnace");
             logList.add(" ");
             PlayerLogs.put(p.getUniqueId(), logList);
         } else {
             List<String> newList = new ArrayList<>();
-            newList.add("&b&lPF LOG > &7" + p.getDisplayName() + " " + action + " " + "&6[Tier " + tier + "]&7" +  " Premium Furnace");
+            newList.add("&b&lPF LOG > &7 " + date + " " + p.getDisplayName() + " " + action + " " + "&6[Tier " + tier + "]&7" +  " Premium Furnace");
             newList.add(" ");
             PlayerLogs.put(p.getUniqueId(), newList);
         }
@@ -106,6 +106,7 @@ public class FurnaceUtil {
 
         if (PlayerLogs.containsKey(p.getUniqueId())) {
             List<String> logList = PlayerLogs.get(p.getUniqueId());
+            staff.sendMessage(Chat.format("&b&lPF LOG Params: &c<Date> &b| &c<Player> &B| &c<Action> &B| &c<Tier>"));
             for (String logs : logList) {
                 staff.sendMessage(Chat.format(logs));
             }
@@ -152,22 +153,10 @@ public class FurnaceUtil {
         for (String furnace : FurnaceLocations.keySet()) {
             List<Location> locList = FurnaceLocations.get(furnace);
             if (locList.contains(bLoc)) {
-                System.out.println("Is Furnace");
                 return true;
             }
         }
         return false;
-    }
-
-    /*
-    param.
-    @num is your main number.
-    @find is your division number.
-
-    Example > Want to find percentage 200 of 5. Num = 200, find = 5;
-     */
-    public static Integer PercentageOf(Integer find, Integer num) {
-        return (int) find * 100 / num;
     }
 
     public static void BreakFurnace(Player p, Block b) {
