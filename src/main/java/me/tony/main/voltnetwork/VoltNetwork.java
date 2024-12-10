@@ -48,7 +48,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.checkerframework.checker.nullness.qual.NonNull;
 
 import java.io.IOException;
 import java.util.logging.Level;
@@ -65,6 +64,7 @@ public final class VoltNetwork extends JavaPlugin {
     @Override
     public void onEnable() {
 
+        String version = this.getConfig().getString("version");
         instance = this;
         worldGuardPlugin = getWorldGuard();
 
@@ -104,7 +104,7 @@ public final class VoltNetwork extends JavaPlugin {
             getCommand("nv").setExecutor(new NightVisionCommand());
 
         } else {
-            getLogger().log(Level.WARNING, "\nVoltNetwork v1.2.7\n Donator Perks are Disabled.");
+            getLogger().log(Level.WARNING, "\n" + version + "\n Donator Perks are Disabled.");
         }
 
         // Custom Enchantments
@@ -200,7 +200,7 @@ public final class VoltNetwork extends JavaPlugin {
         CraftingUtil.SpecialCookie();
         SuperBonemeal.SuperBone();
 
-        System.out.println("\n VoltNetwork v1.2.7 has been loaded Successfully \n If there is something wrong, please contact Ghostinq on Discord. \n");
+        System.out.println("\n" + version + " has been loaded Successfully \n If there is something wrong, please contact Ghostinq on Discord. \n");
 
     }
 

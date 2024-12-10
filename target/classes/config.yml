@@ -19,6 +19,7 @@
 
 prefix: "&7[&cVoltNetwork&7]"
 administration_permission: "VoltNetwork.CE.Admin"
+version: "VoltNetwork v1.3.1"
 
 # Permission used to reload the Plugins Configuration File.
 backend_permission: "VoltNetwork.Admin"

@@ -43,6 +43,7 @@ public class PlayerUtil implements Listener {
             b.setType(Material.AIR);
             Location loc = b.getLocation();
             loc.getWorld().dropItemNaturally(bLoc, FurnaceUtil.Furnace(String.valueOf(FurnaceUtil.getFurnaceTier(e.getPlayer(), b))));
+            FurnaceUtil.logInformation("broken", e.getPlayer(), String.valueOf(FurnaceUtil.getFurnaceTier(e.getPlayer(), b)));
             FurnaceUtil.BreakFurnace(e.getPlayer(), b);
         }
     }
@@ -72,7 +73,7 @@ public class PlayerUtil implements Listener {
                     balance.withdrawPlayer(p, cost);
                     p.getInventory().addItem(FurnaceUtil.Furnace("1"));
                     p.closeInventory();
-                    FurnaceUtil.logInformation("bought", p);
+                    FurnaceUtil.logInformation("bought", p, "1");
                 } else {
                     p.closeInventory();
                     p.sendMessage(Chat.format(prefix + " &cYou do not have enough money to purchase this!"));
@@ -82,7 +83,7 @@ public class PlayerUtil implements Listener {
                     p.giveExpLevels(-cost);
                     p.getInventory().addItem(FurnaceUtil.Furnace("1"));
                     p.closeInventory();
-                    FurnaceUtil.logInformation("bought", p);
+                    FurnaceUtil.logInformation("bought", p, "1");
                 } else {
                     p.sendMessage(Chat.format(prefix + " &cYou do not have enough Experience Levels to purchase this!"));
                 }
@@ -94,7 +95,7 @@ public class PlayerUtil implements Listener {
                     balance.withdrawPlayer(p, cost *2);
                     p.getInventory().addItem(FurnaceUtil.Furnace("2"));
                     p.closeInventory();
-                    FurnaceUtil.logInformation("bought", p);
+                    FurnaceUtil.logInformation("bought", p, "2");
                 } else {
                     p.closeInventory();
                     p.sendMessage(Chat.format(prefix + " &cYou do not have enough money to purchase this!"));
@@ -104,7 +105,7 @@ public class PlayerUtil implements Listener {
                     p.giveExpLevels(-cost*2);
                     p.getInventory().addItem(FurnaceUtil.Furnace("2"));
                     p.closeInventory();
-                    FurnaceUtil.logInformation("bought", p);
+                    FurnaceUtil.logInformation("bought", p, "2");
                 } else {
                     p.sendMessage(Chat.format(prefix + " &cYou do not have enough Experience Levels to purchase this!"));
                 }
@@ -116,7 +117,7 @@ public class PlayerUtil implements Listener {
                     balance.withdrawPlayer(p, cost *3);
                     p.getInventory().addItem(FurnaceUtil.Furnace("3"));
                     p.closeInventory();
-                    FurnaceUtil.logInformation("bought", p);
+                    FurnaceUtil.logInformation("bought", p, "3");
                 } else {
                     p.closeInventory();
                     p.sendMessage(Chat.format(prefix + " &cYou do not have enough money to purchase this!"));
@@ -126,7 +127,7 @@ public class PlayerUtil implements Listener {
                     p.giveExpLevels(-cost*3);
                     p.getInventory().addItem(FurnaceUtil.Furnace("3"));
                     p.closeInventory();
-                    FurnaceUtil.logInformation("bought", p);
+                    FurnaceUtil.logInformation("bought", p, "3");
                 } else {
                     p.sendMessage(Chat.format(prefix + " &cYou do not have enough Experience Levels to purchase this!"));
                 }
@@ -138,7 +139,7 @@ public class PlayerUtil implements Listener {
                     balance.withdrawPlayer(p, cost *4);
                     p.getInventory().addItem(FurnaceUtil.Furnace("4"));
                     p.closeInventory();
-                    FurnaceUtil.logInformation("bought", p);
+                    FurnaceUtil.logInformation("bought", p, "4");
                 } else {
                     p.closeInventory();
                     p.sendMessage(Chat.format(prefix + " &cYou do not have enough money to purchase this!"));
@@ -148,7 +149,7 @@ public class PlayerUtil implements Listener {
                     p.giveExpLevels(-cost*4);
                     p.getInventory().addItem(FurnaceUtil.Furnace("4"));
                     p.closeInventory();
-                    FurnaceUtil.logInformation("bought", p);
+                    FurnaceUtil.logInformation("bought", p, "4");
                 } else {
                     p.sendMessage(Chat.format(prefix + " &cYou do not have enough Experience Levels to purchase this!"));
                 }
@@ -160,7 +161,7 @@ public class PlayerUtil implements Listener {
                     balance.withdrawPlayer(p, cost *5);
                     p.getInventory().addItem(FurnaceUtil.Furnace("5"));
                     p.closeInventory();
-                    FurnaceUtil.logInformation("bought", p);
+                    FurnaceUtil.logInformation("bought", p, "5");
                 } else {
                     p.closeInventory();
                     p.sendMessage(Chat.format(prefix + " &cYou do not have enough money to purchase this!"));
@@ -170,7 +171,7 @@ public class PlayerUtil implements Listener {
                     p.giveExpLevels(-cost*5);
                     p.getInventory().addItem(FurnaceUtil.Furnace("5"));
                     p.closeInventory();
-                    FurnaceUtil.logInformation("bought", p);
+                    FurnaceUtil.logInformation("bought", p, "5");
                 } else {
                     p.sendMessage(Chat.format(prefix + " &cYou do not have enough Experience Levels to purchase this!"));
                 }

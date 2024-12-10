@@ -57,7 +57,7 @@ public class FurnaceUtil {
                 p.sendMessage(Chat.format(prefix + " &bYou have placed a Tier " + PlaceHolderUtil.numberExtractor(displayName) + " Furnace!"));
             }
             registerFurnace(b, PlaceHolderUtil.numberExtractor(displayName));
-            logInformation("placed", p);
+            logInformation("placed", p, String.valueOf(getFurnaceTier(p, b)));
             System.out.println(FurnaceLocations.size());
         }
     }
@@ -83,16 +83,16 @@ public class FurnaceUtil {
         return false;
     }
 
-    public static void logInformation(String action, Player p) {
+    public static void logInformation(String action, Player p, String tier) {
 
         if (PlayerLogs.containsKey(p.getUniqueId())) {
             List<String> logList = PlayerLogs.get(p.getUniqueId());
-            logList.add("&b&lPF LOG > &7" + p.getDisplayName() + " " + action + " Premium Furnace");
+            logList.add("&b&lPF LOG > &7" + p.getDisplayName() + " " + action + " " + "&6[Tier " + tier + "]&7" +  " Premium Furnace");
             logList.add(" ");
             PlayerLogs.put(p.getUniqueId(), logList);
         } else {
             List<String> newList = new ArrayList<>();
-            newList.add("&b&lPF LOG > &7" + p.getDisplayName() + " " + action + " Premium Furnace");
+            newList.add("&b&lPF LOG > &7" + p.getDisplayName() + " " + action + " " + "&6[Tier " + tier + "]&7" +  " Premium Furnace");
             newList.add(" ");
             PlayerLogs.put(p.getUniqueId(), newList);
         }
@@ -197,7 +197,6 @@ public class FurnaceUtil {
                 MultipleFurnace.remove(p.getUniqueId());
             }
         }
-        logInformation("broken", p);
     }
 
     public static void FixFurnaces(Player staff, Player toFix) {
