@@ -11,6 +11,14 @@ public class HelpMenu {
      Also helps me stay organized, its mainly strings for Help Menus.
      */
 
+    public static void AntiCheatCommands(Player p) {
+        p.sendMessage(Chat.format("&b/vna alerts &7| &bToggle Anti-Cheat Alerts"));
+        p.sendMessage(Chat.format("&b/vna check <player> <param> &7| &bCheck a Player for a Cheat"));
+        p.sendMessage(Chat.format("&b/vna log check <player> &7| &bCheck Players Log"));
+        p.sendMessage(Chat.format("&b/vna log remove <player> (input) &7| &bRemove a Log Input"));
+        p.sendMessage(Chat.format("&b/vna exempt <player> &7| &bExempt Player from AntiCheat Checks"));
+    }
+
     public static void DonoCommands(Player p) {
         p.sendMessage(Chat.format("&b/dono give <player> <voucher> &7| &bGive someone a voucher."));
         p.sendMessage(Chat.format("&b/dono remove <player> <voucher> &7| &bRemove access."));
@@ -42,14 +50,15 @@ public class HelpMenu {
         p.sendMessage(Chat.format("&cBackend Permission -> &b" + BackEndPermission));
         p.sendMessage(" ");
         p.sendMessage(Chat.format("&cAdministration Help Menu"));
-        p.sendMessage(Chat.format("&b/cfg help &7| &bConfiguration Commands"));
-        p.sendMessage(Chat.format("&b/vce help &7| &bCustom Enchantment Commands"));
+        p.sendMessage(Chat.format("&b/cfg &7| &bConfiguration Commands"));
+        p.sendMessage(Chat.format("&b/vce &7| &bGeneral Plugin Commands"));
+        p.sendMessage(Chat.format("&b/vna &7| &bGeneral Anti-Cheat Commands"));
+        p.sendMessage(Chat.format("&b/koth &7| &bGeneral Koth Command"));
+        p.sendMessage(Chat.format("&b/sc &7| &bStaff Chat Command"));
         p.sendMessage(Chat.format("&b/cfg reload/rl &7| &bReload the configuration"));
         p.sendMessage(Chat.format("&b/cfg edit <arg> &7| &bEdit the config from in-game"));
         p.sendMessage(Chat.format("&b/vce give <player> <enchantment/item> <level> &7| &bGive a custom enchant to a player"));
         p.sendMessage(Chat.format("&b/vce remove <player> <enchantment> &7| &bRemove a custom enchantment from a player"));
-        p.sendMessage(Chat.format("&b/koth &7| &bGeneral Koth Command"));
-        p.sendMessage(Chat.format("&b/sc &7| &bStaff Chat Command"));
 
     }
 

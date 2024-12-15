@@ -4,6 +4,7 @@ import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import me.tony.main.voltnetwork.Administration.AdminUtil.ConfigCommands;
 import me.tony.main.voltnetwork.Administration.AdminUtil.ConfigReloadConfirm;
 import me.tony.main.voltnetwork.Administration.Commands;
+import me.tony.main.voltnetwork.AntiCheat.*;
 import me.tony.main.voltnetwork.BonusFood.CooldownUtil;
 import me.tony.main.voltnetwork.BonusFood.CraftingUtil;
 import me.tony.main.voltnetwork.BonusFood.FoodUtil;
@@ -32,7 +33,6 @@ import me.tony.main.voltnetwork.PremiumFurnaces.PlayerUtil;
 import me.tony.main.voltnetwork.RemoveCooldown.InventoryUtil;
 import me.tony.main.voltnetwork.StaffChat.StaffChatCommands;
 import me.tony.main.voltnetwork.StaffChat.StaffChatUtil;
-import me.tony.main.voltnetwork.StaffMode.BlockCheckUtil;
 import me.tony.main.voltnetwork.StaffMode.StaffModeCommands;
 import me.tony.main.voltnetwork.StaffMode.StaffUtil;
 import me.tony.main.voltnetwork.ViewCraftingRecipe.RecipeCommand;
@@ -128,7 +128,6 @@ public final class VoltNetwork extends JavaPlugin {
         // Staff Mode Listeners / Util.
         getServer().getPluginManager().registerEvents(new StaffChatUtil(), this);
         getServer().getPluginManager().registerEvents(new StaffUtil(), this);
-        getServer().getPluginManager().registerEvents(new BlockCheckUtil(), this);
 
         // Registering Custom Food Events.
         getServer().getPluginManager().registerEvents(new InventoryUtil(), this);
@@ -150,6 +149,13 @@ public final class VoltNetwork extends JavaPlugin {
         // Premium Furnaces
         getServer().getPluginManager().registerEvents(new PlayerUtil(), this);
 
+        // Anti Cheat
+        getServer().getPluginManager().registerEvents(new BlockCheck(), this);
+        getServer().getPluginManager().registerEvents(new ReachCheck(), this);
+        getServer().getPluginManager().registerEvents(new FlightCheck(), this);
+        getServer().getPluginManager().registerEvents(new CPSCheck(), this);
+        getServer().getPluginManager().registerEvents(new AuraCheckUtil(), this);
+
 
         // Commands
         getCommand("koth").setExecutor(new me.tony.main.voltnetwork.Koth.Commands());
@@ -165,6 +171,8 @@ public final class VoltNetwork extends JavaPlugin {
         getCommand("voucher").setExecutor(new VoucherCommand());
         getCommand("recipe").setExecutor(new RecipeCommand());
         getCommand("premiumfurnace").setExecutor(new FurnaceCommand());
+        getCommand("voltnetworkanticheat").setExecutor(new ACMain());
+        getCommand("report").setExecutor(new ReportCommand());
 
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
 

@@ -74,3 +74,10 @@ commands:
     aliases:
       - pf
       - fp
+  voltnetworkanticheat:
+    description: General Anti Cheat Command
+    aliases:
+      - vna
+      - vac
+  report:
+    description: Report a Player

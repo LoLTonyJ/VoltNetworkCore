@@ -111,7 +111,7 @@ public class FurnaceUtil {
                 staff.sendMessage(Chat.format(logs));
             }
         } else {
-            staff.sendMessage(Chat.format(prefix + " &cNo History for this Player."));
+            staff.sendMessage(Chat.format("&c&lLOG_INFORMATION_NULL_" + p.getName()));
         }
 
     }

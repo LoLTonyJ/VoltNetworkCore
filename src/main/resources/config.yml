@@ -70,6 +70,49 @@ cost_per_tier: 2500
 # If it is set to Experience, the "cost_per_upgrade" will be represented in experience levels.
 currency: Economy
 
+#######################################################################################################################
+#                                                                                                                     #
+#                                   ANTI-CHEAT SECTION                                                                #
+#                                                                                                                     #
+#######################################################################################################################
+
+# General Anti-Cheat Permission
+ac_permission: "VoltNetwork.AntiCheat.Staff"
+ac_prefix: "&7[&cVoltAC&7]"
+
+# -- CPS -- #
+
+# The detection method for this is a little wonky, so keep it at a high number.
+# For Example, if a Player is clicking 17 - 20 it'll alert they're clicking 18.
+# It goes for average click speed.
+click_max: 20.0
+
+# -- FLIGHT -- #
+
+# This will trigger if the players Y coord changes by 1 in too quickly.
+# This could also work as a Speed Check if done correctly.
+alert_after: 1.0
+
+# This can be buggy at times due to the detection method.
+# This will trigger when the SEVERE label comes up.
+# It'll take their last valid location and teleport them back to it.
+cancel_move_tp_back: true
+
+# -- REACH -- #
+# Default Minecraft Reach in Survival is 3.7 (With Sprinting) iirc
+max_distance: 4
+
+# -- XRAY -- #
+# The Anti Cheat Alert will fire if they triggered this check x amount of times.
+# It's recommended to keep it above 8 due to natural spawning.
+block_severe_alert_after: 15
+
+# This will trigger "Possible Xray" Alert if the number is passed.
+soft_block_check_alert_after: 8
+
+# Represented in Seconds, when will the list reset for XRAY Checks.
+# Example, After 60 seconds the blockCheck List will be returned / reset to 0 and start counting again.
+reset_check_interval: 60
 
 #######################################################################################################################
 #                                                                                                                     #
