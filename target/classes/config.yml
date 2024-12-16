@@ -95,6 +95,7 @@ alert_after: 1.0
 
 # This can be buggy at times due to the detection method.
 # This will trigger when the SEVERE label comes up.
+# It'll take their last valid location and teleport them back to it.
 cancel_move_tp_back: true
 
 # -- REACH -- #

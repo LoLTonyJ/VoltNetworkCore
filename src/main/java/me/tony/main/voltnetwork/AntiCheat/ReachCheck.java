@@ -2,7 +2,6 @@ package me.tony.main.voltnetwork.AntiCheat;
 
 import me.tony.main.voltnetwork.VoltNetwork;
 import org.bukkit.Location;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
@@ -19,8 +18,6 @@ public class ReachCheck implements Listener {
         Player victim = (Player) e.getEntity();
 
         if (e.getDamager() instanceof Projectile) return;
-        if (!(e.getDamager() instanceof Player)) return;
-        if (!(e.getEntity() instanceof Player)) return;
         if (ACUtil.ExemptToggle.contains(attacker.getUniqueId())) return;
 
         if (gettingLocationDifference(attacker, victim) > max) {

@@ -30,6 +30,7 @@ public class FlightCheck implements Listener {
         double pZ = e.getTo().getX() - e.getFrom().getZ();
         HashMap<Player, Location> validLocation = new HashMap<>();
         validLocation.put(p, p.getLocation());
+        System.out.println(pX + " " + pY + " " + pZ);
         if (pY == max || pX == max || pZ == max) {
             ACUtil.inputPlayerLog(p, "FLIGHT", 1, "POSSIBLE");
         }

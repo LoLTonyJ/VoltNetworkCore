@@ -37,7 +37,7 @@ public class ACUtil {
 
         for (Player staff : Bukkit.getOnlinePlayers()) {
             if (!AlertToggle.contains(staff) && staff.hasPermission(perm)) {
-                staff.sendMessage(Chat.format(Chat.getTime() + " " + target.getName() + " &c&lTriggered > &7" + cheatType + " [+ " + triggeredAmount + "] &c&l&oLEVEL > " + severeType));
+                staff.sendMessage(Chat.format(Chat.getTime() + " " + target.getName() + " &c&lTriggered > &7" + cheatType));
             } else if (AlertToggle.contains(staff) && staff.hasPermission(perm)) {
                 staff.sendMessage(Chat.format("&cVNA Tried to Inform you about Player Behavior! You have Alerts off!"));
             }

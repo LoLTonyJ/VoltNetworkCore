@@ -24,7 +24,7 @@ import java.util.UUID;
 
 public class TPBowUtil implements Listener {
 
-    public static HashMap<UUID, Player> ArrowLaunched = new HashMap<UUID, Player>();
+    public static HashMap<UUID, Player> ArrowLaunched = new HashMap<>();
     public static HashMap<UUID, ItemStack[]> BowStorage = new HashMap<>();
 
     public static ItemStack tpBow() {
@@ -83,6 +83,7 @@ public class TPBowUtil implements Listener {
     }
 
     @EventHandler public void ShootArrow(ProjectileLaunchEvent e) {
+        if (!(e.getEntity().getShooter() instanceof Player)) return;
         Player p = (Player) e.getEntity().getShooter();
         ItemStack i = p.getInventory().getItemInMainHand();
         Entity ent = e.getEntity();
