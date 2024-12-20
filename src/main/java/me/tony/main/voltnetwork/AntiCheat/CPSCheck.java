@@ -22,6 +22,7 @@ public class CPSCheck implements Listener {
 
         if (!ClickCheck.contains(p.getUniqueId())) return;
         if (!a.equals(Action.LEFT_CLICK_AIR)) return;
+        if (!ACUtil.isExempt(p)) return;
 
         double max = VoltNetwork.getInstance().getConfig().getDouble("click_max");
         double cps = clickSpeed(p);

@@ -25,6 +25,7 @@ public class BlockCheck implements Listener {
 
         Player p = e.getPlayer();
 
+        if (!ACUtil.isExempt(p)) return;
 
         if (getBlock(e.getBlock())) {
 

@@ -13,8 +13,8 @@ import java.util.HashMap;
 public class FlightCheck implements Listener {
 
 
-    private static double max = VoltNetwork.getInstance().getConfig().getDouble("alert_after");
-    private static boolean tp = VoltNetwork.getInstance().getConfig().getBoolean("cancel_move_tp_back");
+    private static final double max = VoltNetwork.getInstance().getConfig().getDouble("alert_after");
+    private static final boolean tp = VoltNetwork.getInstance().getConfig().getBoolean("cancel_move_tp_back");
 
 
     @EventHandler
@@ -23,7 +23,8 @@ public class FlightCheck implements Listener {
         if (p.getGameMode().equals(GameMode.CREATIVE) || p.getGameMode().equals(GameMode.SPECTATOR)) return;
         if (p.isOp() || p.getAllowFlight()) return;
 
-        if (ACUtil.ExemptToggle.contains(p.getUniqueId())) return;
+        if (!ACUtil.isExempt(p)) return;
+        if (max == -1) return;
 
         double pY = e.getTo().getY() - e.getFrom().getY();
         double pX = e.getTo().getX() - e.getFrom().getX();

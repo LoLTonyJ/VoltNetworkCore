@@ -88,6 +88,10 @@ public class ACUtil {
         }
     }
 
+    public static boolean isExempt(Player p) {
+        return ExemptToggle.contains(p.getUniqueId());
+    }
+
     public static void toggleAlerts(Player p) {
 
         if (AlertToggle.contains(p.getUniqueId())) {

@@ -18,7 +18,7 @@ public class ReachCheck implements Listener {
         Player victim = (Player) e.getEntity();
 
         if (e.getDamager() instanceof Projectile) return;
-        if (ACUtil.ExemptToggle.contains(attacker.getUniqueId())) return;
+        if (!ACUtil.isExempt(attacker)) return;
 
         if (gettingLocationDifference(attacker, victim) > max) {
             ACUtil.inputPlayerLog(attacker, "REACH", gettingLocationDifference(attacker, victim) ,"SEVERE");

@@ -28,6 +28,7 @@ public class AuraCheckUtil implements Listener {
         Player attacker = (Player) e.getDamager();
 
         if (e.getDamager() instanceof Projectile) return;
+        if (!ACUtil.isExempt(attacker)) return;
 
         if (entUUID.contains(victim.getUniqueId())) {
             ACUtil.inputPlayerLog(attacker, "KILL AURA", 1, "SEVERE");

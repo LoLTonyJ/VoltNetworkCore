@@ -152,7 +152,7 @@ public final class VoltNetwork extends JavaPlugin {
         // Anti Cheat
         getServer().getPluginManager().registerEvents(new BlockCheck(), this);
         getServer().getPluginManager().registerEvents(new ReachCheck(), this);
-        getServer().getPluginManager().registerEvents(new FlightCheck(), this);
+       // getServer().getPluginManager().registerEvents(new FlightCheck(), this);
         getServer().getPluginManager().registerEvents(new CPSCheck(), this);
         getServer().getPluginManager().registerEvents(new AuraCheckUtil(), this);
 
@@ -271,6 +271,14 @@ public final class VoltNetwork extends JavaPlugin {
         }
         return (WorldGuardPlugin) wg;
     }
+
+    public void reloadConfig() {
+        super.reloadConfig();
+        saveDefaultConfig();
+        getConfig().options().copyDefaults(true);
+        saveConfig();
+    }
+
 
     public static VoltNetwork getInstance() {
         return instance;
