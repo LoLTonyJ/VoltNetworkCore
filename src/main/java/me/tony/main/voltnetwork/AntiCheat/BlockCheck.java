@@ -52,7 +52,6 @@ public class BlockCheck implements Listener {
                 } else {
                     this.cancel();
                 }
-                System.out.println("reset");
             }
         }.runTaskTimer(VoltNetwork.getInstance(), resetInterval * 20, 20);
 

@@ -19,8 +19,6 @@ public class KothAutoStart {
             public void run() {
                 String kPrefix = VoltNetwork.getInstance().getConfig().getString("koth_prefix");
 
-                System.out.println("running auto start");
-
                 if (!toStart.isEmpty()) {
                     int i = toStart.get(koth);
                     if (i <= 0) {
