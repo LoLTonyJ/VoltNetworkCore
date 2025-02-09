@@ -19,9 +19,6 @@ public class LagCheck {
 
 
     public static void nearbyEntities(Player p) {
-
-        HashMap<Player, List<Entity>> listCheck = new HashMap<>();
-
         List<String> entList = VoltNetwork.getInstance().getConfig().getStringList("Lag_Check");
         Integer entAmount = VoltNetwork.getInstance().getConfig().getInt("max_amount_entities");
         String staffPermission = VoltNetwork.getInstance().getConfig().getString("ac_permission");
