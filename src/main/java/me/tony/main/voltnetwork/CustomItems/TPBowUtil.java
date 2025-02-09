@@ -1,5 +1,6 @@
 package me.tony.main.voltnetwork.CustomItems;
 
+import me.tony.main.voltnetwork.GeneralUtil.PDC;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -39,6 +40,9 @@ public class TPBowUtil implements Listener {
         lore.add(" ");
         lore.add(ChatColor.translateAlternateColorCodes('&', "&7Teleports you to the arrows landing area!"));
         meta.setLore(lore);
+
+        PDC.setItemID(item, "Teleport_Bow");
+
         item.setItemMeta(meta);
 
         return item;
@@ -83,12 +87,12 @@ public class TPBowUtil implements Listener {
     }
 
     @EventHandler public void ShootArrow(ProjectileLaunchEvent e) {
-        if (!(e.getEntity().getShooter() instanceof Player)) return;
+        if (!(e.getEntity().getShooter() instanceof Player) || e.getEntity().getShooter() instanceof Skeleton) return;
         Player p = (Player) e.getEntity().getShooter();
         ItemStack i = p.getInventory().getItemInMainHand();
         Entity ent = e.getEntity();
         if (!i.getType().equals(Material.BOW)) return;
-        if (!i.getItemMeta().getDisplayName().equals(ChatColor.translateAlternateColorCodes('&', "&bTeleport Bow"))) return;
+        if (PDC.containsItemID(i, "Teleport_Bow")) return;
         if (!BowStorage.containsKey(p.getUniqueId())) {
             p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cYou do not have ammo!"));
             p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7Left-Click your bow to view your storage"));
@@ -124,7 +128,7 @@ public class TPBowUtil implements Listener {
 
         if (a.equals(Action.LEFT_CLICK_BLOCK) || a.equals(Action.LEFT_CLICK_AIR)) {
             if (!i.getType().equals(Material.BOW)) return;
-            if (!e.getItem().getItemMeta().getDisplayName().equals(ChatColor.translateAlternateColorCodes('&', "&bTeleport Bow"))) return;
+            if (e.getItem() != null && PDC.containsItemID(i, "Teleport_Bow")) return;
             TPBowStorage(p);
         }
 
