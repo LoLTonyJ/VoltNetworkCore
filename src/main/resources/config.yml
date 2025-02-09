@@ -33,6 +33,9 @@ crate_key_command: "ac key give %player% common"
 announce_key_purchase: true
 announce_key_message: "&7[&cVoltNetwork&7] %player% has just bought a Common Crate Key! You can purchase yours using /vce key!"
 
+# If this number is exceeded, it will alert online Staff Members that a Potential Lag Machine has been created.
+max_amount_entities: 25
+
 #######################################################################################################################
 #                                                                                                                     #
 #                                   PREMIUM FURNACE SECTION                                                           #
@@ -475,6 +478,16 @@ Check_Blocks:
   - DIAMOND_ORE
   - EMERALD_ORE
   - DEEPSLATE_DIAMOND_ORE
+
+# Every 5 minutes, the Plugin will run through this list and check if there are over x amount and alert online staff.
+# Please make sure when adding an Entity that you spell it correctly, and make it all uppercase!
+
+Lag_Check:
+  - OAK_BOAT
+  - ACACIA_BOAT
+  - SPRUCE_BOAT
+  - ARMOR_STAND
+  - DARK_OAK_BOAT
 
 # Its recommended not to touch this if you don't know what you're doing.
 # This will check the item in the players hand and check and see if its allowed to be enchanted with a custom enchant

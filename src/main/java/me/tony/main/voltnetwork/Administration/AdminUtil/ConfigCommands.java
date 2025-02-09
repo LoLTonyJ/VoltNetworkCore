@@ -43,13 +43,11 @@ public class ConfigCommands implements CommandExecutor {
                 if (subCommand.equalsIgnoreCase("edit")) {
                     if (cfgEdit.equalsIgnoreCase("prefix")) {
                         VoltNetwork.getInstance().getConfig().set("prefix", ChatColor.translateAlternateColorCodes('&', toEdit));
-                        VoltNetwork.getInstance().saveConfig();
                         VoltNetwork.getInstance().reloadConfig();
                         p.sendMessage(Chat.format(prefix + "&aThe Plugin prefix has been changed!"));
                     }
                     if (cfgEdit.equalsIgnoreCase("bePerm")) {
                         VoltNetwork.getInstance().getConfig().set("backend_permission", toEdit);
-                        VoltNetwork.getInstance().saveConfig();
                         VoltNetwork.getInstance().reloadConfig();
                         p.sendMessage(Chat.format(prefix + " &aThe Backend Permission has been changed!"));
                     }

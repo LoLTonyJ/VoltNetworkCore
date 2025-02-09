@@ -22,9 +22,11 @@ public class ConfigReloadConfirm implements Listener {
 
         if (ConfigCommands.CFGReload.contains(p)) {
             if (msg.equalsIgnoreCase("yes")) {
+
                 VoltNetwork.getInstance().reloadConfig();
                 e.setCancelled(true);
                 p.sendMessage(Chat.format("&a&lReloaded Configuration File"));
+                VoltNetwork.getInstance().reloadConfig();
             } else if (msg.equalsIgnoreCase("no")) {
                 ConfigCommands.CFGReload.remove(p);
                 e.setCancelled(true);

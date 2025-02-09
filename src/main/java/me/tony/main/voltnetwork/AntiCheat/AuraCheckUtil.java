@@ -24,11 +24,10 @@ public class AuraCheckUtil implements Listener {
 
     @EventHandler
     public void onHit(EntityDamageByEntityEvent e) {
+        if (!(e.getDamager() instanceof Player)) return;
+
         Entity victim = e.getEntity();
         Player attacker = (Player) e.getDamager();
-
-        if (!(e.getEntity() instanceof Player)) return;
-        if (!(e.getDamager() instanceof Player)) return;
 
         if (e.getDamager() instanceof Projectile) return;
         if (!ACUtil.isExempt(attacker)) return;

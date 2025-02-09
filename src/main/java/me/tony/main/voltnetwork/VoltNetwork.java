@@ -74,6 +74,10 @@ public final class VoltNetwork extends JavaPlugin {
         setupPermissions();
         setupChat();
 
+        for (Player p : Bukkit.getOnlinePlayers()) {
+            LagCheck.nearbyEntities(p);
+        }
+
         try {
             // Data File Util.
             KothFileManager.getInstance().Load();
@@ -199,7 +203,7 @@ public final class VoltNetwork extends JavaPlugin {
         // Custom Boss Runnables.
         BossCooldowns.DialogueQueue();
         BossCooldowns.AbilityUse();
-        BossCooldowns.SpawnWatchers();
+        //BossCooldowns.SpawnWatchers();
         BossCooldowns.SpawnMinions();
 
         // Loading Custom Recipes.
@@ -273,10 +277,9 @@ public final class VoltNetwork extends JavaPlugin {
     }
 
     public void reloadConfig() {
-        super.reloadConfig();
         saveDefaultConfig();
+        super.reloadConfig();
         getConfig().options().copyDefaults(true);
-        saveConfig();
     }
 
 

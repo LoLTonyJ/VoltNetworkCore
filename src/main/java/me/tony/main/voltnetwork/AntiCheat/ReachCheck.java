@@ -15,11 +15,11 @@ public class ReachCheck implements Listener {
     @EventHandler
     public void onAttack(EntityDamageByEntityEvent e) {
 
+        if (!(e.getEntity() instanceof Player)) return;
+        if (!(e.getDamager() instanceof Player)) return;
 
         Player attacker = (Player) e.getDamager();
         Player victim = (Player) e.getEntity();
-        if (!(e.getEntity() instanceof Player)) return;
-        if (!(e.getDamager() instanceof Player)) return;
         if (e.getDamager() instanceof Projectile) return;
         if (!ACUtil.isExempt(attacker)) return;
 

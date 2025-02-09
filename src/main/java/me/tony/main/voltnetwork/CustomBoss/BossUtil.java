@@ -266,11 +266,13 @@ public class BossUtil implements Listener {
     @EventHandler
     public static void EggSpawn(ItemSpawnEvent e) {
 
+        if (BossCommands.WorldBossSpawn.isEmpty()) return;
+
         // Disable The Watchers Chickens from Laying Eggs.
         World w = Bukkit.getWorld(BossCommands.WorldBossSpawn.get(0));
         ItemStack i = e.getEntity().getItemStack();
         Entity ent = e.getEntity();
-        if (w == null || BossCommands.WorldBossSpawn.isEmpty()) return;
+        if (w == null) return;
         if (!(ent instanceof Chicken)) return;
         if (!i.getType().equals(Material.EGG)) return;
         e.setCancelled(true);
